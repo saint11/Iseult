@@ -8,18 +8,32 @@
     <OriginX>64</OriginX>
     <OriginY>64</OriginY>
     <Animations>
-      <Anim id="idle" delay=".1" frames="0"/>
-      <Anim id="walk" delay=".1" frames="0"/>
-	    <Anim id="crouchIn" delay=".1" loop="False" frames="0"/>
-	    <Anim id="crouchOut" delay=".1" loop="False" frames="0"/>
-  	  <Anim id="jumpUp" delay=".1" loop="False" frames="0"/>
-	    <Anim id="jumpDown" delay=".1" loop="True" frames="0"/>
-	    <Anim id="idleHolding" delay=".1" frames="0"/>
-	    <Anim id="walkHolding" delay=".1" frames="0"/>
-	    <Anim id="jumpUpHolding" delay=".1" loop="False" frames="0"/>
-	    <Anim id="jumpDownHolding" delay=".1" loop="True" frames="0"/>
-	    <Anim id="idleThrowing" delay=".1" loop="False" frames="0"/>
-	    <Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
+		<Anim id="idle" delay=".1" frames="0"/>
+		<Anim id="idleLeft" delay=".1" frames="0"/>
+		<Anim id="walk" delay=".1" frames="0"/>
+		<Anim id="walkLeft" delay=".1" frames="0"/>
+		<Anim id="run" delay=".1" frames="0"/>
+		<Anim id="runLeft" delay=".1" frames="0"/>
+		<Anim id="crouchIn" delay=".1" loop="False" frames="0"/>
+		<Anim id="crouchInLeft" delay=".1" loop="False" frames="0"/>
+		<Anim id="crouchOut" delay=".1" loop="False" frames="0"/>
+		<Anim id="crouchOutLeft" delay=".1" loop="False" frames="0"/>
+		<Anim id="jumpUp" delay=".1" loop="False" frames="0"/>
+		<Anim id="jumpUpLeft" delay=".1" loop="False" frames="0"/>
+		<Anim id="jumpDown" delay=".1" loop="True" frames="0"/>
+		<Anim id="jumpDownLeft" delay=".1" loop="True" frames="0"/>
+		<Anim id="idleHolding" delay=".1" frames="0"/>
+		<Anim id="idleHoldingLeft" delay=".1" frames="0"/>
+		<Anim id="walkHolding" delay=".1" frames="0"/>
+		<Anim id="walkHoldingLeft" delay=".1" frames="0"/>
+		<Anim id="jumpUpHolding" delay=".1" loop="False" frames="0"/>
+		<Anim id="jumpUpHoldingLeft" delay=".1" loop="False" frames="0"/>
+		<Anim id="jumpDownHolding" delay=".1" loop="True" frames="0"/>
+		<Anim id="jumpDownHoldingLeft" delay=".1" loop="True" frames="0"/>
+		<Anim id="idleThrowing" delay=".1" loop="False" frames="0"/>
+		<Anim id="idleThrowingLeft" delay=".1" loop="False" frames="0"/>
+		<Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
+		<Anim id="jumpThrowingLeft" delay=".1" loop="False" frames="0"/>
     </Animations>
   </sprite_string>
 
