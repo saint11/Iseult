@@ -13,7 +13,7 @@
 		<Anim id="walk" delay=".1" frames="0"/>
 		<Anim id="walkLeft" delay=".1" frames="0"/>
 		<Anim id="run" delay=".1" frames="0"/>
-		<Anim id="runLeft" delay=".1" frames="0"/>
+		<Anim id="runLeft" delay=".1" frames="8"/>
 		<Anim id="crouchIn" delay=".1" loop="False" frames="0"/>
 		<Anim id="crouchInLeft" delay=".1" loop="False" frames="0"/>
 		<Anim id="crouchOut" delay=".1" loop="False" frames="0"/>
