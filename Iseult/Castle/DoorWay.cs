@@ -15,7 +15,7 @@ namespace Iseult
         private bool Back;
         
         private Sprite<string> Image;
-        private bool interacting=false;
+        private int interacting=0;
 
         public DoorWay(Vector2 Position, string Destiny, bool Back)
             : base(Back? GameLevel.GAMEPLAY_LAYER:GameLevel.FRONT_GAMEPLAY_LAYER)
@@ -28,24 +28,33 @@ namespace Iseult
 
             Image = IseultGame.SpriteData.GetSpriteString("door");
             Add(Image);
-            Image.Color.A = (byte)((0.7f) * 255);
+            Image.Color.A = (byte)((0.8f) * 255);
 
             Collider = new Hitbox(Image.Width, Image.Height);
-            interacting = false;
+            interacting = 0;
         }
 
         public override void Update()
         {
             base.Update();
-            interacting = false;
+
+            if (interacting == 0)
+            {
+                Tween.Alpha(Image, 0.8f, 25, null);
+                interacting--;
+            }
+            else
+            {
+                interacting--;
+            }
         }
 
         internal void OnTouched(Iseult Player)
         {
-            if (!interacting)
+            if (interacting<=0)
             {
                 Tween.Alpha(Image, 0.3f, 25, null);
-                interacting = true;
+                interacting = 5;
             }
         }
     }

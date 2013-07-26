@@ -17,7 +17,7 @@ namespace OldSkull.GameLevel
         
         private string imageName;
 
-        public int side {get; private set;}
+        public int side {get; protected set;}
 
         protected bool Crouching = false;
 
@@ -221,13 +221,11 @@ namespace OldSkull.GameLevel
                 Speed.X += KeyboardInput.xAxis * Acceleration;
                 if (KeyboardInput.xAxis < 0)
                 {
-                    side = -1;
-                    image.FlipX = true;
+                    if (side != -1) OnChangeSides(-1);
                 }
                 else
                 {
-                    image.FlipX = false;
-                    side = 1;
+                    if (side != 1) OnChangeSides(1);
                 }
 
                 if (onGround && !Crouching) PlayAnim("walk");
@@ -235,6 +233,12 @@ namespace OldSkull.GameLevel
                 return true;
             }
             return false;
+        }
+
+        protected virtual void OnChangeSides(int newSide)
+        {
+            side = newSide;
+            image.FlipX = true;
         }
 
         public void stopUsing()

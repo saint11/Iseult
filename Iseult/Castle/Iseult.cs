@@ -29,5 +29,15 @@ namespace Iseult
                 Door.OnTouched(this);
             }
         }
+
+        protected override void OnChangeSides(int newSide)
+        {
+            side = newSide;
+        }
+
+        protected override void PlayAnim(string animation, bool restart = false)
+        {
+            base.PlayAnim(animation+(side==-1?"Left":""), restart);
+        }
     }
 }
