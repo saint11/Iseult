@@ -9,7 +9,6 @@ using Microsoft.Xna.Framework.Content;
 using System.IO;
 using System.Collections.Generic;
 using System.Collections;
-using OldSkull.Isle;
 using OldSkull.Utils;
 #endregion
 
@@ -35,8 +34,8 @@ namespace OldSkull
             }
         }
 
-        public OldSkullGame()
-            : base(340, 220, 60f, "OldSkull Game")
+        public OldSkullGame(int width=340, int height=220, float fps=60f, string title = "OldSkull Game")
+            : base(width, height, fps, title)
         {
         }
 
@@ -63,7 +62,6 @@ namespace OldSkull
             KeyboardInput.Add("use", Keys.X);
             KeyboardInput.Add("pause", Keys.P);
             KeyboardInput.Add("escape", Keys.Escape);
-            Scene = new Isle.MainMenu();
         }
         protected override void Update(GameTime gameTime)
         {

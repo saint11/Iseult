@@ -6,7 +6,7 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1A21BEE7-22DB-4721-89CF-64DB8E5B7641}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OldSkull</RootNamespace>
     <AssemblyName>OldSkull</AssemblyName>
@@ -65,8 +65,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>OldSkull.OldSkullGame</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Compile Include="GameLevel\Environment\Wall.cs" />
     <Compile Include="GameLevel\Hud\Box.cs" />
@@ -105,7 +107,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Template\MainMenu.cs" />
     <Compile Include="Utils\Sounds.cs" />
   </ItemGroup>
   <ItemGroup>
