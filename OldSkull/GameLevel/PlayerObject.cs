@@ -21,15 +21,14 @@ namespace OldSkull.GameLevel
 
         protected bool Crouching = false;
 
-
         protected bool LetGo = false;
         private int useKeyTimer = 0;
         private bool UsingItem = false;
         private int Invulnerable=0;
 
         protected bool JustTalked = false;
-        protected float Acceleration = 0.2f;
         protected float JumpForce = 3.8f;
+        protected float Acceleration = 0.2f;
 
         public PlayerObject(Vector2 position, Vector2 size, string imageName="")
             : base(position, size)

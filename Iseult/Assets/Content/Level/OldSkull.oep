@@ -32,8 +32,8 @@
     <LayerDefinition xsi:type="GridLayerDefinition">
       <Name>Solid</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>32</Width>
+        <Height>32</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>

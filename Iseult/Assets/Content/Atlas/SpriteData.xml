@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <sprites>
-
+<!--NPCS-->
   <sprite_string id="iseult">
     <Texture>characters/iseult</Texture>
     <FrameWidth>128</FrameWidth>
@@ -22,7 +22,7 @@
 	    <Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
     </Animations>
   </sprite_string>
-  
+
   <!--Environmental-->
 
   <sprite_string id="door">
@@ -33,8 +33,7 @@
     <OriginY>0</OriginY>
     <Animations>
       <Anim id="stand" delay=".1" frames="0"/>
-      <Anim id="open" delay=".1" loop="false" frames="0"/>
+      <Anim id="open" delay=".1" loop="false" frames="1,2,3,4,5,6,7,8,9,10"/>
     </Animations>
   </sprite_string>
-  
 </sprites>

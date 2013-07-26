@@ -18,7 +18,7 @@ namespace Iseult
     public class IseultGame : OldSkullGame
     {
         public IseultGame()
-            : base(1366,768)
+            : base(1366,768,60)
         { }
 
 
@@ -34,7 +34,6 @@ namespace Iseult
         {
             base.Initialize();
             Screen.Scale = 1;
-            //Screen.EnableFullscreen(Monocle.Screen.FullscreenMode.KeepScale);
             Scene = new MainMenu();
         }
     }

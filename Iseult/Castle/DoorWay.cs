@@ -40,12 +40,11 @@ namespace Iseult
 
         internal void TouchDoor(Iseult Player)
         {
-            if (!interacting)
+            if (true)
                 {
                     Tween.Alpha(Image, 0.4f, 25, null);
                     interacting = true;
                 }
-            }
         }
     }
 }

@@ -20,7 +20,6 @@ namespace OldSkull.GameLevel
         protected Vector2 AirDamping;
         protected Vector2 GroundDamping;
 
-        private PlatformerLevel Level;
         protected Boolean onGround = false;
 
         public Image image;
@@ -38,8 +37,6 @@ namespace OldSkull.GameLevel
         public override void Added()
         {
             base.Added();
-            //TODO: Check if its on a platformerLevel
-            Level = (PlatformerLevel)Scene;
             Gravity = Level.Gravity;
         }   
 

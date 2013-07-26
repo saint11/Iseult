@@ -19,5 +19,15 @@ namespace Iseult
             Acceleration = 1f;
             JumpForce = 4;
         }
+
+        protected override void UpdateColisions()
+        {
+            DoorWay Door = (DoorWay)Level.CollideFirst(Collider.Bounds, GameTags.Door);
+
+            if (Door != null)
+            {
+                Door.TouchDoor(this);
+            }
+        }
     }
 }

@@ -101,11 +101,11 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Monocle\MonocleEngine\MonocleXNA.csproj">
+    <ProjectReference Include="..\Monocle\MonocleEngine\MonocleXNA.csproj">
       <Project>{1ED44608-98CC-4E1C-97FB-39939F4648CD}</Project>
       <Name>MonocleXNA</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\OldSkull\OldsSkull.csproj">
+    <ProjectReference Include="..\OldSkull\OldsSkull.csproj">
       <Project>{1A21BEE7-22DB-4721-89CF-64DB8E5B7641}</Project>
       <Name>OldsSkull</Name>
     </ProjectReference>
@@ -117,7 +117,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Content\Level\OldSkull.oep">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
@@ -163,10 +163,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <Content Include="Assets\Content\Level\InnerBaley.oel">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Level\OuterBaley.oel">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

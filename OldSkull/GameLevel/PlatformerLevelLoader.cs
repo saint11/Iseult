@@ -34,7 +34,7 @@ namespace OldSkull.GameLevel
 
             current.size = new Vector2(int.Parse(levelMap.Attr("width")), int.Parse(levelMap.Attr("height")));
             current.solids = new List<Solid>();
-            current.solidGrid = new Grid(16, 16, levelMap["Solid"].InnerText);
+            current.solidGrid = new Grid(32, 32, levelMap["Solid"].InnerText);
 
             current.entities = new List<XmlElement>();
             foreach (XmlElement e in levelMap["Objects"])

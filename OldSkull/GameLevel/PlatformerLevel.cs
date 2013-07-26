@@ -56,16 +56,14 @@ namespace OldSkull.GameLevel
 
             SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer());
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
-            SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
-            SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
+            SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer());
+            SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer());
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
             SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
 
             Solids = new List<Entity>();
 
             BuildHud();
-
-            tilesetCount = 0;
         }
 
         protected virtual void BuildHud()
@@ -99,7 +97,7 @@ namespace OldSkull.GameLevel
 
         public virtual void LoadTileset(XmlElement e)
         {
-            Graphics.Tileset newTile = new Graphics.Tileset(-3, e.InnerText, OldSkullGame.Atlas["tilesets/" + e.Attr("tileset")], new Vector2(32));
+            Graphics.Tileset newTile = new Graphics.Tileset(-3, e.InnerText, OldSkullGame.Atlas["tilesets/" + e.Attr("tileset")],new Vector2(32,32));
             newTile.Depth = tilesetCount;
             tilesetCount++;
             Add(newTile);

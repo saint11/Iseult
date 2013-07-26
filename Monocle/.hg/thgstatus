@@ -1,1 +1,7 @@
 mMonocleDemo
+mMonocleEngine
+mMonocleEngine/Audio
+mMonocleEngine/Components/Graphics
+mMonocleEngine/Components/Logic
+mMonocleEngine/Graphics
+mMonocleEngine/Utils
