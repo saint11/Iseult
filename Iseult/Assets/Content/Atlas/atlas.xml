@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:0b76efb35f230fa3c3c075c54a209da9:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:aa78f2ad5c11ac9a30e0c62ddacbd3c4:1/1$ -->
 <TextureAtlas imagePath="atlas.png">
     <SubTexture name="characters/iseult" x="0" y="0" width="512" height="512"/>
-    <SubTexture name="characters/iseultRun0000" x="0" y="841" width="128" height="128"/>
     <SubTexture name="environment/doorway" x="408" y="512" width="96" height="128"/>
-    <SubTexture name="logo" x="0" y="969" width="32" height="32"/>
+    <SubTexture name="logo" x="0" y="841" width="32" height="32"/>
     <SubTexture name="logo4x" x="280" y="512" width="128" height="128"/>
-    <SubTexture name="menu/exit" x="32" y="993" width="80" height="24"/>
-    <SubTexture name="menu/new" x="32" y="969" width="80" height="24"/>
+    <SubTexture name="menu/exit" x="32" y="841" width="80" height="24"/>
+    <SubTexture name="menu/new" x="0" y="873" width="80" height="24"/>
     <SubTexture name="tilesets/default" x="0" y="585" width="256" height="256"/>
     <SubTexture name="title" x="0" y="512" width="280" height="73"/>
 </TextureAtlas>
