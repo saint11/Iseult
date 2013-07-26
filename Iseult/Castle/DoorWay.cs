@@ -14,7 +14,6 @@ namespace Iseult
         private string Destiny;
         private bool Back;
         
-        private Rectangle Body;
         private Sprite<string> Image;
         private bool interacting=false;
 
@@ -25,26 +24,29 @@ namespace Iseult
             this.Back = Back;
             this.Destiny = Destiny;
 
+            Tag(GameTags.Door);
+
             Image = IseultGame.SpriteData.GetSpriteString("door");
             Add(Image);
-            Image.Color.A = (byte)((0.9f) * 255);
+            Image.Color.A = (byte)((0.7f) * 255);
 
-            Body = new Rectangle((int)X, (int)Y, (int)Image.Width, (int)Image.Height);
+            Collider = new Hitbox(Image.Width, Image.Height);
+            interacting = false;
         }
 
         public override void Update()
         {
             base.Update();
-            
+            interacting = false;
         }
 
-        internal void TouchDoor(Iseult Player)
+        internal void OnTouched(Iseult Player)
         {
-            if (true)
-                {
-                    Tween.Alpha(Image, 0.4f, 25, null);
-                    interacting = true;
-                }
+            if (!interacting)
+            {
+                Tween.Alpha(Image, 0.3f, 25, null);
+                interacting = true;
+            }
         }
     }
 }

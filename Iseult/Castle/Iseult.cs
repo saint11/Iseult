@@ -26,7 +26,7 @@ namespace Iseult
 
             if (Door != null)
             {
-                Door.TouchDoor(this);
+                Door.OnTouched(this);
             }
         }
     }

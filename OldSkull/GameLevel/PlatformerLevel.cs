@@ -56,8 +56,8 @@ namespace OldSkull.GameLevel
 
             SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer());
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
-            SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer());
-            SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer());
+            SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
+            SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
             SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
 

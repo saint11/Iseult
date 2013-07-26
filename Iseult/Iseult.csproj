@@ -109,11 +109,6 @@
       <Project>{1A21BEE7-22DB-4721-89CF-64DB8E5B7641}</Project>
       <Name>OldsSkull</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WindowsGame1Content\WindowsGame1Content.contentproj">
-      <Name>WindowsGame1Content %28Content%29</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-      <Project>{A6CD5003-3F2A-4F4D-9E03-04714944A973}</Project>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Content\Level\OldSkull.oep">
