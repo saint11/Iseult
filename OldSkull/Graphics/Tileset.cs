@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Monocle;
-
+using Microsoft.Xna.Framework;
 
 namespace OldSkull.Graphics
 {
@@ -12,11 +12,14 @@ namespace OldSkull.Graphics
         Tilemap image;
         string csv;
         Subtexture texture;
-        public Tileset(int layerIndex,string csv,Subtexture texture)
+        Vector2 tileSize;
+
+        public Tileset(int layerIndex,string csv,Subtexture texture,Vector2 tileSize)
             : base(layerIndex)
         {
             this.csv = csv;
             this.texture = texture;
+            this.tileSize = tileSize;
         }
 
         public override void Added()
@@ -25,7 +28,7 @@ namespace OldSkull.Graphics
             GameLevel.PlatformerLevel Level = (GameLevel.PlatformerLevel)Scene;
             image = new Tilemap(Level.Width, Level.Height);
 
-            image.SetTileset(texture,16,16);
+            image.SetTileset(texture, (int)tileSize.X, (int)tileSize.Y);
 
             image.BeginTiling();
             image.LoadCSV(csv);

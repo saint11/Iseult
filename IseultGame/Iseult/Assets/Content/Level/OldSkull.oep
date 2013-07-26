@@ -1,22 +1,22 @@
 <?xml version="1.0"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <OgmoVersion>2.1.0.6</OgmoVersion>
-  <Name>OldSkull Template</Name>
+  <Name>Iseult</Name>
   <BackgroundColor A="255" R="125" G="160" B="255" />
   <GridColor A="255" R="255" G="240" B="90" />
   <LevelDefaultSize>
-    <Width>320</Width>
-    <Height>240</Height>
+    <Width>1366</Width>
+    <Height>768</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>320</Width>
-    <Height>240</Height>
+    <Width>1366</Width>
+    <Height>768</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
-    <Width>640</Width>
-    <Height>480</Height>
+    <Width>4096</Width>
+    <Height>2048</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Santo 11\Documents\GitHub\oldskull\OldSkull\Assets\Content\Level\OldSkull.oep</Filename>
+  <Filename>C:\Users\Santo 11\Documents\GitHub\Iseult\IseultGame\Iseult\Assets\Content\Level\OldSkull.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -45,8 +45,8 @@
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>Tiles</Name>
       <Grid>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>32</Width>
+        <Height>32</Height>
       </Grid>
       <ScrollFactor>
         <X>1</X>
@@ -71,8 +71,8 @@
       <Name>default</Name>
       <FilePath>..\Gfx\tilesets\default.png</FilePath>
       <TileSize>
-        <Width>16</Width>
-        <Height>16</Height>
+        <Width>32</Width>
+        <Height>32</Height>
       </TileSize>
       <TileSep>0</TileSep>
     </Tileset>
@@ -80,17 +80,35 @@
   <EntityDefinitions>
     <EntityDefinition Name="Player" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
       <Size>
-        <Width>32</Width>
-        <Height>32</Height>
+        <Width>128</Width>
+        <Height>128</Height>
       </Size>
       <Origin>
-        <X>0</X>
-        <Y>0</Y>
+        <X>64</X>
+        <Y>64</Y>
       </Origin>
       <ImageDefinition DrawMode="Rectangle" ImagePath="" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="DoorWay" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>96</Width>
+        <Height>128</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\environment\doorway.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="GoTo" Default="" MaxChars="-1" MultiLine="false" />
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="Back" Default="true" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>

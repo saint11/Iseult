@@ -43,7 +43,7 @@ namespace OldSkull
         {
             base.LoadContent();
             Atlas = new Atlas(Path + @"Content/Atlas/atlas.xml", true);
-            //SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", Atlas);
+            SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", Atlas);
             Content.RootDirectory = Path + "Content";
             Font = Content.Load<SpriteFont>(@"Misc/pixel");
             Stats = GameStats.Init();

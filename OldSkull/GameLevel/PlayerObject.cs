@@ -28,6 +28,8 @@ namespace OldSkull.GameLevel
         private int Invulnerable=0;
 
         protected bool JustTalked = false;
+        protected float Acceleration = 0.2f;
+        protected float JumpForce = 3.8f;
 
         public PlayerObject(Vector2 position, Vector2 size, string imageName="")
             : base(position, size)
@@ -181,7 +183,7 @@ namespace OldSkull.GameLevel
         {
             if (onGround)
             {
-                Speed.Y = -3.8f;
+                Speed.Y = -JumpForce;
                 Utils.Sounds.Play("jump");
             }
         }
@@ -217,7 +219,7 @@ namespace OldSkull.GameLevel
         {
             if (Math.Abs(KeyboardInput.xAxis) > 0)
             {
-                Speed.X += KeyboardInput.xAxis * 0.2f;
+                Speed.X += KeyboardInput.xAxis * Acceleration;
                 if (KeyboardInput.xAxis < 0)
                 {
                     side = -1;

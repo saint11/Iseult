@@ -18,7 +18,7 @@ namespace Iseult
     public class IseultGame : OldSkullGame
     {
         public IseultGame()
-            : base()
+            : base(1366,768)
         { }
 
 
@@ -33,6 +33,8 @@ namespace Iseult
         protected override void Initialize()
         {
             base.Initialize();
+            Screen.Scale = 1;
+            //Screen.EnableFullscreen(Monocle.Screen.FullscreenMode.KeepScale);
             Scene = new MainMenu();
         }
     }

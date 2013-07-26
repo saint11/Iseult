@@ -11,7 +11,7 @@ namespace OldSkull.GameLevel
     {
 
         public List<PlatformerLevel.GameState> UpdateOnState;
-        private PlatformerLevel Level { get { return (PlatformerLevel)Scene; } }
+        protected PlatformerLevel Level { get { return (PlatformerLevel)Scene; } }
 
 
         public PlatformLevelEntity(int layerIndex, PlatformerLevel.GameState UpdateState = PlatformerLevel.GameState.Game)
