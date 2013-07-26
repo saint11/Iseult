@@ -42,7 +42,7 @@ namespace Iseult
         {
 
             PlatformerLevelLoader loader = PlatformerLevelLoader.load("OuterBaley");
-            GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Secret);
+            GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Door);
             
             Engine.Instance.Scene = level;
         }

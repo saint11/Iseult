@@ -43,7 +43,7 @@ namespace OldSkull.GameLevel
         protected string ConnectionLeft;
 
 
-        public enum Side { Left, Right, Secret };
+        public enum Side { Left, Right, Secret, Door };
 
         public enum GameState { Game, Paused, Talk, Transition, ExitGame };
         public GameState CurrentState = GameState.Game;

@@ -10,25 +10,38 @@ namespace Iseult
 {
     public class GameLevel:PlatformerLevel
     {
-        public GameLevel(PlatformerLevelLoader Loader, Side EntrySide)
+        private int DoorUid;
+        private Side EntrySide;
+        public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
             :base(Loader.size)
         {
+            this.DoorUid = DoorUid;
+            this.EntrySide = EntrySide;
             Engine.Instance.Screen.ClearColor = Color.RoyalBlue;
             loadLevel(Loader);
         }
 
         public override void LoadEntity(System.Xml.XmlElement e)
         {
-            if (e.Name == "Player")
+            if (e.Name == "Player" && EntrySide==Side.Secret)
             {
-                Iseult player = new Iseult(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")));
-                Add(player);
-                CameraTarget = player;
+                AddPlayer(e.AttrFloat("x"), e.AttrFloat("y"));
             }
             else if (e.Name == "DoorWay")
             {
-                Add(new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")),e.Attr("GoTo"),e.AttrBool("Back")));
+                Add(new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")),e.Attr("GoTo"),e.AttrBool("Back"),e.AttrInt("uid")));
+                if (e.AttrInt("uid") == DoorUid && EntrySide==Side.Door)
+                {
+                    AddPlayer(e.AttrFloat("x"), e.AttrFloat("y"));
+                }
             }
+        }
+
+        private void AddPlayer(float x, float y)
+        {
+            Iseult player = new Iseult(new Vector2(x,y));
+            Add(player);
+            CameraTarget = player;
         }
     }
 }

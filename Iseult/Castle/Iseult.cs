@@ -11,6 +11,8 @@ namespace Iseult
 {
     public class Iseult : PlayerObject
     {
+        private DoorWay SelectedDoor;
+
         public Iseult(Vector2 Position)
             : base(Position, new Vector2(128, 128),"iseult")
         {
@@ -22,14 +24,21 @@ namespace Iseult
 
         protected override void UpdateColisions()
         {
-            DoorWay Door = (DoorWay)Level.CollideFirst(Collider.Bounds, GameTags.Door);
-
-            if (Door != null)
+            SelectedDoor = (DoorWay)Level.CollideFirst(Collider.Bounds, GameTags.Door);
+            if (SelectedDoor != null)
             {
-                Door.OnTouched(this);
+                SelectedDoor.OnTouched(this);
             }
         }
 
+        protected override void OnPressedUp()
+        {
+            if (SelectedDoor != null)
+            {
+                SelectedDoor.Enter();
+            }
+        }
+        
         protected override void OnChangeSides(int newSide)
         {
             side = newSide;

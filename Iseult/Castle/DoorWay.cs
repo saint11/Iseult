@@ -15,14 +15,16 @@ namespace Iseult
         private bool Back;
         
         private Sprite<string> Image;
-        private int interacting=0;
+        private int uid;
+        private int interacting = 0;
 
-        public DoorWay(Vector2 Position, string Destiny, bool Back)
+        public DoorWay(Vector2 Position, string Destiny, bool Back, int uid)
             : base(Back? GameLevel.GAMEPLAY_LAYER:GameLevel.FRONT_GAMEPLAY_LAYER)
         {
             this.Position = Position;
             this.Back = Back;
             this.Destiny = Destiny;
+            this.uid = uid;
 
             Tag(GameTags.Door);
 
@@ -56,6 +58,14 @@ namespace Iseult
                 Tween.Alpha(Image, 0.3f, 25, null);
                 interacting = 5;
             }
+        }
+
+        internal void Enter()
+        {
+            PlatformerLevelLoader loader = PlatformerLevelLoader.load(Destiny);
+            GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Door, uid);
+
+            Engine.Instance.Scene = level;
         }
     }
 }

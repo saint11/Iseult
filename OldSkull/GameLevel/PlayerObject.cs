@@ -107,7 +107,7 @@ namespace OldSkull.GameLevel
             }
         }
 
-        private void UpdateControls()
+        protected virtual void UpdateControls()
         {
             if (!UsingItem)
             {
