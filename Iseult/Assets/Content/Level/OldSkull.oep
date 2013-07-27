@@ -69,7 +69,7 @@
   <Tilesets>
     <Tileset>
       <Name>default</Name>
-      <FilePath>..\Gfx\atlas\tilesets\default.png</FilePath>
+      <FilePath>..\Gfx\atlas0\tilesets\default.png</FilePath>
       <TileSize>
         <Width>32</Width>
         <Height>32</Height>
@@ -102,7 +102,7 @@
         <X>0</X>
         <Y>0</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas\environment\doorway.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\doorway.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -121,13 +121,28 @@
         <X>0</X>
         <Y>0</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas\environment\stairsDown.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\stairs.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
         <ValueDefinition xsi:type="BoolValueDefinition" Name="Back" Default="true" />
       </ValueDefinitions>
       <NodesDefinition Enabled="true" Limit="1" DrawMode="Path" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="Item" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>48</Width>
+        <Height>48</Height>
+      </Size>
+      <Origin>
+        <X>16</X>
+        <Y>16</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\Items.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>
 </project>

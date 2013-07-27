@@ -3,7 +3,6 @@
 <!--NPCS-->
   <sprite_string id="iseult">
     <Texture>characters/iseult</Texture>
-    <atlas>1</atlas>
     <FrameWidth>128</FrameWidth>
     <FrameHeight>128</FrameHeight>
     <OriginX>64</OriginX>
@@ -27,7 +26,6 @@
   
   <sprite_string id="iseultLeft">
     <Texture>characters/iseultLeft</Texture>
-    <atlas>1</atlas>
     <FrameWidth>128</FrameWidth>
     <FrameHeight>128</FrameHeight>
     <OriginX>64</OriginX>
@@ -51,6 +49,28 @@
 
   <!--Environmental-->
 
+  <sprite_string id="item">
+    <Texture>environment/Items</Texture>
+    <FrameWidth>48</FrameWidth>
+    <FrameHeight>48</FrameHeight>
+    <OriginX>24</OriginX>
+    <OriginY>32</OriginY>
+    <Animations>
+      <Anim id="knife" delay=".1" frames="0"/>
+    </Animations>
+  </sprite_string>
+  
+  <sprite_string id="throwable">
+    <Texture>environment/throwables</Texture>
+    <FrameWidth>32</FrameWidth>
+    <FrameHeight>32</FrameHeight>
+    <OriginX>16</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="knife" delay=".1" frames="0"/>
+    </Animations>
+  </sprite_string>
+  
   <sprite_string id="door">
     <Texture>environment/doorway</Texture>
     <FrameWidth>96</FrameWidth>

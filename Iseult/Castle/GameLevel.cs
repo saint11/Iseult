@@ -50,6 +50,10 @@ namespace Iseult
                 Add(Second);
                 Stairs.Link(First, Second);
             }
+            else if (e.Name == "Item")
+            {
+                Add(new Equip(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), "knife"));
+            }
         }
 
         private void AddPlayer(float x, float y)

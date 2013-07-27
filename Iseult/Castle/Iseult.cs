@@ -6,6 +6,7 @@ using Monocle;
 using OldSkull.GameLevel;
 using Microsoft.Xna.Framework;
 using OldSkull;
+using Iseult.Castle;
 
 namespace Iseult
 {
@@ -44,6 +45,17 @@ namespace Iseult
                 SelectedDoor.Enter(this);
             }
         }
+
+        public override void Update()
+        {
+            base.Update();
+
+            if (KeyboardInput.pressedInput("use"))
+            {
+                Level.Add(new Throwable(Position, side,"knife"));
+            }
+        }
+
         
         protected override void OnChangeSides(int newSide)
         {

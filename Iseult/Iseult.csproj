@@ -76,9 +76,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Castle\DoorWay.cs" />
+    <Compile Include="Castle\Collectible.cs" />
     <Compile Include="Castle\GameLevel.cs" />
     <Compile Include="Castle\Iseult.cs" />
     <Compile Include="Castle\Stairs.cs" />
+    <Compile Include="Castle\Throwable.cs" />
     <Compile Include="UI\MainMenu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IseultGame.cs" />

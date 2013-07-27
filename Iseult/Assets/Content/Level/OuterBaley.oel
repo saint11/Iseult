@@ -54,5 +54,7 @@
     <Stairs id="3" x="1200" y="576" Back="True">
       <node x="1408" y="512" />
     </Stairs>
+    <Item id="4" x="1744" y="608" />
+    <Item id="5" x="720" y="640" />
   </Objects>
 </level>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:835e99f3d550f9e73a07e7c3625b61ef:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:0d65c68fbcf74e025bc8bf23a0f74852:1/1$ -->
 <TextureAtlas imagePath="atlas0.png">
-    <SubTexture name="environment/doorway" x="576" y="75" width="96" height="128"/>
-    <SubTexture name="environment/stairs" x="256" y="75" width="192" height="128"/>
-    <SubTexture name="logo" x="975" y="0" width="32" height="32"/>
-    <SubTexture name="logo4x" x="448" y="75" width="128" height="128"/>
+    <SubTexture name="environment/Items" x="975" y="0" width="48" height="48"/>
+    <SubTexture name="environment/doorway" x="576" y="80" width="96" height="128"/>
+    <SubTexture name="environment/stairs" x="256" y="80" width="192" height="128"/>
+    <SubTexture name="environment/throwables" x="256" y="208" width="32" height="32"/>
+    <SubTexture name="logo" x="975" y="48" width="32" height="32"/>
+    <SubTexture name="logo4x" x="448" y="80" width="128" height="128"/>
     <SubTexture name="menu/credits" x="256" y="0" width="194" height="75"/>
     <SubTexture name="menu/exit" x="450" y="0" width="113" height="75"/>
     <SubTexture name="menu/startgame" x="640" y="0" width="335" height="75"/>
