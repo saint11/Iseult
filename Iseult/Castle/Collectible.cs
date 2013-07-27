@@ -8,15 +8,33 @@ using Monocle;
 
 namespace Iseult
 {
-    public class Equip:PlatformerObject
+    public class Collectible:PlatformerObject
     {
-        public Equip(Vector2 Position,string ImageName)
+        private int Selected=0;
+        public Collectible(Vector2 Position,string ImageName)
             : base(Position, new Vector2(32, 32))
         {
             image = IseultGame.SpriteData.GetSpriteString("item");
             ((Sprite<string>)image).Play(ImageName);
             Add(image);
+
+            Tag(GameTags.Item);
         }
 
+        public override void Update()
+        {
+            base.Update();
+            Selected--;
+            if (Selected == 0) Tween.Scale(image, new Vector2(1, 1), 15, Ease.BackOut);
+        }
+
+        internal void OnTouched(IseultPlayer iseultPlayer)
+        {
+            if (Selected<=0)
+            {
+                Tween.Scale(image, new Vector2(1.2f, 1.2f), 15, Ease.BackOut);
+            }
+            Selected = 2;
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Iseult
                 Add(new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("Back"), e.AttrInt("uid"), e.Attr("GoTo")));
                 if (e.AttrInt("uid") == DoorUid && EntrySide==Side.Door)
                 {
-                    AddPlayer(e.AttrFloat("x") + Iseult.WIDTH/2, e.AttrFloat("y") + Iseult.HEIGHT/2);
+                    AddPlayer(e.AttrFloat("x") + IseultPlayer.WIDTH/2, e.AttrFloat("y") + IseultPlayer.HEIGHT/2);
                 }
             }
             else if (e.Name == "Stairs")
@@ -52,13 +52,13 @@ namespace Iseult
             }
             else if (e.Name == "Item")
             {
-                Add(new Equip(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), "knife"));
+                Add(new Collectible(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), "knife"));
             }
         }
 
         private void AddPlayer(float x, float y)
         {
-            Iseult player = new Iseult(new Vector2(x,y));
+            IseultPlayer player = new IseultPlayer(new Vector2(x,y));
             Add(player);
             CameraTarget = player;
             Camera.X = player.Position.X - Camera.Viewport.Bounds.Width / 2;

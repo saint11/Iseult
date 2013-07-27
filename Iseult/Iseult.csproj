@@ -78,7 +78,7 @@
     <Compile Include="Castle\DoorWay.cs" />
     <Compile Include="Castle\Collectible.cs" />
     <Compile Include="Castle\GameLevel.cs" />
-    <Compile Include="Castle\Iseult.cs" />
+    <Compile Include="Castle\IseultPlayer.cs" />
     <Compile Include="Castle\Stairs.cs" />
     <Compile Include="Castle\Throwable.cs" />
     <Compile Include="UI\Hud.cs" />

@@ -9,13 +9,14 @@ using OldSkull;
 
 namespace Iseult
 {
-    public class Iseult : PlayerObject
+    public class IseultPlayer : PlayerObject
     {
         private DoorWay SelectedDoor;
         public static int HEIGHT = 128;
         public static int WIDTH = 128;
         private Sprite<string> imageLeft;
-        public Iseult(Vector2 Position)
+        private Collectible SelectedItem;
+        public IseultPlayer(Vector2 Position)
             : base(Position, new Vector2(48, 90),"iseult")
         {
             MaxSpeed.X = 6.3f;
@@ -34,6 +35,12 @@ namespace Iseult
             if (SelectedDoor != null)
             {
                 SelectedDoor.OnTouched(this);
+            }
+
+            SelectedItem = (Collectible)Level.CollideFirst(Collider.Bounds, GameTags.Item);
+            if (SelectedItem != null)
+            {
+                SelectedItem.OnTouched(this);
             }
         }
 
@@ -55,7 +62,6 @@ namespace Iseult
             }
         }
 
-        
         protected override void OnChangeSides(int newSide)
         {
             side = newSide;

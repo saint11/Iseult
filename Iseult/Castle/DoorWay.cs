@@ -59,7 +59,7 @@ namespace Iseult
             }
         }
 
-        internal void OnTouched(Iseult Player)
+        internal void OnTouched(IseultPlayer Player)
         {
             if (interacting<=0)
             {
