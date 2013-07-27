@@ -44,6 +44,12 @@ namespace Iseult
             }
         }
 
+        protected override void OnCrouching()
+        {
+            base.OnCrouching();
+            if (SelectedItem != null) SelectedItem.onPickUp();
+        }
+
         protected override void OnPressedUp()
         {
             if (SelectedDoor != null)
@@ -58,7 +64,11 @@ namespace Iseult
 
             if (KeyboardInput.pressedInput("use"))
             {
-                Level.Add(new Throwable(Position, side,"knife"));
+                if (IseultGame.Stats.GetStats("knife")>0)
+                {
+                    IseultGame.Stats.AddStats("knife", -1);
+                    Level.Add(new Throwable(Position, side, "knife"));
+                }
             }
         }
 

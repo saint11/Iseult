@@ -36,5 +36,11 @@ namespace Iseult
             }
             Selected = 2;
         }
+
+        public void onPickUp()
+        {
+            RemoveSelf();
+            IseultGame.Stats.AddStats("knife", 1);
+        }
     }
 }

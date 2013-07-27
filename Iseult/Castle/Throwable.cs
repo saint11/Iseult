@@ -39,9 +39,15 @@ namespace Iseult
         protected override void onCollideV(Solid solid)
         {
             //base.onCollideV(solid);
-            Speed.Y *= -0.5f;
-            if (Math.Abs(Speed.Y) < 0.1) Speed.Y = 0;
+            Speed.Y *= -0.8f;
             Rotation = 0;
+
+            if (Math.Abs(Speed.Y) < 0.1)
+            {
+                Speed.Y = 0;
+                RemoveSelf();
+                Scene.Add(new Collectible(Position, "knife"));
+            }
         }
         protected override void onCollideH(Solid solid)
         {
@@ -83,7 +89,14 @@ namespace Iseult
 
             Image.Rotation += Rotation;
 
-            
+            if (Fallen || Stuck)
+            {
+                if (Level.CollideCheck(Collider.Bounds, GameTags.Player))
+                {
+                    RemoveSelf();
+                    IseultGame.Stats.AddStats("knife", 1);
+                }
+            }
         }
     }
 }
