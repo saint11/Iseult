@@ -97,7 +97,7 @@ namespace OldSkull.GameLevel
 
         public virtual void LoadTileset(XmlElement e)
         {
-            Graphics.Tileset newTile = new Graphics.Tileset(-3, e.InnerText, OldSkullGame.Atlas["tilesets/" + e.Attr("tileset")],new Vector2(32,32));
+            Graphics.Tileset newTile = new Graphics.Tileset(-3, e.InnerText, OldSkullGame.Atlas["tilesets/" + e.Attr("tileset")], new Vector2(32, 32));
             newTile.Depth = tilesetCount;
             tilesetCount++;
             Add(newTile);

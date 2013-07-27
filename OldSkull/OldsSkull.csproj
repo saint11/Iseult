@@ -81,12 +81,13 @@
     <Compile Include="GameLevel\Solid.cs" />
     <Compile Include="GameLevel\SolidGrid.cs" />
     <Compile Include="Graphics\ProgressBar.cs" />
+    <Compile Include="Graphics\Tileset.cs" />
     <Compile Include="Utils\GameStats.cs" />
     <Compile Include="GenericEntities\ColorBackground.cs" />
     <Compile Include="Graphics\ColorBackground.cs" />
     <Compile Include="Graphics\SpriteData.cs" />
     <Compile Include="Graphics\TilableBackground.cs" />
-    <Compile Include="Graphics\Tileset.cs" />
+    <Compile Include="Graphics\LargeTileset.cs" />
     <Compile Include="Input\KeyboardInput.cs" />
     <Compile Include="Menu\Buttons\MenuButton.cs" />
     <Compile Include="Menu\Effects\Effect.cs" />

@@ -13,8 +13,8 @@ namespace Monocle
         public Canvas Canvas { get; private set; }
 
         private Texture tileset;
-        private Rectangle clipRect;
-        private Rectangle[] tileRects;
+        public Rectangle clipRect;
+        public Rectangle[] tileRects;
         private bool tiling;
 
         public Tilemap(int width, int height)
@@ -37,7 +37,7 @@ namespace Monocle
         {
             this.tileset = tileset;
             this.clipRect = clipRect;
-
+            
             int tilesX = 0, tilesY = 0;
             for (int i = 0; i <= clipRect.Width - tileWidth; i += tileWidth + tileSep)
                 tilesX++;

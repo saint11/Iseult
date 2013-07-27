@@ -183,7 +183,7 @@ namespace OldSkull.GameLevel
             if (onGround)
             {
                 Speed.Y = -JumpForce;
-                Utils.Sounds.Play("jump");
+                //Utils.Sounds.Play("jump");
             }
         }
 
