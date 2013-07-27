@@ -33,7 +33,19 @@ namespace OldSkull
         {
             XmlElement xml = sprites[id];
 
-            Sprite<string> sprite = new Sprite<string>(atlas[xml.ChildInt("atlas",0)][xml.ChildText("Texture")], xml.ChildInt("FrameWidth"), xml.ChildInt("FrameHeight"));
+            int atlasNumber = 0;
+            bool success = false;
+            for (int i = 0; i < atlas.Count(); i++)
+            {
+                if (atlas[i].SubTextures.ContainsKey(xml.ChildText("Texture")))
+                {
+                    atlasNumber = i;
+                    success = true;
+                    break;
+                }
+            }
+            if (!success) throw new Exception("Image not found in any atlases.");
+            Sprite<string> sprite = new Sprite<string>(atlas[atlasNumber][xml.ChildText("Texture")], xml.ChildInt("FrameWidth"), xml.ChildInt("FrameHeight"));
             sprite.Origin = new Vector2(xml.ChildFloat("OriginX", 0), xml.ChildFloat("OriginY", 0));
             sprite.Position = new Vector2(xml.ChildFloat("X", 0), xml.ChildFloat("Y", 0));
             sprite.Color = xml.ChildHexColor("Color", Color.White);
