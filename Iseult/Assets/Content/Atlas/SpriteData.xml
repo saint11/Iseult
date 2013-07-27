@@ -13,8 +13,8 @@
 		<Anim id="run" delay=".1" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="crouchIn" delay=".1" loop="False" frames="0"/>      
 		<Anim id="crouchOut" delay=".1" loop="False" frames="0"/>      
-		<Anim id="jumpUp" delay=".1" loop="False" frames="1"/>      
-		<Anim id="jumpDown" delay=".1" loop="True" frames="3"/>      
+		<Anim id="jumpUp" delay=".1" frames="8,9"/>      
+		<Anim id="jumpDown" delay=".1" frames="10,11"/>      
 		<Anim id="idleHolding" delay=".1" frames="0"/>      
 		<Anim id="walkHolding" delay=".1" frames="0"/>
 		<Anim id="jumpUpHolding" delay=".1" loop="False" frames="0"/>      
@@ -36,8 +36,8 @@
 		<Anim id="run" delay=".1" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="crouchIn" delay=".1" loop="False" frames="0"/>      
 		<Anim id="crouchOut" delay=".1" loop="False" frames="0"/>      
-		<Anim id="jumpUp" delay=".1" loop="False" frames="1"/>      
-		<Anim id="jumpDown" delay=".1" loop="True" frames="3"/>      
+		<Anim id="jumpUp" delay=".1" frames="8,9"/>      
+		<Anim id="jumpDown" delay=".1" frames="10,11"/>      
 		<Anim id="idleHolding" delay=".1" frames="0"/>      
 		<Anim id="walkHolding" delay=".1" frames="0"/>      
 		<Anim id="jumpUpHolding" delay=".1" loop="False" frames="0"/>      
