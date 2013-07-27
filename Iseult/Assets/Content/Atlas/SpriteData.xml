@@ -9,7 +9,7 @@
     <OriginY>64</OriginY>
     <Animations>
 		<Anim id="idle" delay=".1" frames="0"/>      
-		<Anim id="walk" delay=".1" frames="0,1,2,3,4,5,6,7"/>      
+		<Anim id="walk" delay=".09" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="run" delay=".1" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="crouchIn" delay=".1" loop="False" frames="0"/>      
 		<Anim id="crouchOut" delay=".1" loop="False" frames="0"/>      

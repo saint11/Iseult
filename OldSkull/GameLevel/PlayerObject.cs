@@ -42,7 +42,6 @@ namespace OldSkull.GameLevel
             if (imageName != "")
             {
                 image = OldSkullGame.SpriteData.GetSpriteString(imageName);
-                PlayAnim("idle");
             } else {
                 image = new Image(new Texture((int)size.X, (int)size.Y, Color.AliceBlue));
                 image.CenterOrigin();
@@ -51,6 +50,12 @@ namespace OldSkull.GameLevel
             side = 1;
         }
 
+        public override void Added()
+        {
+            base.Added();
+
+            PlayAnim("idle");
+        }
         public override void Step()
         {
             base.Step();

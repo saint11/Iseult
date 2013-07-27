@@ -20,6 +20,8 @@ namespace Iseult
             this.EntrySide = EntrySide;
             Engine.Instance.Screen.ClearColor = Color.RoyalBlue;
             loadLevel(Loader);
+
+            Gravity = new Vector2(0, 0.18f);
         }
 
         public override void LoadEntity(System.Xml.XmlElement e)

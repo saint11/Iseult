@@ -5,7 +5,7 @@ using System.Text;
 using Monocle;
 using OldSkull.GameLevel;
 using Microsoft.Xna.Framework;
-
+using OldSkull;
 
 namespace Iseult
 {
@@ -14,14 +14,17 @@ namespace Iseult
         private DoorWay SelectedDoor;
         public static int HEIGHT = 128;
         public static int WIDTH = 128;
-
+        private Sprite<string> imageLeft;
         public Iseult(Vector2 Position)
-            : base(Position, new Vector2(128, 128),"iseult")
+            : base(Position, new Vector2(48, 90),"iseult")
         {
-            MaxSpeed.X = 5;
+            MaxSpeed.X = 6.3f;
             MaxSpeed.Y = 10;
             Acceleration = 1f;
-            JumpForce = 4;
+            JumpForce = 5f;
+            imageLeft = OldSkullGame.SpriteData.GetSpriteString("iseultLeft");
+            Add(imageLeft);
+            imageLeft.Y = image.Y = (Collider.Height - image.Height)/2;
         }
 
         protected override void UpdateColisions()
@@ -48,7 +51,18 @@ namespace Iseult
 
         protected override void PlayAnim(string animation, bool restart = false)
         {
-            base.PlayAnim(animation+(side==-1?"Left":""), restart);
+            if (side == 1)
+            {
+                image.Visible = true;
+                ((Sprite<string>)image).Play(animation, restart);
+                imageLeft.Visible = false;
+            }
+            else
+            {
+                imageLeft.Visible = true;
+                imageLeft.Play(animation, restart);
+                image.Visible = false;
+            }
         }
     }
 }

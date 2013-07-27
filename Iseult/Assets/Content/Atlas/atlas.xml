@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:835776817311b7520d2fcda3e092d4c7:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:a2c2acae79eb65176f1de038e5936a0b:1/1$ -->
 <TextureAtlas imagePath="atlas.png">
-    <SubTexture name="characters/iseult" x="0" y="406" width="512" height="512"/>
-    <SubTexture name="environment/doorway" x="896" y="278" width="96" height="128"/>
-    <SubTexture name="environment/stairs" x="194" y="242" width="192" height="128"/>
-    <SubTexture name="logo" x="975" y="0" width="32" height="32"/>
-    <SubTexture name="logo4x" x="896" y="75" width="128" height="128"/>
-    <SubTexture name="menu/credits" x="0" y="331" width="194" height="75"/>
-    <SubTexture name="menu/exit" x="896" y="203" width="113" height="75"/>
-    <SubTexture name="menu/startgame" x="640" y="0" width="335" height="75"/>
-    <SubTexture name="tilesets/default" x="640" y="75" width="256" height="256"/>
-    <SubTexture name="title" x="0" y="0" width="640" height="242"/>
+    <SubTexture name="characters/iseult" x="0" y="1024" width="1024" height="1024"/>
+    <SubTexture name="characters/iseultLeft" x="0" y="0" width="1024" height="1024"/>
+    <SubTexture name="environment/doorway" x="1920" y="278" width="96" height="128"/>
+    <SubTexture name="environment/stairs" x="1218" y="242" width="192" height="128"/>
+    <SubTexture name="logo" x="1999" y="0" width="32" height="32"/>
+    <SubTexture name="logo4x" x="1920" y="75" width="128" height="128"/>
+    <SubTexture name="menu/credits" x="1024" y="242" width="194" height="75"/>
+    <SubTexture name="menu/exit" x="1920" y="203" width="113" height="75"/>
+    <SubTexture name="menu/startgame" x="1664" y="0" width="335" height="75"/>
+    <SubTexture name="tilesets/default" x="1664" y="75" width="256" height="256"/>
+    <SubTexture name="title" x="1024" y="0" width="640" height="242"/>
 </TextureAtlas>
