@@ -22,7 +22,7 @@
         <key>dataFormat</key>
         <string>sparrow</string>
         <key>textureFileName</key>
-        <filename>atlas.png</filename>
+        <filename>atlas1.png</filename>
         <key>flipPVR</key>
         <false/>
         <key>ditherType</key>
@@ -111,7 +111,7 @@
             <enum type="AndEngine::MagFilter">MagLinear</enum>
         </struct>
         <key>dataFileName</key>
-        <filename>atlas.xml</filename>
+        <filename>atlas1.xml</filename>
         <key>multiPack</key>
         <false/>
         <key>mainExtension</key>
@@ -148,7 +148,7 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../Gfx/atlas</filename>
+            <filename>../Gfx/atlas1</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

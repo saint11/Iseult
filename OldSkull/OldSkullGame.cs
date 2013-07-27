@@ -42,8 +42,8 @@ namespace OldSkull
         protected override void LoadContent()
         {
             base.LoadContent();
-            Atlas = new Atlas(Path + @"Content/Atlas/atlas.xml", true);
-            SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", Atlas);
+            //Atlas = new Atlas(Path + @"Content/Atlas/atlas.xml", true);
+            //SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", new Atlas[]{Atlas,});
             Content.RootDirectory = Path + "Content";
             Font = Content.Load<SpriteFont>(@"Misc/pixel");
             Stats = GameStats.Init();

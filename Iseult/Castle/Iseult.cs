@@ -25,6 +25,7 @@ namespace Iseult
             imageLeft = OldSkullGame.SpriteData.GetSpriteString("iseultLeft");
             Add(imageLeft);
             imageLeft.Y = image.Y = (Collider.Height - image.Height)/2;
+            SetPosition(Position);
         }
 
         protected override void UpdateColisions()
@@ -63,6 +64,11 @@ namespace Iseult
                 imageLeft.Play(animation, restart);
                 image.Visible = false;
             }
+        }
+        public override void SetPosition(Vector2 Position)
+        {
+            base.SetPosition(Position);
+            Y += (image.Height - Collider.Height) / 2;
         }
     }
 }

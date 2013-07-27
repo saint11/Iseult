@@ -10,13 +10,12 @@ namespace OldSkull
 {
     public class SpriteData
     {
-        private Atlas atlas;
+        private Atlas[] atlas;
         private Dictionary<string, XmlElement> sprites;
 
-        public SpriteData(string filename, Atlas atlas)
+        public SpriteData(string filename, Atlas[] atlas)
         {
             this.atlas = atlas;
-
             XmlDocument xml = new XmlDocument();
             xml.Load(filename);
             sprites = new Dictionary<string, XmlElement>();
@@ -34,7 +33,7 @@ namespace OldSkull
         {
             XmlElement xml = sprites[id];
 
-            Sprite<string> sprite = new Sprite<string>(atlas[xml.ChildText("Texture")], xml.ChildInt("FrameWidth"), xml.ChildInt("FrameHeight"));
+            Sprite<string> sprite = new Sprite<string>(atlas[xml.ChildInt("atlas",0)][xml.ChildText("Texture")], xml.ChildInt("FrameWidth"), xml.ChildInt("FrameHeight"));
             sprite.Origin = new Vector2(xml.ChildFloat("OriginX", 0), xml.ChildFloat("OriginY", 0));
             sprite.Position = new Vector2(xml.ChildFloat("X", 0), xml.ChildFloat("Y", 0));
             sprite.Color = xml.ChildHexColor("Color", Color.White);
@@ -52,7 +51,7 @@ namespace OldSkull
         {
             XmlElement xml = sprites[id];
 
-            Sprite<int> sprite = new Sprite<int>(atlas[xml.ChildText("Texture")], xml.ChildInt("FrameWidth"), xml.ChildInt("FrameHeight"));
+            Sprite<int> sprite = new Sprite<int>(atlas[xml.ChildInt("atlas", 0)][xml.ChildText("Texture")], xml.ChildInt("FrameWidth"), xml.ChildInt("FrameHeight"));
             sprite.Origin = new Vector2(xml.ChildFloat("OriginX", 0), xml.ChildFloat("OriginY", 0));
             sprite.Position = new Vector2(xml.ChildFloat("X", 0), xml.ChildFloat("Y", 0));
             sprite.Color = xml.ChildHexColor("Color", Color.White);

@@ -84,10 +84,16 @@
     <Compile Include="IseultGame.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Content\Atlas\atlas.png">
+    <Content Include="Assets\Content\Atlas\atlas0.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Content\Atlas\atlas.xml">
+    <Content Include="Assets\Content\Atlas\atlas0.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Atlas\atlas1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Atlas\atlas1.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Atlas\SpriteData.xml">

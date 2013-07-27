@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using OldSkull;
+using Monocle;
 
 namespace Iseult
 {
@@ -17,6 +18,9 @@ namespace Iseult
     /// </summary>
     public class IseultGame : OldSkullGame
     {
+        static public Atlas Atlas1;
+
+
         public IseultGame()
             : base(1366,768,60)
         { }
@@ -30,6 +34,16 @@ namespace Iseult
             }
         }
 
+        protected override void LoadContent()
+        {
+            base.LoadContent();
+
+            Atlas = new Atlas(Path + @"Content/Atlas/atlas0.xml", true);
+            Atlas1 = new Atlas(Path + @"Content/Atlas/atlas1.xml", true);
+
+            SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", new Atlas[] { Atlas, Atlas1 });
+        }
+
         protected override void Initialize()
         {
             base.Initialize();
@@ -37,5 +51,6 @@ namespace Iseult
             //Screen.EnableFullscreen(Monocle.Screen.FullscreenMode.KeepScale);
             Scene = new MainMenu();
         }
+
     }
 }

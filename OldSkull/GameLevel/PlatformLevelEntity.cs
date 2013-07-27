@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Monocle;
 using OldSkull.GameLevel;
+using Microsoft.Xna.Framework;
 
 namespace OldSkull.GameLevel
 {
@@ -66,6 +67,12 @@ namespace OldSkull.GameLevel
         {
             if (UpdateOnState == null) UpdateOnState = new List<PlatformerLevel.GameState>();
             UpdateOnState.AddRange(GameStates);
+        }
+
+
+        public virtual void SetPosition(Vector2 Position)
+        {
+            this.Position = Position;
         }
     }
 }

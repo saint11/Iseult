@@ -3,6 +3,7 @@
 <!--NPCS-->
   <sprite_string id="iseult">
     <Texture>characters/iseult</Texture>
+    <atlas>1</atlas>
     <FrameWidth>128</FrameWidth>
     <FrameHeight>128</FrameHeight>
     <OriginX>64</OriginX>
@@ -26,6 +27,7 @@
   
   <sprite_string id="iseultLeft">
     <Texture>characters/iseultLeft</Texture>
+    <atlas>1</atlas>
     <FrameWidth>128</FrameWidth>
     <FrameHeight>128</FrameHeight>
     <OriginX>64</OriginX>

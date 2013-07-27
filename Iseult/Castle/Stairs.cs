@@ -35,7 +35,7 @@ namespace Iseult
 
         public override void  Enter(PlatformLevelEntity Entity)
         {
-            Entity.Position = Sister.Position + new Vector2(46,64);
+            Entity.SetPosition(Sister.Position + new Vector2(46,64));
         }
     }
 }
