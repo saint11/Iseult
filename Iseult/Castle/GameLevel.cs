@@ -32,7 +32,7 @@ namespace Iseult
                 Add(new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")),e.Attr("GoTo"),e.AttrBool("Back"),e.AttrInt("uid")));
                 if (e.AttrInt("uid") == DoorUid && EntrySide==Side.Door)
                 {
-                    AddPlayer(e.AttrFloat("x"), e.AttrFloat("y"));
+                    AddPlayer(e.AttrFloat("x") + Iseult.WIDTH/2, e.AttrFloat("y") + Iseult.HEIGHT/2);
                 }
             }
         }

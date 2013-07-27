@@ -42,7 +42,7 @@ namespace Iseult
 
             if (interacting == 0)
             {
-                Tween.Alpha(Image, 0.8f, 25, null);
+                if (!Back) Tween.Alpha(Image, 0.8f, 25, null);
                 interacting--;
             }
             else
@@ -55,7 +55,7 @@ namespace Iseult
         {
             if (interacting<=0)
             {
-                Tween.Alpha(Image, 0.3f, 25, null);
+                if (!Back) Tween.Alpha(Image, 0.3f, 25, null);
                 interacting = 5;
             }
         }

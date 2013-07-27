@@ -12,6 +12,8 @@ namespace Iseult
     public class Iseult : PlayerObject
     {
         private DoorWay SelectedDoor;
+        public static int HEIGHT = 128;
+        public static int WIDTH = 128;
 
         public Iseult(Vector2 Position)
             : base(Position, new Vector2(128, 128),"iseult")
