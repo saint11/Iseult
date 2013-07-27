@@ -54,6 +54,10 @@ namespace Iseult
             {
                 Add(new Collectible(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), "knife"));
             }
+            else if (e.Name == "Enemy")
+            {
+                Add(new Enemy(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+            }
         }
 
         private void AddPlayer(float x, float y)

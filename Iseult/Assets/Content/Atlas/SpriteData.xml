@@ -1,6 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <sprites>
 <!--NPCS-->
+  <sprite_string id="fanatic">
+    <Texture>characters/fanatic</Texture>
+    <FrameWidth>128</FrameWidth>
+    <FrameHeight>128</FrameHeight>
+    <OriginX>64</OriginX>
+    <OriginY>82</OriginY>
+    <Animations>
+      <Anim id="idle" delay=".1" frames="0"/>
+      <Anim id="walk" delay=".09" frames="0"/>
+      <Anim id="jumpUp" delay=".1" frames="0"/>
+      <Anim id="jumpDown" delay=".1" frames="0"/>
+      <Anim id="attack" delay=".1" loop="False" frames="0"/>
+    </Animations>
+  </sprite_string>
+
   <sprite_string id="iseult">
     <Texture>characters/iseult</Texture>
     <FrameWidth>128</FrameWidth>

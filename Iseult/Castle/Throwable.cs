@@ -46,7 +46,7 @@ namespace Iseult
             {
                 Speed.Y = 0;
                 RemoveSelf();
-                Scene.Add(new Collectible(Position, "knife"));
+                Scene.Add(new Collectible(Position, ItemName));
             }
         }
         protected override void onCollideH(Solid solid)

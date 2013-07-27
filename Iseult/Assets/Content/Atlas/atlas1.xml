@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:cd5c3e15b23031c333e4af3546afff7a:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:18e6b5e0ec5811ee00748041db8d1b12:1/1$ -->
 <TextureAtlas imagePath="atlas1.png">
+    <SubTexture name="characters/fanatic" x="1024" y="0" width="128" height="128"/>
     <SubTexture name="characters/iseult" x="0" y="1024" width="1024" height="1024"/>
     <SubTexture name="characters/iseultLeft" x="0" y="0" width="1024" height="1024"/>
 </TextureAtlas>
