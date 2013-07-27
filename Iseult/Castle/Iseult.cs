@@ -37,7 +37,7 @@ namespace Iseult
         {
             if (SelectedDoor != null)
             {
-                SelectedDoor.Enter();
+                SelectedDoor.Enter(this);
             }
         }
         

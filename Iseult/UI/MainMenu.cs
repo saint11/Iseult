@@ -29,7 +29,7 @@ namespace Iseult
             Add(title);
             Tween.Position(title, new Vector2(title.X, 30), 30, Ease.BackOut, Tween.TweenMode.Oneshot);
 
-            menu = new SelectorMenu(new string[] { "NEW GAME", "CREDITS", "EXIT GAME" }, new Action<MenuButton>[] { newGame, credits, exitGame }, null, SelectorMenuEffects.ColorSwap(Color.AntiqueWhite,Color.Red), false, 1);
+            menu = new SelectorMenu(new string[] { "menu/startgame", "menu/credits", "menu/exit" }, new Action<MenuButton>[] { newGame, credits, exitGame }, null, SelectorMenuEffects.ColorSwap(Color.AntiqueWhite, Color.Red), true, 1);
             menu.X = Engine.Instance.Screen.Width / 2;
             Add(menu);
         }
@@ -59,7 +59,7 @@ namespace Iseult
 
         public override void Render()
         {
-            menu.Y = title.Y + 95;
+            menu.Y = title.Y + 300;
             base.Render();
         }
     }

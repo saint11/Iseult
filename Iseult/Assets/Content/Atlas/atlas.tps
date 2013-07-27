@@ -112,6 +112,8 @@
         </struct>
         <key>dataFileName</key>
         <filename>atlas.xml</filename>
+        <key>multiPack</key>
+        <false/>
         <key>mainExtension</key>
         <string></string>
         <key>forceIdenticalLayout</key>
@@ -146,7 +148,7 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>../Gfx</filename>
+            <filename>../Gfx/atlas</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

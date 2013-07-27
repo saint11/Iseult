@@ -62,4 +62,16 @@
       <Anim id="open" delay=".1" loop="false" frames="1,2,3,4,5,6,7,8,9,10"/>
     </Animations>
   </sprite_string>
+  
+  <sprite_string id="stairs">
+    <Texture>environment/stairs</Texture>
+    <FrameWidth>96</FrameWidth>
+    <FrameHeight>128</FrameHeight>
+    <OriginX>0</OriginX>
+    <OriginY>0</OriginY>
+    <Animations>
+      <Anim id="up" delay=".1" loop="false" frames="1"/>
+      <Anim id="down" delay=".1" loop="false" frames="0"/>
+    </Animations>
+  </sprite_string>
 </sprites>

@@ -14,11 +14,11 @@ namespace Iseult
         private string Destiny;
         private bool Back;
         
-        private Sprite<string> Image;
+        protected Sprite<string> Image;
         private int uid;
         private int interacting = 0;
 
-        public DoorWay(Vector2 Position, string Destiny, bool Back, int uid)
+        public DoorWay(Vector2 Position, bool Back, int uid, string Destiny="")
             : base(Back? GameLevel.GAMEPLAY_LAYER:GameLevel.FRONT_GAMEPLAY_LAYER)
         {
             this.Position = Position;
@@ -28,12 +28,20 @@ namespace Iseult
 
             Tag(GameTags.Door);
 
-            Image = IseultGame.SpriteData.GetSpriteString("door");
-            Add(Image);
+            interacting = 0;
+        }
+        public override void Added()
+        {
+            base.Added();
+            LoadImage();
             Image.Color.A = (byte)((0.8f) * 255);
 
             Collider = new Hitbox(Image.Width, Image.Height);
-            interacting = 0;
+        }
+        protected virtual void LoadImage()
+        {
+            Image = IseultGame.SpriteData.GetSpriteString("door");
+            Add(Image);
         }
 
         public override void Update()
@@ -60,7 +68,7 @@ namespace Iseult
             }
         }
 
-        internal void Enter()
+        public virtual void Enter(PlatformLevelEntity Entity)
         {
             PlatformerLevelLoader loader = PlatformerLevelLoader.load(Destiny);
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Door, uid);
