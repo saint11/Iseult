@@ -78,7 +78,9 @@
     <Compile Include="Castle\DoorWay.cs" />
     <Compile Include="Castle\Collectible.cs" />
     <Compile Include="Castle\Enemy.cs" />
+    <Compile Include="Castle\EnemyTracker.cs" />
     <Compile Include="Castle\GameLevel.cs" />
+    <Compile Include="Castle\GameOver.cs" />
     <Compile Include="Castle\IseultPlayer.cs" />
     <Compile Include="Castle\Stairs.cs" />
     <Compile Include="Castle\Throwable.cs" />
@@ -103,6 +105,16 @@
     <Content Include="Assets\Content\Atlas\SpriteData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Content\Gfx\backgrounds\creditsscreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Gfx\backgrounds\gameOver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Gfx\backgrounds\startscreen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Level\Map.xml" />
     <Content Include="Assets\Content\Sfx\JUMP.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -136,9 +148,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Content\Gfx\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
       <Visible>False</Visible>

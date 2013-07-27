@@ -14,6 +14,7 @@ namespace Iseult
         private int DoorUid;
         private Side EntrySide;
         public IseultPlayer Player { get; private set; }
+        private List<DoorWay> Doors;
 
         public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
             :base(Loader.size)
@@ -21,9 +22,21 @@ namespace Iseult
             this.DoorUid = DoorUid;
             this.EntrySide = EntrySide;
             Engine.Instance.Screen.ClearColor = Color.RoyalBlue;
+
+            Doors = new List<DoorWay>();
             loadLevel(Loader);
 
+            LoadEnemies();
+
             Gravity = new Vector2(0, 0.18f);
+        }
+
+        private void LoadEnemies()
+        {
+            foreach (EnemyTracker enemy in EnemyTracker.HasEnemyHere(Name))
+	        {
+                Add(new Enemy(enemy));
+	        }
         }
 
         public override void LoadEntity(System.Xml.XmlElement e)
@@ -34,10 +47,19 @@ namespace Iseult
             }
             else if (e.Name == "DoorWay")
             {
-                Add(new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("Back"), e.AttrInt("uid"), e.Attr("GoTo")));
+                DoorWay Door = new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("Back"), e.AttrInt("uid"), e.Attr("GoTo"));
+                Doors.Add(Door);
+                Add(Door);
                 if (e.AttrInt("uid") == DoorUid && EntrySide==Side.Door)
                 {
                     AddPlayer(e.AttrFloat("x") + IseultPlayer.WIDTH/2, e.AttrFloat("y") + IseultPlayer.HEIGHT/2);
+                }
+
+                foreach (EnemyTracker enemy in EnemyTracker.GetEnemiesEngaded(e.Attr("GoTo")))
+                {
+                    Enemy en = new Enemy(enemy);
+                    en.SetPosition(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")));
+                    Add(en);
                 }
             }
             else if (e.Name == "Stairs")
@@ -58,7 +80,11 @@ namespace Iseult
             }
             else if (e.Name == "Enemy")
             {
-                Add(new Enemy(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+                if (!EnemyTracker.HasEnemy(Name, e))
+                {
+                    Add(new Enemy(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), Name+e.Attr("id")));
+                    EnemyTracker.RegisterEnemy(Name, e);
+                }
             }
         }
 
@@ -70,6 +96,34 @@ namespace Iseult
             Camera.X = Player.Position.X - Camera.Viewport.Bounds.Width / 2;
             Camera.Y = Player.Position.Y - Camera.Viewport.Bounds.Height / 2;
             UpdateCamera();
+        }
+
+        internal void GoToLevel(string Destiny, int uid)
+        {
+            foreach (var e in Tags[(int)GameTags.Enemy]) EnemyTracker.UpdateTracker((Enemy)e, Player, Name);
+            PlatformerLevelLoader loader = PlatformerLevelLoader.load(Destiny);
+            GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Door, uid);
+
+            Engine.Instance.Scene = level;
+        }
+
+        public override void Update()
+        {
+            base.Update();
+            EnemyTracker.UpdateOffScreen(CheckForMonstersAtTheDoors,Name);
+        }
+
+        public void CheckForMonstersAtTheDoors()
+        {
+            foreach (DoorWay Door in Doors)
+            {
+                foreach (EnemyTracker enemy in EnemyTracker.GetEnemiesEngaded(Door.Destiny))
+                {
+                    Enemy en = new Enemy(enemy);
+                    en.SetPosition(Door.Position);
+                    Add(en);
+                }
+            }
         }
     }
 }

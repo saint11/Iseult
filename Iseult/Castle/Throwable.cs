@@ -34,37 +34,47 @@ namespace Iseult
             Speed = new Vector2(20 * side, -3);
             MaxSpeed = new Vector2(20, 10);
             AirDamping = new Vector2(1, 0.95f);
+            GroundDamping = new Vector2(0.5f, 0.5f);
             Gravity = new Vector2(0, 0.1f);
         }
         protected override void onCollideV(Solid solid)
         {
             //base.onCollideV(solid);
+            if (Speed.Y > 0)
+            {
+                onGround = true;
+            }
+
             Speed.Y *= -0.8f;
             Rotation = 0;
 
             if (Math.Abs(Speed.Y) < 0.1)
             {
                 Speed.Y = 0;
-                RemoveSelf();
-                Scene.Add(new Collectible(Position, ItemName));
             }
         }
         protected override void onCollideH(Solid solid)
         {
             base.onCollideH(solid);
+            HitSomething();
+        }
+
+
+        private void HitSomething()
+        {
             if (!Stuck && !Fallen)
             {
-                if (Calc.Chance(Calc.Random, 0.5f))
+                if (Calc.Chance(Calc.Random, 0.9f))
                 {
                     Fallen = true;
                     Rotation = 0.3f - Calc.Random.NextFloat(0.15f);
-                    Speed.X *= -0.9f;
+                    Speed.X = -side*2;
                     Speed.Y = -6;
                 }
                 else
                 {
                     Stuck = true;
-                    Image.Origin.X = side == 1? Image.Width - 10: 10;
+                    Image.Origin.X = side == 1 ? Image.Width - 10 : 10;
                     Tween tween = new Tween(Tween.TweenMode.Oneshot, Ease.CubeOut, 15, true);
                     float FinalRotation = Calc.Random.NextFloat() * 0.2f - 0.1f;
                     float StartX = Image.X;
@@ -75,6 +85,8 @@ namespace Iseult
                         Image.Rotation = Calc.LerpSnap(0, FinalRotation, t.Eased);
                         Image.X = Calc.LerpSnap(StartX, FinalX, t.Eased);
                     };
+                    
+                    tween.OnComplete = (t) =>Tween.Alpha(Image, 0, 20, Ease.CubeOut).OnComplete = (j) => { RemoveSelf(); };
                     Add(tween);
 
                     Speed = new Vector2(0);
@@ -88,6 +100,7 @@ namespace Iseult
             base.Update();
 
             Image.Rotation += Rotation;
+            if (onGround) Speed *= GroundDamping;
 
             if (Fallen || Stuck)
             {
@@ -95,6 +108,15 @@ namespace Iseult
                 {
                     RemoveSelf();
                     IseultGame.Stats.AddStats("knife", 1);
+                }
+            }
+            else
+            {
+                Enemy en = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+                if (en != null)
+                {
+                    en.Hp--;
+                    HitSomething();
                 }
             }
         }

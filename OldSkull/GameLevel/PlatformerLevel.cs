@@ -80,6 +80,7 @@ namespace OldSkull.GameLevel
                 Add(solid);
                 Solids.Add(solid);
             }
+
             foreach (XmlElement e in ll.entities)
             {
                 LoadEntity(e);

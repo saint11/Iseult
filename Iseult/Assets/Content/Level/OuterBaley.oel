@@ -56,6 +56,6 @@
     </Stairs>
     <Item id="4" x="1744" y="608" />
     <Item id="5" x="720" y="640" />
-    <Enemy id="6" x="608" y="640" />
+    <Enemy id="6" x="48" y="640" />
   </Objects>
 </level>

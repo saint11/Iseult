@@ -6,6 +6,7 @@ using Monocle;
 using OldSkull.GameLevel;
 using Microsoft.Xna.Framework;
 using OldSkull;
+using Iseult.Castle;
 
 namespace Iseult
 {
@@ -43,10 +44,10 @@ namespace Iseult
                 SelectedItem.OnTouched(this);
             }
 
-            Enemy SelectedEnemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Item);
-            if (SelectedEnemy != null) 
+            Enemy SelectedEnemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+            if (SelectedEnemy != null)
             {
-                IseultGame.Stats.AddStats("hp", -0.25f);
+                Engine.Instance.Scene = new GameOver();
             }
         }
 

@@ -26,6 +26,7 @@ namespace OldSkull
 
         private static List<KeyAction> keyList = new List<KeyAction>();
         public static bool Active=true;
+        private static bool Any = false;
 
         public static Boolean checkInput(String name)
         {
@@ -89,12 +90,13 @@ namespace OldSkull
         {
             if (Active)
             {
+                Any = false;
                 for (int i = 0; i < keyList.Count; i++) // Loop through List with for
                 {
                     KeyAction k = keyList[i];
                     k.check = Input.Check(k.key);
                     k.pressed = Input.Pressed(k.key);
-
+                    if (k.pressed) Any = true;
                     keyList[i] = k;
                 }
                 GetAxis();
@@ -133,6 +135,11 @@ namespace OldSkull
         {
             KeyboardInput.Add("accept", Microsoft.Xna.Framework.Input.Keys.Z);
             KeyboardInput.AddAxis();
+        }
+
+        public static bool pressedAny()
+        {
+            return Any;
         }
     }
 }

@@ -20,7 +20,6 @@ namespace Iseult
     {
         static public Atlas Atlas1;
 
-
         public IseultGame()
             : base(1366,768,60)
         { }
@@ -50,6 +49,7 @@ namespace Iseult
             Screen.Scale = 1;
             Stats.SetStats("hp", 10);
             Scene = new MainMenu();
+            EnemyTracker.Init();
         }
 
     }

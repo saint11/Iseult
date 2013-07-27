@@ -138,7 +138,7 @@
         <X>16</X>
         <Y>16</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\Items.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\ogmo\domecqitem.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />

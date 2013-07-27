@@ -93,8 +93,8 @@
     <OriginX>0</OriginX>
     <OriginY>0</OriginY>
     <Animations>
-      <Anim id="stand" delay=".1" frames="0"/>
-      <Anim id="open" delay=".1" loop="false" frames="1,2,3,4,5,6,7,8,9,10"/>
+      <Anim id="closed" delay=".1" frames="0"/>
+      <Anim id="attacked" delay=".1" loop="false" frames="1"/>
     </Animations>
   </sprite_string>
   
