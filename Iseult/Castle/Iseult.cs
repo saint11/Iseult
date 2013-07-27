@@ -6,7 +6,6 @@ using Monocle;
 using OldSkull.GameLevel;
 using Microsoft.Xna.Framework;
 using OldSkull;
-using Iseult.Castle;
 
 namespace Iseult
 {

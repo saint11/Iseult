@@ -7,17 +7,21 @@ using OldSkull.GameLevel;
 using OldSkull;
 using Monocle;
 
-namespace Iseult.Castle
+namespace Iseult
 {
-    class Throwable:PlatformLevelEntity
+    class Throwable:PlatformerObject
     {
         private int side;
         private string ItemName;
-        private bool Stuck=false;
+
+        private bool Fallen = false;
+        private bool Stuck = false;
+
         private Sprite<string> Image;
+        private float Rotation=0;
 
         public Throwable(Vector2 Position, int side, string ItemName)
-            :base(GameLevel.GAMEPLAY_LAYER)
+            :base(Position,new Vector2(20,10))
         {
             this.Position = Position;
             this.side = side;
@@ -27,31 +31,59 @@ namespace Iseult.Castle
                  Image.Effects = side == -1 ? Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally :
                  Microsoft.Xna.Framework.Graphics.SpriteEffects.None;
             Add(Image);
+            Speed = new Vector2(20 * side, -3);
+            MaxSpeed = new Vector2(20, 10);
+            AirDamping = new Vector2(1, 0.95f);
+            Gravity = new Vector2(0, 0.1f);
+        }
+        protected override void onCollideV(Solid solid)
+        {
+            //base.onCollideV(solid);
+            Speed.Y *= -0.5f;
+            if (Math.Abs(Speed.Y) < 0.1) Speed.Y = 0;
+            Rotation = 0;
+        }
+        protected override void onCollideH(Solid solid)
+        {
+            base.onCollideH(solid);
+            if (!Stuck && !Fallen)
+            {
+                if (Calc.Chance(Calc.Random, 0.5f))
+                {
+                    Fallen = true;
+                    Rotation = 0.3f - Calc.Random.NextFloat(0.15f);
+                    Speed.X *= -0.9f;
+                    Speed.Y = -6;
+                }
+                else
+                {
+                    Stuck = true;
+                    Image.Origin.X = side == 1? Image.Width - 10: 10;
+                    Tween tween = new Tween(Tween.TweenMode.Oneshot, Ease.CubeOut, 15, true);
+                    float FinalRotation = Calc.Random.NextFloat() * 0.2f - 0.1f;
+                    float StartX = Image.X;
+                    float FinalX = Image.X + 12 * side;
 
-            Collider = new Hitbox(10, 10);
+                    tween.OnUpdate = (t) =>
+                    {
+                        Image.Rotation = Calc.LerpSnap(0, FinalRotation, t.Eased);
+                        Image.X = Calc.LerpSnap(StartX, FinalX, t.Eased);
+                    };
+                    Add(tween);
+
+                    Speed = new Vector2(0);
+                    Gravity = new Vector2(0);
+                }
+            }
         }
 
         public override void Update()
         {
             base.Update();
-            if (!Stuck)
-            {
-                if (Level.CollideCheck(Collider.Bounds, GameTags.Solid))
-                {
-                    Stuck = true;
-                    Image.Origin.X = Image.Width - 10;
-                    Tween tween = new Tween(Tween.TweenMode.Oneshot, Ease.BackInOut, 30,true);
-                    float FinalRotation = Calc.Random.NextFloat() * 0.6f - 0.3f;
-                    tween.OnUpdate = (t) => {
-                        Image.Rotation = Calc.LerpSnap(0.2f, FinalRotation, t.Eased);
-                    };
-                    Add(tween);
-                }
-                else
-                {
-                    X += 12 * side;
-                }
-            }
+
+            Image.Rotation += Rotation;
+
+            
         }
     }
 }

@@ -62,10 +62,10 @@
   
   <sprite_string id="throwable">
     <Texture>environment/throwables</Texture>
-    <FrameWidth>32</FrameWidth>
-    <FrameHeight>32</FrameHeight>
-    <OriginX>16</OriginX>
-    <OriginY>16</OriginY>
+    <FrameWidth>48</FrameWidth>
+    <FrameHeight>48</FrameHeight>
+    <OriginX>24</OriginX>
+    <OriginY>24</OriginY>
     <Animations>
       <Anim id="knife" delay=".1" frames="0"/>
     </Animations>
