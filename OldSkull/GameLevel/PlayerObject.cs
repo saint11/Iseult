@@ -22,7 +22,7 @@ namespace OldSkull.GameLevel
         protected bool Crouching = false;
 
         protected bool LetGo = false;
-        private int useKeyTimer = 0;
+//        private int useKeyTimer = 0;
         private bool UsingItem = false;
         private int Invulnerable=0;
 
@@ -135,6 +135,7 @@ namespace OldSkull.GameLevel
                     }
 
 
+                    /*
                     if (KeyboardInput.checkInput("use"))
                     {
                             useKeyTimer++;
@@ -158,7 +159,7 @@ namespace OldSkull.GameLevel
                         else
                             JustTalked = false;
                         useKeyTimer = 0;
-                    }
+                    }*/
 
                 }
 
@@ -199,7 +200,7 @@ namespace OldSkull.GameLevel
 
         protected virtual void OnCrouching()
         {
-            useKeyTimer = 0;
+            //useKeyTimer = 0;
             if (!Crouching && !LetGo && onGround)
             {
                 PlayAnim("crouchIn", true);

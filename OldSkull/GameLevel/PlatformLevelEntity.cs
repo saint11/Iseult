@@ -12,8 +12,7 @@ namespace OldSkull.GameLevel
     {
 
         public List<PlatformerLevel.GameState> UpdateOnState;
-        protected PlatformerLevel Level { get { return (PlatformerLevel)Scene; } }
-
+        protected virtual PlatformerLevel Level { get { return (PlatformerLevel)Scene; } }
 
         public PlatformLevelEntity(int layerIndex, PlatformerLevel.GameState UpdateState = PlatformerLevel.GameState.Game)
             :base(layerIndex)

@@ -42,6 +42,12 @@ namespace Iseult
             {
                 SelectedItem.OnTouched(this);
             }
+
+            Enemy SelectedEnemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Item);
+            if (SelectedEnemy != null) 
+            {
+                IseultGame.Stats.AddStats("hp", -0.25f);
+            }
         }
 
         protected override void OnCrouching()
@@ -69,6 +75,11 @@ namespace Iseult
                     IseultGame.Stats.AddStats("knife", -1);
                     Level.Add(new Throwable(Position, side, "knife"));
                 }
+            }
+
+            if (IseultGame.Stats.GetStats("hp") <= 0)
+            {
+                RemoveSelf();
             }
         }
 

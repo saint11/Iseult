@@ -10,6 +10,7 @@ namespace OldSkull.Utils
         static public GameStats Instance { get; private set; }
 
         private List<string> Triggers;
+        private Dictionary<string, float> Stats;
 
         public static GameStats Init()
         {
@@ -21,6 +22,24 @@ namespace OldSkull.Utils
         {
             Instance = this;
             Triggers = new List<string>();
+            Stats = new Dictionary<string, float>();
+        }
+
+
+        public void SetStats(string name,float value)
+        {
+            Stats[name] = value;
+        }
+
+        public float AddStats(string name, float value)
+        {
+            if (!Stats.Keys.Contains(name)) Stats[name] = 0;
+            return Stats[name] += value;
+        }
+
+        public float GetStats(string name)
+        {
+            return !Stats.Keys.Contains(name) ? 0 : Stats[name];
         }
 
         public void SetTrigger(string trigger)

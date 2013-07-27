@@ -48,7 +48,7 @@ namespace Iseult
         {
             base.Initialize();
             Screen.Scale = 1;
-            //Screen.EnableFullscreen(Monocle.Screen.FullscreenMode.KeepScale);
+            Stats.SetStats("hp", 10);
             Scene = new MainMenu();
         }
 

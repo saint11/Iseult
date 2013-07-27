@@ -13,6 +13,8 @@ namespace Iseult
     {
         private int DoorUid;
         private Side EntrySide;
+        public IseultPlayer Player { get; private set; }
+
         public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
             :base(Loader.size)
         {
@@ -62,11 +64,11 @@ namespace Iseult
 
         private void AddPlayer(float x, float y)
         {
-            IseultPlayer player = new IseultPlayer(new Vector2(x,y));
-            Add(player);
-            CameraTarget = player;
-            Camera.X = player.Position.X - Camera.Viewport.Bounds.Width / 2;
-            Camera.Y = player.Position.Y - Camera.Viewport.Bounds.Height / 2;
+            Player = new IseultPlayer(new Vector2(x, y));
+            Add(Player);
+            CameraTarget = Player;
+            Camera.X = Player.Position.X - Camera.Viewport.Bounds.Width / 2;
+            Camera.Y = Player.Position.Y - Camera.Viewport.Bounds.Height / 2;
             UpdateCamera();
         }
     }
