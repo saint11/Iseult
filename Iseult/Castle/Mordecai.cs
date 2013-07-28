@@ -16,19 +16,30 @@ namespace Iseult
         IseultPlayer Player { get { return ((GameLevel)Level).Player; } }
         private Sprite<string> Image { get { return (Sprite<string>)image; } }
 
+        private bool following=false;
+
+
+        public static string CurrentOn;
+        public static int DoorUid=0;
+        public static Mordecai Instance;
+        public static Vector2 LastSeen;
+
         public Mordecai(Vector2 Position)
             :base(Position, new Vector2(32,64))
         {
             this.Position = Position;
             image = IseultGame.SpriteData.GetSpriteString("mordecai");
             Add(image);
+
+            Tag(GameTags.Npc);
+
+            Instance = this;
         }
 
         public override void Added()
         {
             base.Added();
-            Position.Y += 32;
-            //Gravity = Vector2.Zero;
+            CurrentOn = Level.Name.ToUpper();
         }
 
         public override void Step()
@@ -36,11 +47,16 @@ namespace Iseult
             base.Step();
 
             int side = Math.Sign(Player.X - X);
-            UpdateMovement(side);
+            if (following) FollowPlayer(side);
             Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
         }
 
-        private void UpdateMovement(int side)
+        public void ToggleFollow()
+        {
+            following = !following;
+        }
+
+        private void FollowPlayer(int side)
         {
             float HMovement = side * 1.8f;
 

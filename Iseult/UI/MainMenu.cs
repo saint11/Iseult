@@ -41,7 +41,7 @@ namespace Iseult
         public static void StartNewGame(bool ResetAll)
         {
 
-            PlatformerLevelLoader loader = PlatformerLevelLoader.load("OuterBaley");
+            PlatformerLevelLoader loader = PlatformerLevelLoader.load("OuterWall");
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Secret);
             
             Engine.Instance.Scene = level;
