@@ -86,6 +86,10 @@ namespace Iseult
                     EnemyTracker.RegisterEnemy(Name, e);
                 }
             }
+            else if (e.Name == "Mordecai")
+            {
+                Add(new Mordecai(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+            }
         }
 
         private void AddPlayer(float x, float y)

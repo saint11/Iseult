@@ -15,6 +15,19 @@
       <Anim id="attack" delay=".1" loop="False" frames="0"/>
     </Animations>
   </sprite_string>
+  
+  <sprite_string id="mordecai">
+    <Texture>characters/mordecai</Texture>
+    <FrameWidth>128</FrameWidth>
+    <FrameHeight>128</FrameHeight>
+    <OriginX>64</OriginX>
+    <OriginY>96</OriginY>
+    <Animations>
+      <Anim id="idle" delay=".1" frames="0"/>
+      <Anim id="walk" delay=".09" frames="0"/>
+      <Anim id="climb" delay=".1" frames="0,1,2,3"/>
+    </Animations>
+  </sprite_string>
 
   <sprite_string id="iseult">
     <Texture>characters/iseult</Texture>
@@ -23,7 +36,7 @@
     <OriginX>64</OriginX>
     <OriginY>64</OriginY>
     <Animations>
-		<Anim id="idle" delay=".1" frames="12,13,14,15,16"/>   
+		<Anim id="idle" delay=".2" frames="12,13,14,15,16"/>   
 		<Anim id="walk" delay=".09" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="run" delay=".1" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="crouchIn" delay=".1" loop="False" frames="0"/>      
@@ -46,8 +59,8 @@
     <OriginX>64</OriginX>
     <OriginY>64</OriginY>
     <Animations>
-		<Anim id="idle" delay=".1" frames="12,13,14,15,16"/>      
-		<Anim id="walk" delay=".1" frames="0,1,2,3,4,5,6,7"/>      
+		<Anim id="idle" delay=".2" frames="12,13,14,15,16"/>      
+		<Anim id="walk" delay=".09" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="run" delay=".1" frames="0,1,2,3,4,5,6,7"/>      
 		<Anim id="crouchIn" delay=".1" loop="False" frames="0"/>      
 		<Anim id="crouchOut" delay=".1" loop="False" frames="0"/>      

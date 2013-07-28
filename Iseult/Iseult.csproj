@@ -82,6 +82,7 @@
     <Compile Include="Castle\GameLevel.cs" />
     <Compile Include="Castle\GameOver.cs" />
     <Compile Include="Castle\IseultPlayer.cs" />
+    <Compile Include="Castle\Mordecai.cs" />
     <Compile Include="Castle\Stairs.cs" />
     <Compile Include="Castle\Throwable.cs" />
     <Compile Include="UI\Hud.cs" />

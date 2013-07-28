@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:bbede77f12ee2aa79d3664ec23a47787:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:e5be67ac3adea7f0916f32485096b6ec:1/1$ -->
 <TextureAtlas imagePath="atlas1.png">
-    <SubTexture name="characters/fanatic" x="1152" y="0" width="128" height="128"/>
+    <SubTexture name="characters/fanatic" x="1536" y="0" width="128" height="128"/>
     <SubTexture name="characters/iseult" x="0" y="1024" width="1024" height="1024"/>
     <SubTexture name="characters/iseultLeft" x="0" y="0" width="1024" height="1024"/>
-    <SubTexture name="characters/mordecai" x="1024" y="0" width="128" height="128"/>
+    <SubTexture name="characters/mordecai" x="1024" y="0" width="512" height="512"/>
 </TextureAtlas>
