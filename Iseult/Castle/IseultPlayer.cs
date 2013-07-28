@@ -16,7 +16,10 @@ namespace Iseult
         public static int HEIGHT = 128;
         public static int WIDTH = 128;
         private Sprite<string> imageLeft;
+        private Sprite<string> OverHeadDisplay;
+
         private Collectible SelectedItem;
+
         public IseultPlayer(Vector2 Position)
             : base(Position, new Vector2(48, 90),"iseult")
         {
@@ -24,24 +27,38 @@ namespace Iseult
             MaxSpeed.Y = 10;
             Acceleration = 1f;
             JumpForce = 5f;
+            
             imageLeft = OldSkullGame.SpriteData.GetSpriteString("iseultLeft");
+            OverHeadDisplay = OldSkullGame.SpriteData.GetSpriteString("OverHeadDisplay");
+            OverHeadDisplay.Y -= 100;
             Add(imageLeft);
+            Add(OverHeadDisplay);
+            
             imageLeft.Y = image.Y = (Collider.Height - image.Height)/2;
             SetPosition(Position);
         }
 
         protected override void UpdateColisions()
         {
+            OverHeadDisplay.Visible = false;
+
             SelectedDoor = (DoorWay)Level.CollideFirst(Collider.Bounds, GameTags.Door);
             if (SelectedDoor != null)
             {
                 SelectedDoor.OnTouched(this);
+                OverHeadDisplay.Visible = true;
+                if (SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("materials") > 0)
+                    OverHeadDisplay.Play("fixIt");
+                else
+                    OverHeadDisplay.Play("up");
             }
 
             SelectedItem = (Collectible)Level.CollideFirst(Collider.Bounds, GameTags.Item);
             if (SelectedItem != null)
             {
                 SelectedItem.OnTouched(this);
+                OverHeadDisplay.Visible = true;
+                OverHeadDisplay.Play("down");
             }
 
             Enemy SelectedEnemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
@@ -71,10 +88,18 @@ namespace Iseult
 
             if (KeyboardInput.pressedInput("use"))
             {
-                if (IseultGame.Stats.GetStats("knife")>0)
+                if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("materials")>0)
                 {
-                    IseultGame.Stats.AddStats("knife", -1);
-                    Level.Add(new Throwable(Position, side, "knife"));
+                    SelectedDoor.Barricade();
+                    IseultGame.Stats.AddStats("materials", -1);
+                }
+                else
+                {
+                    if (IseultGame.Stats.GetStats("knife") > 0)
+                    {
+                        IseultGame.Stats.AddStats("knife", -1);
+                        Level.Add(new Throwable(Position, side, "knife"));
+                    }
                 }
             }
 

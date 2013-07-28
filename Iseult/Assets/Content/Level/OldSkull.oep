@@ -141,7 +141,14 @@
       <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\ogmo\domecqitem.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
-      <ValueDefinitions />
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="Type">
+          <Elements>
+            <string>knife</string>
+            <string>wood</string>
+          </Elements>
+        </ValueDefinition>
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
     <EntityDefinition Name="Enemy" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">

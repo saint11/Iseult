@@ -33,12 +33,13 @@ namespace Iseult
             CurrentOn = Name;
         }
 
-        public static void UpdateTracker(Enemy enemy, IseultPlayer Player, string Level)
+        public static void UpdateTracker(Enemy enemy, string Level, IseultPlayer Player = null)
         {
             EnemyTracker tracker = findEnemy(enemy.uid);
             tracker.LastSeen = enemy.Position;
             tracker.CurrentOn = Level;
-            tracker.TimeForDoor = (int)(Vector2.Distance(enemy.Position,Player.Position)*0.5f);
+            if (Player!=null)
+                tracker.TimeForDoor = (int)(Vector2.Distance(enemy.Position,Player.Position)*0.5f);
             tracker.Engaded = false;
             tracker.Hp = enemy.Hp;
         }

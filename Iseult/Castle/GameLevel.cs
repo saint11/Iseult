@@ -76,7 +76,7 @@ namespace Iseult
             }
             else if (e.Name == "Item")
             {
-                Add(new Collectible(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), "knife"));
+                Add(new Collectible(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.Attr("Type")));
             }
             else if (e.Name == "Enemy")
             {
@@ -100,7 +100,7 @@ namespace Iseult
 
         internal void GoToLevel(string Destiny, int uid)
         {
-            foreach (var e in Tags[(int)GameTags.Enemy]) EnemyTracker.UpdateTracker((Enemy)e, Player, Name);
+            foreach (var e in Tags[(int)GameTags.Enemy]) EnemyTracker.UpdateTracker((Enemy)e, Name, Player);
             PlatformerLevelLoader loader = PlatformerLevelLoader.load(Destiny);
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Door, uid);
 
@@ -117,12 +117,7 @@ namespace Iseult
         {
             foreach (DoorWay Door in Doors)
             {
-                foreach (EnemyTracker enemy in EnemyTracker.GetEnemiesEngaded(Door.Destiny))
-                {
-                    Enemy en = new Enemy(enemy);
-                    en.SetPosition(Door.Position);
-                    Add(en);
-                }
+                Door.CheckForAttackers();
             }
         }
     }

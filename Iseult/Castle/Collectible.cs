@@ -11,11 +11,14 @@ namespace Iseult
     public class Collectible:PlatformerObject
     {
         private int Selected=0;
-        public Collectible(Vector2 Position,string ImageName)
+        private string ItemName;
+
+        public Collectible(Vector2 Position, string ItemName)
             : base(Position, new Vector2(32, 32))
         {
+            this.ItemName = ItemName;
             image = IseultGame.SpriteData.GetSpriteString("item");
-            ((Sprite<string>)image).Play(ImageName);
+            ((Sprite<string>)image).Play(ItemName);
             Add(image);
 
             Tag(GameTags.Item);
@@ -40,7 +43,15 @@ namespace Iseult
         public void onPickUp()
         {
             RemoveSelf();
-            IseultGame.Stats.AddStats("knife", 1);
+            switch (ItemName)
+            {
+                case "wood":
+                    IseultGame.Stats.AddStats("materials", 1);
+                    break;
+                default:
+                    IseultGame.Stats.AddStats(ItemName, 1);
+                    break;
+            }
         }
     }
 }

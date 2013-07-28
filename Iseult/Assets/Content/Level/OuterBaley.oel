@@ -51,11 +51,10 @@
     <DoorWay id="0" x="976" y="576" GoTo="InnerBaley" Back="True" uid="1" />
     <Player id="1" x="464" y="640" />
     <DoorWay id="2" x="128" y="576" GoTo="OuterWall" Back="True" uid="2" />
-    <Stairs id="3" x="1200" y="576" Back="True">
-      <node x="1408" y="512" />
-    </Stairs>
-    <Item id="4" x="1744" y="608" />
-    <Item id="5" x="720" y="640" />
+    <Item id="4" x="1744" y="608" Type="knife" />
     <Enemy id="6" x="48" y="640" />
+    <Item id="3" x="1680" y="608" Type="wood" />
+    <Item id="5" x="1632" y="608" Type="wood" />
+    <Item id="7" x="1520" y="608" Type="wood" />
   </Objects>
 </level>

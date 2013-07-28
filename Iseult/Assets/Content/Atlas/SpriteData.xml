@@ -72,6 +72,7 @@
     <OriginY>32</OriginY>
     <Animations>
       <Anim id="knife" delay=".1" frames="0"/>
+      <Anim id="wood" delay=".1" frames="2"/>
     </Animations>
   </sprite_string>
   
@@ -107,6 +108,20 @@
     <Animations>
       <Anim id="up" delay=".1" loop="false" frames="1"/>
       <Anim id="down" delay=".1" loop="false" frames="0"/>
+    </Animations>
+  </sprite_string>
+  
+  <!--HUD-->
+  <sprite_string id="OverHeadDisplay">
+    <Texture>hud/display</Texture>
+    <FrameWidth>50</FrameWidth>
+    <FrameHeight>50</FrameHeight>
+    <OriginX>25</OriginX>
+    <OriginY>25</OriginY>
+    <Animations>
+      <Anim id="fixIt" delay=".1" frames="0"/>
+      <Anim id="down" delay=".1" frames="1"/>
+      <Anim id="up" delay=".1" frames="2"/>
     </Animations>
   </sprite_string>
 </sprites>

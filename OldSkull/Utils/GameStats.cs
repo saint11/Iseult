@@ -62,5 +62,10 @@ namespace OldSkull.Utils
             return false;
         }
 
+
+        public bool HasStats(string name)
+        {
+            return Stats.Keys.Contains(name);
+        }
     }
 }
