@@ -102,7 +102,7 @@
         <X>0</X>
         <Y>0</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\doorway.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\ogmo\doorWay.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
@@ -173,9 +173,9 @@
       </Size>
       <Origin>
         <X>64</X>
-        <Y>64</Y>
+        <Y>96</Y>
       </Origin>
-      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas1\characters\mordecai.png" Tiled="false">
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\ogmo\mordecai.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />

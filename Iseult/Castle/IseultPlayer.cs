@@ -12,12 +12,13 @@ namespace Iseult
 {
     public class IseultPlayer : PlayerObject
     {
-        private DoorWay SelectedDoor;
         public static int HEIGHT = 128;
         public static int WIDTH = 128;
         private Sprite<string> imageLeft;
         private Sprite<string> OverHeadDisplay;
 
+        private PlatformLevelEntity SelectedNpc;
+        private DoorWay SelectedDoor;
         private Collectible SelectedItem;
 
         public IseultPlayer(Vector2 Position)
@@ -36,6 +37,8 @@ namespace Iseult
             
             imageLeft.Y = image.Y = (Collider.Height - image.Height)/2;
             SetPosition(Position);
+
+            Depth = -10;
         }
 
         protected override void UpdateColisions()
@@ -64,7 +67,18 @@ namespace Iseult
             Enemy SelectedEnemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
             if (SelectedEnemy != null)
             {
-                Engine.Instance.Scene = new GameOver();
+                IseultGame.Stats.AddStats("hp", -1);
+                if (IseultGame.Stats.GetStats("hp") <= 0)
+                {
+                    Engine.Instance.Scene = new GameOver();
+                }
+            }
+
+            SelectedNpc = (PlatformLevelEntity)Level.CollideFirst(Collider.Bounds, GameTags.Npc);
+            if (SelectedNpc!= null)
+            {
+                OverHeadDisplay.Visible = true;
+                OverHeadDisplay.Play("up");
             }
         }
 
@@ -79,6 +93,11 @@ namespace Iseult
             if (SelectedDoor != null)
             {
                 SelectedDoor.Enter(this);
+            }
+
+            if (SelectedNpc != null)
+            {
+                if (SelectedNpc is Mordecai) ((Mordecai)SelectedNpc).ToggleFollow();
             }
         }
 

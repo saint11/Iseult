@@ -16,7 +16,7 @@ using Ouya.Console.Api;
 
 namespace Monocle
 {
-    public enum GameTags { Player = 0, Door, Solid, Item, Enemy};
+    public enum GameTags { Player = 0, Door, Solid, Item, Enemy, Npc};
 
     public class Engine : Game
     {

@@ -13,7 +13,10 @@ namespace Iseult
     {
         private int DoorUid;
         private Side EntrySide;
+
         public IseultPlayer Player { get; private set; }
+        public Mordecai Mordecai { get; private set; }
+
         private List<DoorWay> Doors;
 
         public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
@@ -26,17 +29,23 @@ namespace Iseult
             Doors = new List<DoorWay>();
             loadLevel(Loader);
 
-            LoadEnemies();
+            LoadPersistent();
+
 
             Gravity = new Vector2(0, 0.18f);
         }
 
-        private void LoadEnemies()
+        private void LoadPersistent()
         {
             foreach (EnemyTracker enemy in EnemyTracker.HasEnemyHere(Name))
 	        {
                 Add(new Enemy(enemy));
 	        }
+
+            if (Mordecai == null && Mordecai.CurrentOn == Name)
+            {
+                Add(Mordecai = new Mordecai(Mordecai.LastSeen));
+            }
         }
 
         public override void LoadEntity(System.Xml.XmlElement e)
@@ -47,20 +56,7 @@ namespace Iseult
             }
             else if (e.Name == "DoorWay")
             {
-                DoorWay Door = new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("Back"), e.AttrInt("uid"), e.Attr("GoTo"));
-                Doors.Add(Door);
-                Add(Door);
-                if (e.AttrInt("uid") == DoorUid && EntrySide==Side.Door)
-                {
-                    AddPlayer(e.AttrFloat("x") + IseultPlayer.WIDTH/2, e.AttrFloat("y") + IseultPlayer.HEIGHT/2);
-                }
-
-                foreach (EnemyTracker enemy in EnemyTracker.GetEnemiesEngaded(e.Attr("GoTo")))
-                {
-                    Enemy en = new Enemy(enemy);
-                    en.SetPosition(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")));
-                    Add(en);
-                }
+                AddDoorWay(e);
             }
             else if (e.Name == "Stairs")
             {
@@ -86,9 +82,32 @@ namespace Iseult
                     EnemyTracker.RegisterEnemy(Name, e);
                 }
             }
-            else if (e.Name == "Mordecai")
+            else if (e.Name == "Mordecai" && EntrySide == Side.Secret)
             {
-                Add(new Mordecai(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+                Add(Mordecai = new Mordecai(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
+            }
+        }
+
+        private void AddDoorWay(System.Xml.XmlElement e)
+        {
+            DoorWay Door = new DoorWay(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("Back"), e.AttrInt("uid"), e.Attr("GoTo"));
+            Doors.Add(Door);
+            Add(Door);
+            if (e.AttrInt("uid") == DoorUid && EntrySide == Side.Door)
+            {
+                AddPlayer(e.AttrFloat("x") + IseultPlayer.WIDTH / 2, e.AttrFloat("y") + IseultPlayer.HEIGHT / 2);
+            }
+
+            foreach (EnemyTracker enemy in EnemyTracker.GetEnemiesEngaded(e.Attr("GoTo")))
+            {
+                Enemy en = new Enemy(enemy);
+                en.SetPosition(new Vector2(Door.X,Door.Y+64));
+                Add(en);
+            }
+
+            if (Mordecai.CurrentOn == Name && EntrySide != Side.Secret && e.AttrFloat("uid") == Mordecai.DoorUid)
+            {
+                Add(Mordecai = new Mordecai(new Vector2(Door.X,Door.Y+96)));
             }
         }
 
@@ -105,6 +124,21 @@ namespace Iseult
         internal void GoToLevel(string Destiny, int uid)
         {
             foreach (var e in Tags[(int)GameTags.Enemy]) EnemyTracker.UpdateTracker((Enemy)e, Name, Player);
+
+            if (Mordecai != null)
+            {
+                if (Vector2.Distance(Mordecai.Position, Player.Position) < 100)
+                {
+                    Mordecai.CurrentOn = Destiny.ToUpper();
+                    Mordecai.DoorUid = uid;
+                }
+                else
+                {
+                    Mordecai.LastSeen = Mordecai.Position;
+                    Mordecai.DoorUid = 0;
+                }
+            }
+
             PlatformerLevelLoader loader = PlatformerLevelLoader.load(Destiny);
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Door, uid);
 
