@@ -31,7 +31,8 @@ namespace Iseult
 
             if (IseultPlayer.Carrying != null)
             {
-                Text TextItemName = new Text(IseultGame.Font, ItemName + ": " + IseultGame.Stats.GetStats(ItemName).ToString(), new Vector2(10), Text.HorizontalAlign.Left);
+                Text TextItemName = new Text(IseultGame.Font, ItemName + ": " + IseultGame.Stats.GetStats(ItemName).ToString(), new Vector2(10));
+                TextItemName.Y = 80;
                 Add(TextItemName);
             }
 

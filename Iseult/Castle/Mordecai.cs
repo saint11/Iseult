@@ -27,6 +27,7 @@ namespace Iseult
 
         private int Interest;
         private int MAX_INTEREST = 60;
+        private float Acceleration = 1.95f;
 
         public Mordecai(Vector2 Position)
             :base(Position, new Vector2(32,64))
@@ -78,12 +79,13 @@ namespace Iseult
                     SelectedDoor.Enter(this);
                     Y += 32;
 
-                    if (NextTarget.Count > 0)
-                    {
-                        Target = NextTarget[0];
-                        NextTarget.RemoveAt(0);
-                    }
-                    else ToggleFollow(Player);
+                    //if (NextTarget.Count > 0)
+                    //{
+                    //    Target = NextTarget[NextTarget.Count-1];
+                    //    NextTarget.RemoveAt(NextTarget.Count-1);
+                    //}
+                    //else 
+                    ToggleFollow(Player);
                 }
             }
         }
@@ -91,8 +93,11 @@ namespace Iseult
         public void ToggleFollow(PlatformLevelEntity NextTarget)
         {
             if (Target == NextTarget) Target = null;
-            else Target = NextTarget;
-
+            else
+            {
+                this.NextTarget.Add(NextTarget);
+                Target = NextTarget;
+            }
             Interest = MAX_INTEREST;
             LastTarget = Target;
         }
@@ -103,12 +108,14 @@ namespace Iseult
             {
                 int side = Math.Sign(Player.X - X);
                 Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                Image.Play("idle");
             }
             else
             {
+                if (Image.CurrentAnimID!="climb") Image.Play("walk");
                 int side = Math.Sign(Target.X - X);
                 Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                float HMovement = side * 1.8f;
+                float HMovement = side * Acceleration;
 
                 Rectangle Check = Collider.Bounds;
                 Check.X += (int)HMovement;
@@ -127,10 +134,14 @@ namespace Iseult
                             Image.OnAnimationComplete = null;
                         };
                     }
+                    else Image.Play("idle");
                 }
                 else
                 {
-                    X += (int)HMovement;
+                    Check.X += 32*side;
+                    Check.Y += 64 + 1;
+                    if (Level.CollideCheck(Check, GameTags.Solid)) X += (int)HMovement;
+                    else Image.Play("idle");
                 }
 
                 if (Math.Abs(Target.Y - Y) > 96)

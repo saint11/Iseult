@@ -20,6 +20,7 @@ namespace Iseult
         private PlatformLevelEntity SelectedNpc;
         private DoorWay SelectedDoor;
         private Collectible SelectedItem;
+        public List<Enemy> TailedBy;
 
         public static Collectible Carrying { get; private set; }
 
@@ -39,6 +40,8 @@ namespace Iseult
             
             imageLeft.Y = image.Y = (Collider.Height - image.Height)/2;
             SetPosition(Position);
+
+            TailedBy = new List<Enemy>();
 
             Depth = -10;
         }
@@ -123,14 +126,21 @@ namespace Iseult
             if (SelectedDoor != null)
             {
                 SelectedDoor.Enter(this);
-                if (SelectedDoor is Stairs)
-                {
-                    Mordecai Mordecai = Mordecai.Instance;
-                    if (Mordecai.isFollowing(this))
-                        Mordecai.ToggleFollow(SelectedDoor);
-                }
+                if (SelectedDoor is Stairs) OnEnterStairs((Stairs)SelectedDoor);
             }
             
+        }
+
+        private void OnEnterStairs(Stairs SelectedDoor)
+        {
+            Mordecai Mordecai = Mordecai.Instance;
+            if (Mordecai.isFollowing(this))
+                Mordecai.ToggleFollow(SelectedDoor);
+
+            foreach (Enemy enemy in TailedBy)
+            {
+                enemy.NextTarget = SelectedDoor;
+            }
         }
 
         public override void Update()

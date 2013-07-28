@@ -92,7 +92,7 @@ namespace Iseult
                     hp--;
                     hpChanged = true;
                     UpdateVisuals();
-                    if (hp<=0 && Calc.Chance(Calc.Random, 0.05f))
+                    if (hp<=0 && Calc.Chance(Calc.Random, 0.01f))
                     {
                         Enemy enemy = new Enemy(tracker);
                         enemy.SetPosition(new Vector2(Position.X + 32, Position.Y + 82));
