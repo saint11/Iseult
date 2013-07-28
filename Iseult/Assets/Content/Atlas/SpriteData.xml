@@ -9,7 +9,7 @@
     <OriginY>82</OriginY>
     <Animations>
       <Anim id="idle" delay=".1" frames="0,1,2,3"/>
-      <Anim id="walk" delay=".09" frames="0"/>
+      <Anim id="walk" delay=".09" frames="4,5,6,7,8,9"/>
       <Anim id="jumpUp" delay=".1" frames="0"/>
       <Anim id="jumpDown" delay=".1" frames="0"/>
       <Anim id="attack" delay=".1" loop="False" frames="0"/>
