@@ -52,6 +52,7 @@ namespace Iseult
             {
                 Speed.Y = 0;
             }
+            if (!Stuck && !Fallen) Fallen = true;
         }
         protected override void onCollideH(Solid solid)
         {

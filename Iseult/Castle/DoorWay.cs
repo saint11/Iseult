@@ -21,9 +21,10 @@ namespace Iseult
 
         private int uid;
         private int interacting = 0;
+        private int MAX_HP = 60;
 
 
-        public bool IsBeingAttacked { get { return hp < 10; } }
+        public bool IsBeingAttacked { get { return hp < MAX_HP; } }
 
         public DoorWay(Vector2 Position, bool Back, int uid, string Destiny="")
             : base(Back? GameLevel.GAMEPLAY_LAYER:GameLevel.FRONT_GAMEPLAY_LAYER)
@@ -38,15 +39,10 @@ namespace Iseult
             interacting = 0;
             BeingAttacked = new List<EnemyTracker>();
 
-            if (IseultGame.Stats.HasTrigger("Door" + uid)) hp = 0;
+            if (IseultGame.Stats.HasStats("Door" + uid))
+                hp = (int)IseultGame.Stats.GetStats("Door" + uid);
             else
-            {
-                if (IseultGame.Stats.HasStats("Door" + uid))
-                    hp = (int)IseultGame.Stats.GetStats("Door" + uid);
-                else
-                    hp = 10;
-            }
-
+                hp = MAX_HP;
         }
         public override void Added()
         {
@@ -66,7 +62,10 @@ namespace Iseult
 
         private void UpdateVisuals()
         {
-            if (IsBeingAttacked) Image.Play("attacked");
+            if (hp <= 0) Image.Play("broken");
+            else if (hp < MAX_HP / 3) Image.Play("almostBreaking");
+            else if (hp < MAX_HP / 2) Image.Play("breaking");
+            else if (IsBeingAttacked) Image.Play("attacked");
             else Image.Play("closed");
         }
 
@@ -85,23 +84,27 @@ namespace Iseult
             }
 
             bool enemyOut = false;
+            bool hpChanged = false;
             foreach (EnemyTracker tracker in BeingAttacked)
             {
-                if (Calc.Chance(Calc.Random, 0.05f))
+                if (Calc.Chance(Calc.Random, 0.305f))
                 {
                     hp--;
+                    hpChanged = true;
                     UpdateVisuals();
-                    if (hp<=0)
+                    if (hp<=0 && Calc.Chance(Calc.Random, 0.05f))
                     {
                         Enemy enemy = new Enemy(tracker);
-                        enemy.SetPosition(new Vector2(Position.X + 32, Position.Y + 32));
+                        enemy.SetPosition(new Vector2(Position.X + 32, Position.Y + 82));
                         Level.Add(enemy);
                         EnemyTracker.UpdateTracker(enemy,Level.Name);
                         enemyOut = true;
                     }
                 }
             }
+
             if (enemyOut) CheckForAttackers();
+            if (hpChanged) IseultGame.Stats.SetStats("Door" + uid.ToString(), hp);
         }
 
         internal void OnTouched(IseultPlayer Player)
@@ -129,7 +132,8 @@ namespace Iseult
 
         internal void Barricade()
         {
-            hp++;
+            hp += MAX_HP/2;
+            if (hp > MAX_HP * 2) hp = MAX_HP * 2;
         }
     }
 }
