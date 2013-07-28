@@ -16,7 +16,7 @@ namespace Iseult
         
         protected Sprite<string> Image;
 
-        protected List<EnemyTracker> BeingAttacked;
+        public List<EnemyTracker> BeingAttacked;
         private int hp = 10;
 
         private int uid;
@@ -87,7 +87,7 @@ namespace Iseult
             bool hpChanged = false;
             foreach (EnemyTracker tracker in BeingAttacked)
             {
-                if (Calc.Chance(Calc.Random, 0.01f))
+                if (Calc.Chance(Calc.Random, 0.201f))
                 {
                     hp--;
                     hpChanged = true;

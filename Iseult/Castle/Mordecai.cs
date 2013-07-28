@@ -16,13 +16,17 @@ namespace Iseult
         IseultPlayer Player { get { return ((GameLevel)Level).Player; } }
         private Sprite<string> Image { get { return (Sprite<string>)image; } }
 
-        private PlatformLevelEntity Target;
+        public PlatformLevelEntity Target { get; private set; }
         private List<PlatformLevelEntity> NextTarget;
 
         public static string CurrentOn;
         public static int DoorUid=0;
         public static Mordecai Instance;
         public static Vector2 LastSeen;
+        public static PlatformLevelEntity LastTarget;
+
+        private int Interest;
+        private int MAX_INTEREST = 60;
 
         public Mordecai(Vector2 Position)
             :base(Position, new Vector2(32,64))
@@ -48,8 +52,20 @@ namespace Iseult
             base.Step();
 
             CheckForDoors();
+            SearchForIseult();
             FollowTarget();
 
+        }
+
+        private void SearchForIseult()
+        {
+            if (Target is DoorWay){
+                if (Vector2.DistanceSquared(Position, Player.Position) < (Math.Pow(400,2)) &&
+                    Math.Abs(Position.Y-Player.Y)<96)
+                {
+                    ToggleFollow(Player);
+                }
+            }
         }
 
         private void CheckForDoors()
@@ -67,7 +83,7 @@ namespace Iseult
                         Target = NextTarget[0];
                         NextTarget.RemoveAt(0);
                     }
-                    else Target = Player;
+                    else ToggleFollow(Player);
                 }
             }
         }
@@ -76,6 +92,9 @@ namespace Iseult
         {
             if (Target == NextTarget) Target = null;
             else Target = NextTarget;
+
+            Interest = MAX_INTEREST;
+            LastTarget = Target;
         }
 
         private void FollowTarget()
@@ -114,8 +133,18 @@ namespace Iseult
                     X += (int)HMovement;
                 }
 
-                if (Math.Abs(Target.Y - Y) > 96) Target = null;
+                if (Math.Abs(Target.Y - Y) > 96)
+                {
+                    Interest--;
+                    if (Interest <= 0) Target = null;
+                }
+                else Interest = MAX_INTEREST;
             }
+        }
+
+        public bool Joining()
+        {
+            return (Vector2.Distance(Position, Player.Position) < 200);
         }
 
         internal bool isFollowing(PlatformLevelEntity entity)

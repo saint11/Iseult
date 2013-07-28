@@ -21,6 +21,8 @@ namespace Iseult
         private DoorWay SelectedDoor;
         private Collectible SelectedItem;
 
+        private static Collectible Carrying;
+
         public IseultPlayer(Vector2 Position)
             : base(Position, new Vector2(48, 90),"iseult")
         {
@@ -45,6 +47,20 @@ namespace Iseult
         {
             OverHeadDisplay.Visible = false;
 
+
+            SelectedNpc = (PlatformLevelEntity)Level.CollideFirst(Collider.Bounds, GameTags.Npc);
+            if (SelectedNpc != null)
+            {
+                if (SelectedNpc is Mordecai)
+                {
+                    Mordecai M = ((Mordecai)SelectedNpc);
+                    //  if (M.Target!=null && !M.isFollowing(this)) M.ToggleFollow(this);
+
+                    OverHeadDisplay.Visible = true;
+                    OverHeadDisplay.Play(M.isFollowing(this) ? "unfollow" : "follow");
+                }
+            }
+
             SelectedDoor = (DoorWay)Level.CollideFirst(Collider.Bounds, GameTags.Door);
             if (SelectedDoor != null)
             {
@@ -53,15 +69,30 @@ namespace Iseult
                 if (SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("materials") > 0)
                     OverHeadDisplay.Play("fixIt");
                 else
-                    OverHeadDisplay.Play("up");
+                {
+                    if (Mordecai.Instance.Joining())
+                        OverHeadDisplay.Play("enterTogether");
+                    else
+                        OverHeadDisplay.Play("up");
+                }
             }
 
             SelectedItem = (Collectible)Level.CollideFirst(Collider.Bounds, GameTags.Item);
             if (SelectedItem != null)
             {
-                SelectedItem.OnTouched(this);
-                OverHeadDisplay.Visible = true;
-                OverHeadDisplay.Play("down");
+                if (Carrying != null)
+                {
+                    if (Carrying.ItemName == SelectedItem.ItemName)
+                    {
+                        SelectedItem.onPickUp();
+                    }
+                }
+                else
+                {
+                    SelectedItem.OnTouched(this);
+                    OverHeadDisplay.Visible = true;
+                    OverHeadDisplay.Play("down");
+                }
             }
 
             Enemy SelectedEnemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
@@ -74,26 +105,22 @@ namespace Iseult
                 }
             }
 
-            SelectedNpc = (PlatformLevelEntity)Level.CollideFirst(Collider.Bounds, GameTags.Npc);
-            if (SelectedNpc!= null)
-            {
-                OverHeadDisplay.Visible = true;
-                OverHeadDisplay.Play("up");
-            }
         }
 
         protected override void OnCrouching()
         {
+            if (SelectedItem != null && !Crouching)
+            {
+                if (Carrying != null && Carrying.ItemName != SelectedItem.ItemName) Carrying.onDrop(Position, Scene);
+                SelectedItem.onPickUp();
+                Carrying = SelectedItem;
+            }
             base.OnCrouching();
-            if (SelectedItem != null) SelectedItem.onPickUp();
         }
 
         protected override void OnPressedUp()
         {
-            if (SelectedNpc != null)
-            {
-                if (SelectedNpc is Mordecai) ((Mordecai)SelectedNpc).ToggleFollow(this);
-            }else if (SelectedDoor != null)
+            if (SelectedDoor != null)
             {
                 SelectedDoor.Enter(this);
                 if (SelectedDoor is Stairs)
@@ -112,7 +139,11 @@ namespace Iseult
 
             if (KeyboardInput.pressedInput("use"))
             {
-                if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("materials")>0)
+                if (SelectedNpc != null)
+                {
+                    if (SelectedNpc is Mordecai) ((Mordecai)SelectedNpc).ToggleFollow(this);
+                }
+                else if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("materials")>0)
                 {
                     SelectedDoor.Barricade();
                     IseultGame.Stats.AddStats("materials", -1);

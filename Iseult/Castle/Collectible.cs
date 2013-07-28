@@ -8,15 +8,18 @@ using Monocle;
 
 namespace Iseult
 {
-    public class Collectible:PlatformerObject
+    public class Collectible:PlatformLevelEntity
     {
         private int Selected=0;
-        private string ItemName;
+        public string ItemName { get; private set; }
+        private Sprite<string> image;
 
         public Collectible(Vector2 Position, string ItemName)
-            : base(Position, new Vector2(32, 32))
+            : base(0)
         {
             this.ItemName = ItemName;
+            this.Position=Position;
+            Collider = new Hitbox(32, 32);
             image = IseultGame.SpriteData.GetSpriteString("item");
             ((Sprite<string>)image).Play(ItemName);
             Add(image);
@@ -51,6 +54,27 @@ namespace Iseult
                 default:
                     IseultGame.Stats.AddStats(ItemName, 1);
                     break;
+            }
+        }
+
+        internal void onDrop(Vector2 Position, Scene Scene)
+        {
+            uint dropCount = 0;
+            switch (ItemName)
+            {
+                case "wood":
+                    dropCount = (uint)IseultGame.Stats.GetStats("materials");
+                    IseultGame.Stats.SetStats("materials", 0);
+                    break;
+                default:
+                    dropCount = (uint)IseultGame.Stats.GetStats(ItemName);
+                    IseultGame.Stats.SetStats(ItemName, 0);
+                    break;
+            }
+
+            for (int i = 0; i < dropCount; i++)
+            {
+                Scene.Add(new Collectible(Position, ItemName));
             }
         }
     }

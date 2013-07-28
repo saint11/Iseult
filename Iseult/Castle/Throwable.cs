@@ -105,11 +105,11 @@ namespace Iseult
 
             if (Fallen || Stuck)
             {
-                if (Level.CollideCheck(Collider.Bounds, GameTags.Player))
+                /*if (Level.CollideCheck(Collider.Bounds, GameTags.Player))
                 {
                     RemoveSelf();
                     IseultGame.Stats.AddStats("knife", 1);
-                }
+                }*/
             }
             else
             {
@@ -119,6 +119,12 @@ namespace Iseult
                     en.Hp--;
                     HitSomething();
                 }
+            }
+
+            if (Speed.Length()<=0.1 && onGround)
+            {
+                RemoveSelf();
+                Scene.Add(new Collectible(Position, ItemName));
             }
         }
     }

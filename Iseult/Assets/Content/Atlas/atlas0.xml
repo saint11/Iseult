@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:03562ced2115dee2798c1bb171d7dd4d:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:96a2ec3dfbc8b704b81a524e04151f5d:1/1$ -->
 <TextureAtlas imagePath="atlas0.png">
-    <SubTexture name="environment/Items" x="770" y="205" width="192" height="96"/>
-    <SubTexture name="environment/doorway" x="257" y="76" width="480" height="128"/>
-    <SubTexture name="environment/stairs" x="738" y="76" width="192" height="128"/>
-    <SubTexture name="environment/throwables" x="458" y="205" width="96" height="48"/>
-    <SubTexture name="hud/display" x="257" y="205" width="200" height="50"/>
-    <SubTexture name="hud/hudBg" x="566" y="0" width="64" height="64"/>
+    <SubTexture name="environment/Items" x="694" y="434" width="192" height="96"/>
+    <SubTexture name="environment/doorway" x="0" y="243" width="480" height="128"/>
+    <SubTexture name="environment/stairs" x="501" y="434" width="192" height="128"/>
+    <SubTexture name="environment/throwables" x="898" y="253" width="96" height="48"/>
+    <SubTexture name="hud/display" x="641" y="76" width="300" height="100"/>
+    <SubTexture name="hud/hudBg" x="942" y="76" width="64" height="64"/>
     <SubTexture name="logo" x="977" y="0" width="32" height="32"/>
-    <SubTexture name="logo4x" x="641" y="205" width="128" height="128"/>
-    <SubTexture name="menu/credits" x="257" y="0" width="194" height="75"/>
-    <SubTexture name="menu/exit" x="452" y="0" width="113" height="75"/>
+    <SubTexture name="logo4x" x="501" y="243" width="128" height="128"/>
+    <SubTexture name="menu/credits" x="0" y="935" width="194" height="75"/>
+    <SubTexture name="menu/exit" x="898" y="177" width="113" height="75"/>
+    <SubTexture name="menu/pauseBg" x="0" y="434" width="500" height="500"/>
     <SubTexture name="menu/startgame" x="641" y="0" width="335" height="75"/>
-    <SubTexture name="tilesets/default" x="0" y="0" width="256" height="256"/>
-    <SubTexture name="title" x="0" y="257" width="640" height="242"/>
+    <SubTexture name="tilesets/default" x="641" y="177" width="256" height="256"/>
+    <SubTexture name="title" x="0" y="0" width="640" height="242"/>
 </TextureAtlas>

@@ -37,7 +37,8 @@ namespace Iseult
 
             image = IseultGame.SpriteData.GetSpriteString("monk");
             Add(image);
-            MaxSpeed = new Vector2(4, 10);
+            MaxSpeed = new Vector2(5, 10);
+            
             Tag(GameTags.Enemy);
         }
 
@@ -52,7 +53,7 @@ namespace Iseult
             base.Update();
 
             int TargetSide = Math.Sign(Target.X - X);
-            MoveH(0.6f*TargetSide);
+            MoveH(1.3f*TargetSide);
 
             if (Hp == 0) OnDeath();
         }

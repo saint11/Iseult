@@ -146,6 +146,8 @@
           <Elements>
             <string>knife</string>
             <string>wood</string>
+            <string>bandages</string>
+            <string>domecq</string>
           </Elements>
         </ValueDefinition>
       </ValueDefinitions>

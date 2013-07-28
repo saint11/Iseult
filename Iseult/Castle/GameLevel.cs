@@ -18,6 +18,7 @@ namespace Iseult
         public Mordecai Mordecai { get; private set; }
 
         private List<DoorWay> Doors;
+        private Inventory Inventory;
 
         public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
             :base(Loader.size)
@@ -100,14 +101,13 @@ namespace Iseult
 
             foreach (EnemyTracker enemy in EnemyTracker.GetEnemiesEngaded(e.Attr("GoTo")))
             {
-                Enemy en = new Enemy(enemy);
-                en.SetPosition(new Vector2(Door.X,Door.Y+64));
-                Add(en);
+                Door.BeingAttacked.Add(enemy);
             }
 
             if (Mordecai.CurrentOn == Name && EntrySide != Side.Secret && e.AttrFloat("uid") == Mordecai.DoorUid)
             {
                 Add(Mordecai = new Mordecai(new Vector2(Door.X,Door.Y+96)));
+                if (Mordecai.LastTarget is IseultPlayer) Mordecai.ToggleFollow(Player);
             }
         }
 
@@ -127,7 +127,7 @@ namespace Iseult
 
             if (Mordecai != null)
             {
-                if (Vector2.Distance(Mordecai.Position, Player.Position) < 200)
+                if (Mordecai.Joining())
                 {
                     Mordecai.CurrentOn = Destiny.ToUpper();
                     Mordecai.DoorUid = uid;
@@ -156,6 +156,20 @@ namespace Iseult
             foreach (DoorWay Door in Doors)
             {
                 Door.CheckForAttackers();
+            }
+        }
+
+        protected override void OnPause()
+        {
+
+            if (CurrentState == GameState.Game)
+            {
+                Add(Inventory = new Inventory());
+                CurrentState = GameState.Paused;
+            }
+            else
+            {
+                Inventory.FadeAway(() => { CurrentState = GameState.Game; Inventory.RemoveSelf(); });
             }
         }
     }

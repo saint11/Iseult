@@ -41,6 +41,7 @@ namespace Iseult
             Atlas1 = new Atlas(Path + @"Content/Atlas/atlas1.xml", true);
 
             SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", new Atlas[] { Atlas, Atlas1 });
+            Font = Content.Load<SpriteFont>(@"Misc/medieval");
         }
 
         protected override void Initialize()
