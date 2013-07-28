@@ -5,6 +5,7 @@ using System.Text;
 using Monocle;
 using OldSkull.GameLevel;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using OldSkull;
 using System.Xml;
 
@@ -64,6 +65,9 @@ namespace Iseult
 
         private void MoveH(float HSpeed)
         {
+            image.Effects = Math.Sign(HSpeed) == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            ((Sprite<string>)image).Play("walk");
+
             Rectangle check = Collider.Bounds;
             check.X += Math.Sign(HSpeed) * 8;
             if (onGround && Scene.CollideCheck(check, GameTags.Solid))
