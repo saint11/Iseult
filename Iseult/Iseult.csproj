@@ -79,6 +79,7 @@
     <Compile Include="Castle\Collectible.cs" />
     <Compile Include="Castle\Enemy.cs" />
     <Compile Include="Castle\EnemyTracker.cs" />
+    <Compile Include="Castle\FadeArea.cs" />
     <Compile Include="Castle\GameLevel.cs" />
     <Compile Include="Castle\GameOver.cs" />
     <Compile Include="Castle\IseultPlayer.cs" />

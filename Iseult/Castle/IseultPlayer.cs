@@ -21,7 +21,7 @@ namespace Iseult
         private DoorWay SelectedDoor;
         private Collectible SelectedItem;
 
-        private static Collectible Carrying;
+        public static Collectible Carrying { get; private set; }
 
         public IseultPlayer(Vector2 Position)
             : base(Position, new Vector2(48, 90),"iseult")
@@ -29,7 +29,7 @@ namespace Iseult
             MaxSpeed.X = 6.3f;
             MaxSpeed.Y = 10;
             Acceleration = 1f;
-            JumpForce = 5f;
+            JumpForce = 5.4f;
             
             imageLeft = OldSkullGame.SpriteData.GetSpriteString("iseultLeft");
             OverHeadDisplay = OldSkullGame.SpriteData.GetSpriteString("OverHeadDisplay");

@@ -63,9 +63,15 @@
     <Stairs id="6" x="1808" y="384" Back="True">
       <node x="1904" y="192" />
     </Stairs>
-    <Item id="7" x="1584" y="256" Type="domecq" />
+    <Item id="7" x="1568" y="256" Type="domecq" />
     <Item id="8" x="496" y="480" Type="wood" />
     <Item id="9" x="512" y="288" Type="bandages" />
     <Item id="10" x="464" y="288" Type="wood" />
+    <FadeArea id="11" x="32" y="352" width="512" height="160" />
+    <FadeArea id="12" x="32" y="160" width="512" height="160" />
+    <FadeArea id="13" x="1536" y="160" width="480" height="160" />
+    <FadeArea id="14" x="1664" y="352" width="352" height="160" />
+    <FadeArea id="15" x="1632" y="544" width="384" height="160" />
+    <FadeArea id="16" x="32" y="544" width="512" height="160" />
   </Objects>
 </level>

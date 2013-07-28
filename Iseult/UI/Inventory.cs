@@ -21,8 +21,19 @@ namespace Iseult
             Image.CenterOrigin();
             Add(Image);
 
-            Text Knives = new Text(IseultGame.Font, "Knives: "+IseultGame.Stats.GetStats("knife").ToString(), new Vector2(10), Text.HorizontalAlign.Left);
-            Add(Knives);
+            string ItemName = IseultPlayer.Carrying == null ? "empty" : IseultPlayer.Carrying.ItemName;
+
+            Sprite<string> ItemIcon = IseultGame.SpriteData.GetSpriteString("bigItems");
+            
+
+            ItemIcon.Play(ItemName);
+            Add(ItemIcon);
+
+            if (IseultPlayer.Carrying != null)
+            {
+                Text TextItemName = new Text(IseultGame.Font, ItemName + ": " + IseultGame.Stats.GetStats(ItemName).ToString(), new Vector2(10), Text.HorizontalAlign.Left);
+                Add(TextItemName);
+            }
 
             Y = Engine.Instance.Screen.Height + Image.Height/2;
             Tween.Position(this, new Vector2(Engine.Instance.Screen.Width / 2, Engine.Instance.Screen.Height / 2),

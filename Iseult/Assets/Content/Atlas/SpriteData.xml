@@ -77,20 +77,6 @@
 
   <!--Environmental-->
 
-  <sprite_string id="item">
-    <Texture>environment/Items</Texture>
-    <FrameWidth>48</FrameWidth>
-    <FrameHeight>48</FrameHeight>
-    <OriginX>24</OriginX>
-    <OriginY>32</OriginY>
-    <Animations>
-      <Anim id="knife" delay=".1" frames="0"/>
-      <Anim id="wood" delay=".1" frames="2"/>
-      <Anim id="bandages" delay=".1" frames="3"/>
-      <Anim id="domecq" delay=".1" frames="4"/>
-    </Animations>
-  </sprite_string>
-  
   <sprite_string id="throwable">
     <Texture>environment/throwables</Texture>
     <FrameWidth>48</FrameWidth>
@@ -128,8 +114,38 @@
       <Anim id="down" delay=".1" loop="false" frames="0"/>
     </Animations>
   </sprite_string>
-  
+
+  <sprite_string id="item">
+    <Texture>environment/Items</Texture>
+    <FrameWidth>48</FrameWidth>
+    <FrameHeight>48</FrameHeight>
+    <OriginX>6</OriginX>
+    <OriginY>16</OriginY>
+    <Animations>
+      <Anim id="knife" delay=".1" frames="0"/>
+      <Anim id="wood" delay=".1" frames="2"/>
+      <Anim id="bandages" delay=".1" frames="3"/>
+      <Anim id="domecq" delay=".1" frames="4"/>
+    </Animations>
+  </sprite_string>
+
   <!--HUD-->
+
+  <sprite_string id="bigItems">
+    <Texture>hud/bigItems</Texture>
+    <FrameWidth>96</FrameWidth>
+    <FrameHeight>96</FrameHeight>
+    <OriginX>48</OriginX>
+    <OriginY>48</OriginY>
+    <Animations>
+      <Anim id="empty" delay=".1" frames="0"/>
+      <Anim id="knife" delay=".1" frames="1"/>
+      <Anim id="wood" delay=".1" frames="2"/>
+      <Anim id="bandages" delay=".1" frames="3"/>
+      <Anim id="domecq" delay=".1" frames="4"/>
+    </Animations>
+  </sprite_string>
+  
   <sprite_string id="OverHeadDisplay">
     <Texture>hud/display</Texture>
     <FrameWidth>50</FrameWidth>

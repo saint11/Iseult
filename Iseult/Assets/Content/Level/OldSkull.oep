@@ -135,7 +135,7 @@
         <Height>48</Height>
       </Size>
       <Origin>
-        <X>16</X>
+        <X>8</X>
         <Y>16</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\ogmo\domecqitem.png" Tiled="false">
@@ -178,6 +178,21 @@
         <Y>96</Y>
       </Origin>
       <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\ogmo\mordecai.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="FadeArea" Limit="-1" ResizableX="true" ResizableY="true" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>32</Width>
+        <Height>32</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\ogmo\FadeArea.png" Tiled="false">
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />

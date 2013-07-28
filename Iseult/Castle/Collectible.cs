@@ -23,7 +23,6 @@ namespace Iseult
             image = IseultGame.SpriteData.GetSpriteString("item");
             ((Sprite<string>)image).Play(ItemName);
             Add(image);
-
             Tag(GameTags.Item);
         }
 
@@ -74,7 +73,8 @@ namespace Iseult
 
             for (int i = 0; i < dropCount; i++)
             {
-                Scene.Add(new Collectible(Position, ItemName));
+                Vector2 NewPosition = new Vector2(((int)(Position.X / 32)) * 32, ((int)(Position.Y / 32)+1) * 32);
+                Scene.Add(new Collectible(NewPosition, ItemName));
             }
         }
     }

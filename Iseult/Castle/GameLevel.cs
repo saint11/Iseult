@@ -87,6 +87,14 @@ namespace Iseult
             {
                 Add(Mordecai = new Mordecai(new Vector2(e.AttrFloat("x"), e.AttrFloat("y"))));
             }
+            else if (e.Name == "FadeArea")
+            {
+                string uid = Name + e.Attr("id");
+                if (!IseultGame.Stats.HasTrigger(uid))
+                {
+                    Add(new FadeArea(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"), e.AttrFloat("height")), uid));
+                }
+            }
         }
 
         private void AddDoorWay(System.Xml.XmlElement e)

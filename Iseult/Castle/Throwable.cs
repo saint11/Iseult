@@ -124,7 +124,8 @@ namespace Iseult
             if (Speed.Length()<=0.1 && onGround)
             {
                 RemoveSelf();
-                Scene.Add(new Collectible(Position, ItemName));
+                Vector2 NewPosition = new Vector2(((int)(Position.X / 32)) * 32, ((int)(Position.Y / 32)) * 32);
+                Scene.Add(new Collectible(NewPosition, ItemName));
             }
         }
     }
