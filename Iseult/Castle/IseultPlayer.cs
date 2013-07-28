@@ -90,15 +90,20 @@ namespace Iseult
 
         protected override void OnPressedUp()
         {
-            if (SelectedDoor != null)
-            {
-                SelectedDoor.Enter(this);
-            }
-
             if (SelectedNpc != null)
             {
-                if (SelectedNpc is Mordecai) ((Mordecai)SelectedNpc).ToggleFollow();
+                if (SelectedNpc is Mordecai) ((Mordecai)SelectedNpc).ToggleFollow(this);
+            }else if (SelectedDoor != null)
+            {
+                SelectedDoor.Enter(this);
+                if (SelectedDoor is Stairs)
+                {
+                    Mordecai Mordecai = Mordecai.Instance;
+                    if (Mordecai.isFollowing(this))
+                        Mordecai.ToggleFollow(SelectedDoor);
+                }
             }
+            
         }
 
         public override void Update()

@@ -127,7 +127,7 @@ namespace Iseult
 
             if (Mordecai != null)
             {
-                if (Vector2.Distance(Mordecai.Position, Player.Position) < 100)
+                if (Vector2.Distance(Mordecai.Position, Player.Position) < 200)
                 {
                     Mordecai.CurrentOn = Destiny.ToUpper();
                     Mordecai.DoorUid = uid;

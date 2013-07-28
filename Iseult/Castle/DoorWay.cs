@@ -87,7 +87,7 @@ namespace Iseult
             bool hpChanged = false;
             foreach (EnemyTracker tracker in BeingAttacked)
             {
-                if (Calc.Chance(Calc.Random, 0.305f))
+                if (Calc.Chance(Calc.Random, 0.01f))
                 {
                     hp--;
                     hpChanged = true;

@@ -16,8 +16,8 @@ namespace Iseult
         IseultPlayer Player { get { return ((GameLevel)Level).Player; } }
         private Sprite<string> Image { get { return (Sprite<string>)image; } }
 
-        private bool following=false;
-
+        private PlatformLevelEntity Target;
+        private List<PlatformLevelEntity> NextTarget;
 
         public static string CurrentOn;
         public static int DoorUid=0;
@@ -34,6 +34,7 @@ namespace Iseult
             Tag(GameTags.Npc);
 
             Instance = this;
+            NextTarget=new List<PlatformLevelEntity>();
         }
 
         public override void Added()
@@ -46,42 +47,80 @@ namespace Iseult
         {
             base.Step();
 
-            int side = Math.Sign(Player.X - X);
-            if (following) FollowPlayer(side);
-            Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            CheckForDoors();
+            FollowTarget();
+
         }
 
-        public void ToggleFollow()
+        private void CheckForDoors()
         {
-            following = !following;
-        }
-
-        private void FollowPlayer(int side)
-        {
-            float HMovement = side * 1.8f;
-
-            Rectangle Check = Collider.Bounds;
-            Check.X += (int)HMovement;
-            if (Level.CollideCheck(Check, GameTags.Solid))
+            if (Target is DoorWay)
             {
-                Check.Y -= 32;
-                Check.X += 32 * side - (int)HMovement;
-                if (!Level.CollideCheck(Check, GameTags.Solid))
+                DoorWay SelectedDoor = (DoorWay)Level.CollideFirst(Collider.Bounds, GameTags.Door);
+                if (SelectedDoor == Target)
                 {
-                    Image.Play("climb");
-                    Image.OnAnimationComplete = (t) =>
+                    SelectedDoor.Enter(this);
+                    Y += 32;
+
+                    if (NextTarget.Count > 0)
                     {
-                        Y -= 32;
-                        X += 32 * side;
-                        Image.Play("idle");
-                        Image.OnAnimationComplete = null;
-                    };
+                        Target = NextTarget[0];
+                        NextTarget.RemoveAt(0);
+                    }
+                    else Target = Player;
                 }
+            }
+        }
+
+        public void ToggleFollow(PlatformLevelEntity NextTarget)
+        {
+            if (Target == NextTarget) Target = null;
+            else Target = NextTarget;
+        }
+
+        private void FollowTarget()
+        {
+            if (Target == null)
+            {
+                int side = Math.Sign(Player.X - X);
+                Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
             }
             else
             {
-                X += (int)HMovement;
+                int side = Math.Sign(Target.X - X);
+                Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                float HMovement = side * 1.8f;
+
+                Rectangle Check = Collider.Bounds;
+                Check.X += (int)HMovement;
+                if (Level.CollideCheck(Check, GameTags.Solid))
+                {
+                    Check.Y -= 32;
+                    Check.X += 32 * side - (int)HMovement;
+                    if (!Level.CollideCheck(Check, GameTags.Solid))
+                    {
+                        Image.Play("climb");
+                        Image.OnAnimationComplete = (t) =>
+                        {
+                            Y -= 32;
+                            X += 32 * side;
+                            Image.Play("idle");
+                            Image.OnAnimationComplete = null;
+                        };
+                    }
+                }
+                else
+                {
+                    X += (int)HMovement;
+                }
+
+                if (Math.Abs(Target.Y - Y) > 96) Target = null;
             }
+        }
+
+        internal bool isFollowing(PlatformLevelEntity entity)
+        {
+            return Target == entity;
         }
     }
 }

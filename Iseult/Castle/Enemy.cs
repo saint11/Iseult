@@ -23,7 +23,7 @@ namespace Iseult
             this.uid = uid;
             Hp = 3;
 
-            image = IseultGame.SpriteData.GetSpriteString("fanatic");
+            image = IseultGame.SpriteData.GetSpriteString("monk");
             Add(image);
             MaxSpeed = new Vector2(4, 10);
             Tag(GameTags.Enemy);
@@ -35,7 +35,7 @@ namespace Iseult
             uid = tracker.Uid;
             Hp = tracker.Hp;
 
-            image = IseultGame.SpriteData.GetSpriteString("fanatic");
+            image = IseultGame.SpriteData.GetSpriteString("monk");
             Add(image);
             MaxSpeed = new Vector2(4, 10);
             Tag(GameTags.Enemy);
