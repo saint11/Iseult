@@ -24,7 +24,7 @@
     <OriginY>96</OriginY>
     <Animations>
       <Anim id="idle" delay=".1" frames="0"/>
-      <Anim id="walk" delay=".09" frames="0"/>
+      <Anim id="walk" delay=".09" frames="0,1,2,3,4,5,6,7"/>
       <Anim id="climb" delay=".1" frames="0,1,2,3"/>
     </Animations>
   </sprite_string>
