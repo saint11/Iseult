@@ -49,10 +49,13 @@ namespace Iseult
         {
             base.Initialize();
             Screen.Scale = 1;
-            Stats.SetStats("hp", 10);
-            Scene = new MainMenu();
+
+            Scene = new UI.Logos();
             EnemyTracker.Init();
             Sounds.Init();
+            Sounds.Load(new string[]{
+                "VINHETA"
+            });
         }
 
     }

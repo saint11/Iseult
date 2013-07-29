@@ -54,7 +54,7 @@ namespace Iseult
             }
             if (!Stuck && !Fallen) Fallen = true;
         }
-        protected override void onCollideH(Solid solid)
+        protected override void onCollideH(Entity solid)
         {
             base.onCollideH(solid);
             HitSomething();

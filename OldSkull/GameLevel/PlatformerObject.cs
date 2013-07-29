@@ -59,7 +59,7 @@ namespace OldSkull.GameLevel
             if (Math.Abs(Speed.Y) > MaxSpeed.Y) Speed.Y = MaxSpeed.Y * Math.Sign(Speed.Y);
         }
 
-        protected virtual void onCollideH(Solid solid)
+        protected virtual void onCollideH(Entity solid)
         {
             Speed.X = 0;
         }
@@ -73,7 +73,7 @@ namespace OldSkull.GameLevel
             Speed.Y = 0;
         }
 
-        public void MoveH(float moveH, Action<Solid> onCollide = null)
+        public void MoveH(float moveH, Action<Entity> onCollide = null)
         {
             counter.X += moveH;
             int move = (int)Math.Round(counter.X);
@@ -90,7 +90,7 @@ namespace OldSkull.GameLevel
                     {
                         counter.X = 0;
                         if (onCollide != null)
-                            onCollide(hit as Solid);
+                            onCollide(hit);
                         break;
                     }
 
@@ -127,7 +127,7 @@ namespace OldSkull.GameLevel
             }
         }
 
-        public void Move(Vector2 amount, Action<Solid> onCollideH = null, Action<Solid> onCollideV = null)
+        public void Move(Vector2 amount, Action<Entity> onCollideH = null, Action<Solid> onCollideV = null)
         {
             MoveH(amount.X, onCollideH);
             MoveV(amount.Y, onCollideV);

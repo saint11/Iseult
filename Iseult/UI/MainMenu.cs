@@ -18,6 +18,12 @@ namespace Iseult
         public override void Begin()
         {
             base.Begin();
+
+            IseultPlayer.Reset();
+            IseultGame.Stats.Reset();
+            EnemyTracker.Init();
+            IseultGame.Stats.SetStats("hp", 10);
+
             Engine.Instance.Screen.ClearColor = Color.Black;
 
             //Tittle Animation

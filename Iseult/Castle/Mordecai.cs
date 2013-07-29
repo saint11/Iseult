@@ -26,8 +26,10 @@ namespace Iseult
         public static PlatformLevelEntity LastTarget;
 
         private int Interest;
+        private int Side;
+        private bool Blocked=false;
         private int MAX_INTEREST = 60;
-        private float Acceleration = 1.95f;
+        private float Acceleration = .5f;
 
         public Mordecai(Vector2 Position)
             :base(Position, new Vector2(32,64))
@@ -38,7 +40,8 @@ namespace Iseult
 
             Tag(GameTags.Npc);
 
-            MaxSpeed.X = 4.2f;
+            MaxSpeed.X = 2.2f;
+            GroundDamping = new Vector2(0.9f, 1);
 
             Instance = this;
             NextTarget=new List<PlatformLevelEntity>();
@@ -54,10 +57,12 @@ namespace Iseult
         {
             base.Step();
 
-            CheckForDoors();
-            SearchForIseult();
-            FollowTarget();
-
+            if (Image.CurrentAnimID != "climb")
+            {
+                CheckForDoors();
+                SearchForIseult();
+                FollowTarget();
+            }
         }
 
         private void SearchForIseult()
@@ -102,57 +107,77 @@ namespace Iseult
             }
             Interest = MAX_INTEREST;
             LastTarget = Target;
+            Blocked = false;
         }
 
         private void FollowTarget()
         {
-            if (Target == null)
+            image.X = 0;
+            if (Target == null || Vector2.DistanceSquared(Target.Position, Position) < Math.Pow(80, 2) || Blocked)
             {
                 int side = Math.Sign(Player.X - X);
                 Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Image.Play("idle");
+                if (Blocked) ToggleFollow(Target);
             }
             else
             {
-                if (Image.CurrentAnimID!="climb") Image.Play("walk");
-                int side = Math.Sign(Target.X - X);
-                Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-                float HMovement = side * Acceleration;
+                if (Image.CurrentAnimID != "climb")
+                {
+                    Image.Play("walk");
+                    Side = Math.Sign(Target.X - X);
+                    Image.Effects = Side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                    Blocked = false;
+                }
+                float HMovement = Side * Math.Max(1,Acceleration);
 
                 Rectangle Check = Collider.Bounds;
                 Check.X += (int)HMovement;
+
+
                 if (Level.CollideCheck(Check, GameTags.Solid))
                 {
+                    Entity block = Level.CollideFirst(Check, GameTags.Solid);
                     Check.Y -= 32;
-                    Check.X += 32 * side - (int)HMovement;
-                    if (!Level.CollideCheck(Check, GameTags.Solid))
+                    Check.X += 32 * Side - (int)HMovement;
+
+                    if (!Level.CollideCheck(Check, GameTags.Solid) && onGround)
                     {
+                        image.X += 13 * Side;
                         Image.Play("climb");
+                        Speed = Vector2.Zero;
+
+                        if (block is Castle.PushBox) ((Castle.PushBox)block).LockOnPlace();
                         Image.OnAnimationComplete = (t) =>
                         {
                             Y -= 32;
-                            X += 32 * side;
+                            X += 32 * Side;
+                            Blocked = false;
                             Image.Play("idle");
                             Image.OnAnimationComplete = null;
+                            if (block is Castle.PushBox) ((Castle.PushBox)block).Unlock();
                         };
                     }
-                    else Image.Play("idle");
+                    else
+                    {
+                        Image.Play("idle");
+                        Blocked = true;
+                    }
                 }
                 else
                 {
-                    Check.X += 32*side;
-                    Check.Y += 64 + 1;
-                    if (Level.CollideCheck(Check, GameTags.Solid)) X += (int)HMovement;
-                    else Image.Play("idle");
+                    if (onGround) Speed.X += Acceleration * Side;
                 }
 
-                if (Math.Abs(Target.Y - Y) > 96)
-                {
-                    Interest--;
-                    if (Interest <= 0) Target = null;
-                }
+                if (Math.Abs(Target.Y - Y) > 96) LooseInterest();
                 else Interest = MAX_INTEREST;
             }
+        }
+
+        private void LooseInterest()
+        {
+            Interest--;
+            if (Interest <= 0) Target = null;
         }
 
         public bool Joining()

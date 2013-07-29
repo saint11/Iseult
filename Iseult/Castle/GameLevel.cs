@@ -52,6 +52,18 @@ namespace Iseult
 
             Add(new Mist(2));
             Add(new Hud());
+
+            CheckForMessages(Loader);
+        }
+
+        private void CheckForMessages(PlatformerLevelLoader Loader)
+        {
+            if (Loader.Message != "" && !IseultGame.Stats.HasTrigger("Message" + Name))
+            {
+                CurrentState = GameState.Paused;
+                Add(new Message(Loader.Message, Loader.MessageTittle));
+                IseultGame.Stats.SetTrigger("Message" + Name);
+            }
         }
 
         public override void Begin()
@@ -59,9 +71,6 @@ namespace Iseult
             base.Begin();
             if (EntrySide == Side.Secret && Mordecai != null) Mordecai.ToggleFollow(Player);
             Player.CheckMusic();
-
-            CurrentState = GameState.Paused;
-            Add(new Message("We need to get inside the castle before they get us!", "MORDECAI"));
         }
 
         private void LoadPersistent()
@@ -102,6 +111,10 @@ namespace Iseult
             else if (e.Name == "Item")
             {
                 Add(new Collectible(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.Attr("Type")));
+            }
+            else if (e.Name == "SmallBox")
+            {
+                Add(new PushBox(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(32)));
             }
             else if (e.Name == "Enemy")
             {

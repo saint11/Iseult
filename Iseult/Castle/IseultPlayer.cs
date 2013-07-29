@@ -205,12 +205,25 @@ namespace Iseult
             Y += (image.Height - Collider.Height) / 2;
         }
 
-
+        protected override void onCollideH(Entity solid)
+        {
+            if (solid is PushBox)
+            {
+                ((PushBox)solid).Push(Speed.X*0.7f);
+            }
+            base.onCollideH(solid);
+        }
 
         internal void CheckMusic()
         {
             if (TailedBy.Count>0) OldSkull.Utils.Sounds.PlayMusic("music1");
             else OldSkull.Utils.Sounds.PlayMusic("music2");
+        }
+
+        internal static void Reset()
+        {
+            AliveTime = 0;
+            Carrying = null;
         }
     }
 }

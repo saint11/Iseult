@@ -19,6 +19,9 @@ namespace OldSkull.GameLevel
         public string Left;
         public string Name;
 
+        public string Message;
+        public string MessageTittle;
+
         public static PlatformerLevelLoader load(string filename)
         {
             PlatformerLevelLoader current = new PlatformerLevelLoader();
@@ -31,6 +34,8 @@ namespace OldSkull.GameLevel
 
             current.Left = levelMap.Attr("leftExit");
             current.Right = levelMap.Attr("rightExit");
+            current.Message = levelMap.Attr("Message","");
+            current.MessageTittle = levelMap.Attr("MessageTitle","");
 
             current.size = new Vector2(int.Parse(levelMap.Attr("width")), int.Parse(levelMap.Attr("height")));
             current.solids = new List<Solid>();

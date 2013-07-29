@@ -67,5 +67,11 @@ namespace OldSkull.Utils
         {
             return Stats.Keys.Contains(name);
         }
+
+        public void Reset()
+        {
+            Triggers = new List<string>();
+            Stats = new Dictionary<string, float>();
+        }
     }
 }
