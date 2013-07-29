@@ -76,5 +76,6 @@
     <Player id="1" x="848" y="608" />
     <Mordecai id="2" x="736" y="640" />
     <Enemy id="3" x="160" y="608" />
+    <Item id="4" x="1104" y="608" Type="bandages" />
   </Objects>
 </level>

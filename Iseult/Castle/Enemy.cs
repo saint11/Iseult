@@ -160,8 +160,8 @@ namespace Iseult
                 if (Level.CollideCheck(Check, GameTags.Solid))
                 {
                     Check.Y -= 32;
-                    Check.X += 32 * side - (int)HMovement;
-                    if (!Level.CollideCheck(Check, GameTags.Solid))
+                    //Check.X += 32 * side - (int)HMovement;
+                    if (Level.CollideCheck(Check, GameTags.Solid))
                     {
                         if (!Scene.CollideCheck(Check, GameTags.Solid))
                         {
@@ -169,9 +169,9 @@ namespace Iseult
                         }
                         else
                         {
-                            Check.Y -= 32;
+                            Check.Y -= 34;
                             if (!Scene.CollideCheck(Check, GameTags.Solid))
-                                Speed.Y = -6.0f;
+                                Speed.Y = -4.5f;
                         }
                     }
                 }

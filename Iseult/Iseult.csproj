@@ -30,7 +30,7 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
     <ApplicationRevision>1</ApplicationRevision>
-    <ApplicationVersion>0.1.1.%2a</ApplicationVersion>
+    <ApplicationVersion>0.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -99,7 +99,8 @@
     <Compile Include="Castle\EnemyTracker.cs" />
     <Compile Include="Castle\FadeArea.cs" />
     <Compile Include="Castle\GameLevel.cs" />
-    <Compile Include="Castle\GameOver.cs" />
+    <Compile Include="UI\Credits.cs" />
+    <Compile Include="UI\GameOver.cs" />
     <Compile Include="Castle\IseultPlayer.cs" />
     <Compile Include="Castle\Mist.cs" />
     <Compile Include="Castle\Mordecai.cs" />
@@ -130,7 +131,7 @@
     <Content Include="Assets\Content\Atlas\SpriteData.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Content\Gfx\backgrounds\creditsscreen.png">
+    <Content Include="Assets\Content\Gfx\backgrounds\credits.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Gfx\backgrounds\gameOver.png">
@@ -170,6 +171,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Level\Map.xml" />
+    <Content Include="Assets\Content\Misc\Messages.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\Content\Sfx\JUMP.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

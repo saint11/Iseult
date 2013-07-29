@@ -7,6 +7,7 @@ using OldSkull.GameLevel;
 using Microsoft.Xna.Framework;
 using OldSkull;
 using Iseult.Castle;
+using Iseult.UI;
 
 namespace Iseult
 {
@@ -57,11 +58,19 @@ namespace Iseult
             {
                 if (SelectedNpc is Mordecai)
                 {
-                    Mordecai M = ((Mordecai)SelectedNpc);
-                    //  if (M.Target!=null && !M.isFollowing(this)) M.ToggleFollow(this);
-
                     OverHeadDisplay.Visible = true;
-                    OverHeadDisplay.Play(M.isFollowing(this) ? "unfollow" : "follow");
+                    Mordecai M = ((Mordecai)SelectedNpc);
+                    if (Carrying != null)
+                    {
+                        if (Carrying.ItemName == "bandages" ||
+                            Carrying.ItemName == "domecq")
+                            OverHeadDisplay.Play("give");
+                        else OverHeadDisplay.Play(M.isFollowing(this) ? "unfollow" : "follow");
+                    }
+                    else
+                    {
+                        OverHeadDisplay.Play(M.isFollowing(this) ? "unfollow" : "follow");
+                    }
                 }
             }
 
@@ -147,26 +156,7 @@ namespace Iseult
         {
             base.Step();
 
-            if (KeyboardInput.pressedInput("use"))
-            {
-                if (SelectedNpc != null)
-                {
-                    if (SelectedNpc is Mordecai) ((Mordecai)SelectedNpc).ToggleFollow(this);
-                }
-                else if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("wood")>0)
-                {
-                    SelectedDoor.Barricade();
-                    IseultGame.Stats.AddStats("wood", -1);
-                }
-                else
-                {
-                    if (IseultGame.Stats.GetStats("knife") > 0)
-                    {
-                        IseultGame.Stats.AddStats("knife", -1);
-                        Level.Add(new Throwable(Position, side, "knife"));
-                    }
-                }
-            }
+            if (KeyboardInput.pressedInput("use")) OnUse();
 
             if (IseultGame.Stats.GetStats("hp") <= 0)
             {
@@ -177,6 +167,52 @@ namespace Iseult
                 AliveTime++;
             }
 
+        }
+
+        private void OnUse()
+        {
+            if (SelectedNpc != null) 
+                InteractWithNpc();
+            else if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("wood") > 0)
+            {
+                SelectedDoor.Barricade();
+                IseultGame.Stats.AddStats("wood", -1);
+            }
+            else
+            {
+                if (IseultGame.Stats.GetStats("knife") > 0)
+                {
+                    IseultGame.Stats.AddStats("knife", -1);
+                    Level.Add(new Throwable(Position, side, "knife"));
+                }
+            }
+        }
+
+        private void InteractWithNpc()
+        {
+            if (SelectedNpc is Mordecai)
+            {
+                if (Carrying != null)
+                {
+                    switch (Carrying.ItemName)
+                    {
+                        case "bandages":
+                        case "domecq":
+                            GiveItem(Carrying.ItemName, (Mordecai)SelectedNpc); break;
+                        default:
+                            ((Mordecai)SelectedNpc).ToggleFollow(this);
+                            break;
+                    }
+                }
+                else ((Mordecai)SelectedNpc).ToggleFollow(this);
+            }
+        }
+
+        private void GiveItem(string item, Mordecai Npc)
+        {
+            ((GameLevel)Level).CallMessage(item);
+            IseultGame.Stats.AddStats(item, -1);
+            if (IseultGame.Stats.GetStats(item)<=0) Carrying = null;
         }
 
         protected override void OnChangeSides(int newSide)

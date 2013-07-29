@@ -26,6 +26,8 @@ namespace Iseult
         public static PlatformLevelEntity LastTarget;
 
         private int Interest;
+        private int Wandering;
+        private int WanderingSide;
         private int Side;
         private bool Blocked=false;
         private int MAX_INTEREST = 60;
@@ -57,7 +59,13 @@ namespace Iseult
         {
             base.Step();
 
-            if (Image.CurrentAnimID != "climb")
+            if (Wandering > 0)
+            {
+                Speed.X = WanderingSide * Acceleration*1.5f;
+                Image.Play("walk");
+                Wandering--;
+                Image.Effects = WanderingSide == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+            } else if (Image.CurrentAnimID != "climb")
             {
                 CheckForDoors();
                 SearchForIseult();
@@ -162,6 +170,8 @@ namespace Iseult
                     {
                         Image.Play("idle");
                         Blocked = true;
+                        Wandering = 80;
+                        WanderingSide = -Side;
                     }
                 }
                 else

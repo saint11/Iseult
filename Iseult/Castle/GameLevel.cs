@@ -58,13 +58,24 @@ namespace Iseult
 
         private void CheckForMessages(PlatformerLevelLoader Loader)
         {
-            if (Loader.Message != "" && !IseultGame.Stats.HasTrigger("Message" + Name))
-            {
-                CurrentState = GameState.Paused;
-                Add(new Message(Loader.Message, Loader.MessageTittle));
-                IseultGame.Stats.SetTrigger("Message" + Name);
-            }
+            if (Loader.Message != "" && !IseultGame.Stats.HasTrigger("Message" + Name)) CallMessage(Loader.Message, Loader.MessageTittle);
         }
+
+        public void CallMessage(string Message, string MessageTittle)
+        {
+            CurrentState = GameState.Paused;
+            Add(new Message(Message, MessageTittle));
+            IseultGame.Stats.SetTrigger("Message" + Name);
+        }
+
+        public void CallMessage(string MessageName)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(IseultGame.Path + @"Content\Misc\Messages.xml");
+            XmlElement MessageXml = ((XmlElement)xmlDoc["messages"])[MessageName];
+            CallMessage(MessageXml.ChildText("Text"), MessageXml.ChildText("Title"));
+        }
+
 
         public override void Begin()
         {
@@ -234,5 +245,6 @@ namespace Iseult
             tilesetCount++;
             Add(newTile);
         }
+
     }
 }
