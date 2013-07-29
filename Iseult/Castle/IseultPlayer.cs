@@ -16,6 +16,7 @@ namespace Iseult
         public static int WIDTH = 128;
         private Sprite<string> imageLeft;
         private Sprite<string> OverHeadDisplay;
+        public static int AliveTime = 0;
 
         private PlatformLevelEntity SelectedNpc;
         private DoorWay SelectedDoor;
@@ -142,10 +143,9 @@ namespace Iseult
                 enemy.NextTarget = SelectedDoor;
             }
         }
-
-        public override void Update()
+        public override void Step()
         {
-            base.Update();
+            base.Step();
 
             if (KeyboardInput.pressedInput("use"))
             {
@@ -172,6 +172,11 @@ namespace Iseult
             {
                 RemoveSelf();
             }
+            else
+            {
+                AliveTime++;
+            }
+
         }
 
         protected override void OnChangeSides(int newSide)
@@ -199,5 +204,7 @@ namespace Iseult
             base.SetPosition(Position);
             Y += (image.Height - Collider.Height) / 2;
         }
+
+
     }
 }

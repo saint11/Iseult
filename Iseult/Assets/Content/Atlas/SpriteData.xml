@@ -156,9 +156,11 @@
       <Anim id="fixIt" delay=".1" frames="0"/>
       <Anim id="down" delay=".1" frames="1"/>
       <Anim id="up" delay=".1" frames="2"/>
-      <Anim id="follow" delay=".1" frames="3"/>
-      <Anim id="unfollow" delay=".1" frames="4"/>
-      <Anim id="enterTogether" delay=".1" frames="5"/>
+      <Anim id="follow" delay=".2" frames="3,4"/>
+      <Anim id="unfollow" delay=".1" frames="5"/>
+      <Anim id="give" delay=".1" frames="6"/>
+      <Anim id="swap" delay=".1" frames="7"/>
+      <Anim id="enterTogether" delay=".1" frames="8"/>
     </Animations>
   </sprite_string>
 </sprites>

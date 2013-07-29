@@ -29,8 +29,8 @@
     <ValueDefinition xsi:type="IntValueDefinition" Name="rightExit" Default="0" Min="0" Max="100" ShowSlider="false" />
   </LevelValueDefinitions>
   <LayerDefinitions>
-    <LayerDefinition xsi:type="GridLayerDefinition">
-      <Name>Solid</Name>
+    <LayerDefinition xsi:type="TileLayerDefinition">
+      <Name>OverTiles</Name>
       <Grid>
         <Width>32</Width>
         <Height>32</Height>
@@ -39,8 +39,7 @@
         <X>1</X>
         <Y>1</Y>
       </ScrollFactor>
-      <Color A="255" R="0" G="0" B="0" />
-      <ExportMode>Bitstring</ExportMode>
+      <ExportMode>CSV</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="TileLayerDefinition">
       <Name>Tiles</Name>
@@ -53,6 +52,19 @@
         <Y>1</Y>
       </ScrollFactor>
       <ExportMode>CSV</ExportMode>
+    </LayerDefinition>
+    <LayerDefinition xsi:type="GridLayerDefinition">
+      <Name>Solid</Name>
+      <Grid>
+        <Width>32</Width>
+        <Height>32</Height>
+      </Grid>
+      <ScrollFactor>
+        <X>1</X>
+        <Y>1</Y>
+      </ScrollFactor>
+      <Color A="255" R="0" G="0" B="0" />
+      <ExportMode>Bitstring</ExportMode>
     </LayerDefinition>
     <LayerDefinition xsi:type="EntityLayerDefinition">
       <Name>Objects</Name>
@@ -70,6 +82,15 @@
     <Tileset>
       <Name>default</Name>
       <FilePath>..\Gfx\atlas0\tilesets\default.png</FilePath>
+      <TileSize>
+        <Width>32</Width>
+        <Height>32</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>over</Name>
+      <FilePath>..\Gfx\atlas0\tilesets\over.png</FilePath>
       <TileSize>
         <Width>32</Width>
         <Height>32</Height>

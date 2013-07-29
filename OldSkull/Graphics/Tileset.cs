@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace OldSkull.Graphics
 {
-    class Tileset: Entity
+    public class Tileset: Entity
     {
         Tilemap image;
         string csv;

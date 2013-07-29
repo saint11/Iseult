@@ -32,7 +32,7 @@ namespace OldSkull.GameLevel
         public int Height { get; private set; }
         public Vector2 Gravity = new Vector2(0f,0.1f);
         public string Name { get; private set; }
-        private int tilesetCount = 0;
+        protected int tilesetCount = 0;
 
         //Lists
         public List<Entity> Solids {get;private set;}
@@ -54,9 +54,9 @@ namespace OldSkull.GameLevel
             this.Width = (int)size.X;
             this.Height = (int)size.Y;
 
-            SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer());
-            SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer());
-            SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.AnisotropicWrap));
+            SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer(BlendState.Opaque,SamplerState.PointClamp,0.2f));
+            SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
+            SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.AnisotropicClamp));
             SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
             SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));

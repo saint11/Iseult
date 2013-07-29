@@ -40,7 +40,7 @@ namespace Iseult
 
         public static void StartNewGame(bool ResetAll)
         {
-
+            IseultPlayer.AliveTime = 0;
             PlatformerLevelLoader loader = PlatformerLevelLoader.load("OuterWall");
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Secret);
             

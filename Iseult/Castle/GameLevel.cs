@@ -4,8 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using OldSkull.GameLevel;
+using OldSkull.Graphics;
 using Microsoft.Xna.Framework;
 using Monocle;
+using Microsoft.Xna.Framework.Graphics;
+using Iseult.Castle;
+
 
 namespace Iseult
 {
@@ -16,6 +20,7 @@ namespace Iseult
 
         public IseultPlayer Player { get; private set; }
         public Mordecai Mordecai { get; private set; }
+        private TiledImage Sky;
 
         private List<DoorWay> Doors;
         private Inventory Inventory;
@@ -23,6 +28,18 @@ namespace Iseult
         public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
             :base(Loader.size)
         {
+            Layer MistLayer;
+            SetLayer(2,MistLayer= new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp, 0));
+            // largura_imagem = largura_level - scroll_rate * (largura_level - largura_tela)
+            Sky = new TiledImage(IseultGame.Atlas["environment/sky"],
+                (int)(Camera.Viewport.Width + skyGameLayer.CameraMultiplier * (Width - Camera.Viewport.Width)),
+                (int)(Camera.Viewport.Height + skyGameLayer.CameraMultiplier * (Height - Camera.Viewport.Height)));
+            Entity BgE = new Entity(SKY_GAME_LAYER);
+            BgE.Add(Sky);
+            Add(BgE);
+
+            Add(new Mist(2));
+
             this.DoorUid = DoorUid;
             this.EntrySide = EntrySide;
             Engine.Instance.Screen.ClearColor = Color.RoyalBlue;
@@ -157,6 +174,7 @@ namespace Iseult
         {
             base.Update();
             EnemyTracker.UpdateOffScreen(CheckForMonstersAtTheDoors,Name);
+            Sky.Color = Color.Lerp(Color.DarkOliveGreen, Color.DeepSkyBlue, IseultPlayer.AliveTime * .01f);
         }
 
         public void CheckForMonstersAtTheDoors()
@@ -179,6 +197,18 @@ namespace Iseult
             {
                 Inventory.FadeAway(() => { CurrentState = GameState.Game; Inventory.RemoveSelf(); });
             }
+        }
+
+        public override void LoadTileset(XmlElement e)
+        {
+            int layerIndex = -3;
+            if (e.Name == "OverTiles") layerIndex = GAMEPLAY_LAYER;
+                
+            Tileset newTile = new Tileset(layerIndex, e.InnerText, IseultGame.Atlas["tilesets/" + e.Attr("tileset")], new Vector2(32, 32));
+            newTile.Depth = tilesetCount;
+            if (e.Name == "OverTiles") newTile.Depth = -500;
+            tilesetCount++;
+            Add(newTile);
         }
     }
 }
