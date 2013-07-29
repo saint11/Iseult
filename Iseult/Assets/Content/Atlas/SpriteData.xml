@@ -139,10 +139,11 @@
     <OriginY>48</OriginY>
     <Animations>
       <Anim id="empty" delay=".1" frames="0"/>
-      <Anim id="knife" delay=".1" frames="1"/>
-      <Anim id="wood" delay=".1" frames="2"/>
-      <Anim id="bandages" delay=".1" frames="3"/>
-      <Anim id="domecq" delay=".1" frames="4"/>
+      <Anim id="domecq" delay=".1" frames="1"/>
+      <Anim id="bandages" delay=".1" frames="2"/>
+      <Anim id="knife" delay=".1" frames="3"/>
+      <Anim id="holyWater" delay=".1" frames="4"/>
+      <Anim id="wood" delay=".1" frames="5"/>
     </Animations>
   </sprite_string>
   

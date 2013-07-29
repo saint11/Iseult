@@ -28,7 +28,7 @@ namespace Iseult
         public IseultPlayer(Vector2 Position)
             : base(Position, new Vector2(48, 90),"iseult")
         {
-            MaxSpeed.X = 6.3f;
+            MaxSpeed.X = 5.50f;
             MaxSpeed.Y = 10;
             Acceleration = 1f;
             JumpForce = 5.4f;
@@ -70,7 +70,7 @@ namespace Iseult
             {
                 SelectedDoor.OnTouched(this);
                 OverHeadDisplay.Visible = true;
-                if (SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("materials") > 0)
+                if (SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("wood") > 0)
                     OverHeadDisplay.Play("fixIt");
                 else
                 {
@@ -153,10 +153,10 @@ namespace Iseult
                 {
                     if (SelectedNpc is Mordecai) ((Mordecai)SelectedNpc).ToggleFollow(this);
                 }
-                else if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("materials")>0)
+                else if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("wood")>0)
                 {
                     SelectedDoor.Barricade();
-                    IseultGame.Stats.AddStats("materials", -1);
+                    IseultGame.Stats.AddStats("wood", -1);
                 }
                 else
                 {
@@ -206,5 +206,11 @@ namespace Iseult
         }
 
 
+
+        internal void CheckMusic()
+        {
+            if (TailedBy.Count>0) OldSkull.Utils.Sounds.PlayMusic("music1");
+            else OldSkull.Utils.Sounds.PlayMusic("music2");
+        }
     }
 }

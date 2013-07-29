@@ -14,6 +14,7 @@ namespace Iseult
     {
         private Image Image;
         private bool Fading=false;
+
         public Inventory()
             : base(GameLevel.PAUSE_LAYER, PlatformerLevel.GameState.Paused)
         {
@@ -33,6 +34,7 @@ namespace Iseult
             {
                 Text TextItemName = new Text(IseultGame.Font, ItemName + ": " + IseultGame.Stats.GetStats(ItemName).ToString(), new Vector2(10));
                 TextItemName.Y = 80;
+                TextItemName.Color = Color.Black;
                 Add(TextItemName);
             }
 

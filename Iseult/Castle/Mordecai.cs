@@ -38,6 +38,8 @@ namespace Iseult
 
             Tag(GameTags.Npc);
 
+            MaxSpeed.X = 4.2f;
+
             Instance = this;
             NextTarget=new List<PlatformLevelEntity>();
         }
@@ -155,7 +157,7 @@ namespace Iseult
 
         public bool Joining()
         {
-            return (Vector2.Distance(Position, Player.Position) < 200);
+            return (Vector2.DistanceSquared(Position, Player.Position) < Math.Pow(400,2));
         }
 
         internal bool isFollowing(PlatformLevelEntity entity)

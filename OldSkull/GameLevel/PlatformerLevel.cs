@@ -58,8 +58,8 @@ namespace OldSkull.GameLevel
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
             SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.AnisotropicClamp));
             SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
-            SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
-            SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.AlphaBlend, SamplerState.PointClamp, 0));
+            SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp, 0));
+            SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp, 0));
 
             Solids = new List<Entity>();
 

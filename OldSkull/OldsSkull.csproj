@@ -69,6 +69,10 @@
     </StartupObject>
   </PropertyGroup>
   <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Desktop|x86'">
+    <OutputPath>bin\x86\Desktop\</OutputPath>
+    <DefineConstants>DEBUG;DESKTOP</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="GameLevel\Environment\Wall.cs" />
     <Compile Include="GameLevel\Hud\Box.cs" />

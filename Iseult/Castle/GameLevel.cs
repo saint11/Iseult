@@ -28,18 +28,7 @@ namespace Iseult
         public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
             :base(Loader.size)
         {
-            Layer MistLayer;
-            SetLayer(2,MistLayer= new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp, 0));
-            // largura_imagem = largura_level - scroll_rate * (largura_level - largura_tela)
-            Sky = new TiledImage(IseultGame.Atlas["environment/sky"],
-                (int)(Camera.Viewport.Width + skyGameLayer.CameraMultiplier * (Width - Camera.Viewport.Width)),
-                (int)(Camera.Viewport.Height + skyGameLayer.CameraMultiplier * (Height - Camera.Viewport.Height)));
-            Entity BgE = new Entity(SKY_GAME_LAYER);
-            BgE.Add(Sky);
-            Add(BgE);
-
-            Add(new Mist(2));
-
+            
             this.DoorUid = DoorUid;
             this.EntrySide = EntrySide;
             Engine.Instance.Screen.ClearColor = Color.RoyalBlue;
@@ -49,8 +38,30 @@ namespace Iseult
 
             LoadPersistent();
 
-
             Gravity = new Vector2(0, 0.18f);
+
+            Layer MistLayer;
+            SetLayer(2, MistLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp, 0));
+            
+            Sky = new TiledImage(IseultGame.Atlas["environment/sky"],
+                (int)(Camera.Viewport.Width + skyGameLayer.CameraMultiplier * (Width - Camera.Viewport.Width)),
+                (int)(Camera.Viewport.Height + skyGameLayer.CameraMultiplier * (Height - Camera.Viewport.Height)));
+            Entity BgE = new Entity(SKY_GAME_LAYER);
+            BgE.Add(Sky);
+            Add(BgE);
+
+            Add(new Mist(2));
+            Add(new Hud());
+        }
+
+        public override void Begin()
+        {
+            base.Begin();
+            if (EntrySide == Side.Secret && Mordecai != null) Mordecai.ToggleFollow(Player);
+            Player.CheckMusic();
+
+            CurrentState = GameState.Paused;
+            Add(new Message("We need to get inside the castle before they get us!", "MORDECAI"));
         }
 
         private void LoadPersistent()
@@ -174,7 +185,7 @@ namespace Iseult
         {
             base.Update();
             EnemyTracker.UpdateOffScreen(CheckForMonstersAtTheDoors,Name);
-            Sky.Color = Color.Lerp(Color.DarkOliveGreen, Color.DeepSkyBlue, IseultPlayer.AliveTime * .01f);
+            Sky.Color = Color.Lerp(new Color(0.1f, 0.1f, 0.2f), Color.OrangeRed, IseultPlayer.AliveTime * .0001f);
         }
 
         public void CheckForMonstersAtTheDoors()

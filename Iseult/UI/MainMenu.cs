@@ -32,6 +32,8 @@ namespace Iseult
             menu = new SelectorMenu(new string[] { "menu/startgame", "menu/credits", "menu/exit" }, new Action<MenuButton>[] { newGame, credits, exitGame }, null, SelectorMenuEffects.ColorSwap(Color.AntiqueWhite, Color.Red), true, 1);
             menu.X = Engine.Instance.Screen.Width / 2;
             Add(menu);
+
+            OldSkull.Utils.Sounds.PlayMusic("music0");
         }
         public void newGame(MenuButton Mb)
         {

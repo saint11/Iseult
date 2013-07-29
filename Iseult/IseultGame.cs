@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using OldSkull;
+using OldSkull.Utils;
 using Monocle;
 
 namespace Iseult
@@ -51,6 +52,7 @@ namespace Iseult
             Stats.SetStats("hp", 10);
             Scene = new MainMenu();
             EnemyTracker.Init();
+            Sounds.Init();
         }
 
     }

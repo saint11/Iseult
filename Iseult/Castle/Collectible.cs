@@ -45,32 +45,15 @@ namespace Iseult
         public void onPickUp()
         {
             RemoveSelf();
-            switch (ItemName)
-            {
-                case "wood":
-                    IseultGame.Stats.AddStats("materials", 1);
-                    break;
-                default:
-                    IseultGame.Stats.AddStats(ItemName, 1);
-                    break;
-            }
+            IseultGame.Stats.AddStats(ItemName, 1);
         }
 
         internal void onDrop(Vector2 Position, Scene Scene)
         {
             uint dropCount = 0;
-            switch (ItemName)
-            {
-                case "wood":
-                    dropCount = (uint)IseultGame.Stats.GetStats("materials");
-                    IseultGame.Stats.SetStats("materials", 0);
-                    break;
-                default:
-                    dropCount = (uint)IseultGame.Stats.GetStats(ItemName);
-                    IseultGame.Stats.SetStats(ItemName, 0);
-                    break;
-            }
-
+            dropCount = (uint)IseultGame.Stats.GetStats(ItemName);
+            IseultGame.Stats.SetStats(ItemName, 0);
+            
             for (int i = 0; i < dropCount; i++)
             {
                 Vector2 NewPosition = new Vector2(((int)(Position.X / 32)) * 32, ((int)(Position.Y / 32)+1) * 32);

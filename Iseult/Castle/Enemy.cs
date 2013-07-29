@@ -56,6 +56,7 @@ namespace Iseult
         {
             base.Added();
             ToggleFollow(Player);
+            Player.CheckMusic();
         }
 
         public override void Step()
@@ -76,8 +77,10 @@ namespace Iseult
 
         private void OnDeath()
         {
+            Player.TailedBy.Remove(this);
             EnemyTracker.KillEnemy(this);
             RemoveSelf();
+            Player.CheckMusic();
         }
 
         private void SearchForIseult()
