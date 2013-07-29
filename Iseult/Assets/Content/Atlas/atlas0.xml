@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:175e8c9929275d57168d686584cf463c:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:38cba80731ae90b2825fd6c245c49538:1/1$ -->
 <TextureAtlas imagePath="atlas0.png">
     <SubTexture name="environment/Items" x="301" y="1939" width="192" height="96"/>
     <SubTexture name="environment/doorway" x="513" y="493" width="480" height="128"/>
-    <SubTexture name="environment/mist" x="494" y="1083" width="300" height="300"/>
+    <SubTexture name="environment/mist" x="351" y="1475" width="300" height="300"/>
     <SubTexture name="environment/sky" x="0" y="1078" width="350" height="860"/>
     <SubTexture name="environment/smallBox" x="546" y="433" width="32" height="32"/>
-    <SubTexture name="environment/stairs" x="795" y="1159" width="192" height="128"/>
+    <SubTexture name="environment/stairs" x="351" y="1776" width="192" height="128"/>
     <SubTexture name="environment/throwables" x="513" y="319" width="96" height="48"/>
     <SubTexture name="hud/bigItems" x="513" y="622" width="384" height="384"/>
     <SubTexture name="hud/display" x="0" y="1939" width="300" height="100"/>
     <SubTexture name="hud/hudBg" x="513" y="368" width="64" height="64"/>
+    <SubTexture name="hud/messageBg" x="513" y="1007" width="362" height="391"/>
     <SubTexture name="logo" x="513" y="433" width="32" height="32"/>
-    <SubTexture name="logo4x" x="351" y="1078" width="128" height="128"/>
-    <SubTexture name="menu/credits" x="795" y="1083" width="194" height="75"/>
+    <SubTexture name="logo4x" x="876" y="1007" width="128" height="128"/>
+    <SubTexture name="menu/credits" x="830" y="1399" width="194" height="75"/>
     <SubTexture name="menu/exit" x="513" y="243" width="113" height="75"/>
     <SubTexture name="menu/pauseBg" x="641" y="0" width="362" height="492"/>
-    <SubTexture name="menu/startgame" x="513" y="1007" width="335" height="75"/>
+    <SubTexture name="menu/startgame" x="494" y="1399" width="335" height="75"/>
     <SubTexture name="tilesets/default" x="0" y="243" width="512" height="512"/>
     <SubTexture name="tilesets/over" x="0" y="756" width="512" height="321"/>
     <SubTexture name="title" x="0" y="0" width="640" height="242"/>

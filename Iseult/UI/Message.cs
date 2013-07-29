@@ -17,22 +17,19 @@ namespace Iseult
         public Message(string Message, string Title)
             : base(GameLevel.PAUSE_LAYER, PlatformerLevel.GameState.Paused)
         {
-            Image = new Image(IseultGame.Atlas["menu/pauseBg"]);
+            Image = new Image(IseultGame.Atlas["hud/messageBg"]);
             Image.CenterOrigin();
             Add(Image);
+
+
 
             int i = 0;
             foreach (string line in WrapText(IseultGame.Font,Message,Image.Width-60))
             {
-                if (line == "" || line==null)
-                    break;
-                Text TextMessage = new Text(IseultGame.Font, line, new Vector2(10));
+                if (line == "" || line==null) break;
 
-                TextMessage.Y = 80 + i*30;
-                TextMessage.Color = Color.Black;
-                TextMessage.Color.A = 0;
-                Add(TextMessage);
-                Tween.Alpha(TextMessage, 1, 60, Ease.CubeIn);
+                AddTextLine(30 + i * 30 + 2, line, Color.DarkOliveGreen,1f);
+                AddTextLine(30 + i * 30, line, Color.Black, 0.8f);
 
                 i++;
             }
@@ -42,6 +39,18 @@ namespace Iseult
             Y = - Image.Height/2;
             Tween.Position(this, new Vector2(Engine.Instance.Screen.Width / 2, Engine.Instance.Screen.Height / 2),
                 30, Ease.BackOut);
+        }
+
+        private void AddTextLine(int YPosition, string line, Color color, float alpha)
+        {
+            Text TextMessage = new Text(IseultGame.Font, line, new Vector2(10));
+
+            TextMessage.Y = YPosition;
+            TextMessage.Color = color;
+            TextMessage.Scale = new Vector2(0.8f);
+            TextMessage.Color.A = 0;
+            Add(TextMessage);
+            Tween.Alpha(TextMessage, alpha, 50, Ease.CubeIn);
         }
 
         public override void Step()
