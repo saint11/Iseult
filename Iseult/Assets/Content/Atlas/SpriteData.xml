@@ -25,7 +25,7 @@
     <Animations>
       <Anim id="idle" delay=".1" frames="8,9,10,10,10,10,10,10,10,10,10,10,11,12,13,14"/>
       <Anim id="walk" delay=".09" frames="0,1,2,3,4,5,6,7"/>
-      <Anim id="climb" delay=".1" frames="0,1,2,3"/>
+      <Anim id="climb" delay=".1" frames="15,16,17,17,17,17,17,18,19,20,21,22"/>
     </Animations>
   </sprite_string>
 
