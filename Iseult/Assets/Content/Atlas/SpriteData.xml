@@ -95,11 +95,12 @@
     <OriginX>0</OriginX>
     <OriginY>0</OriginY>
     <Animations>
-      <Anim id="closed" delay=".1" frames="0"/>
-      <Anim id="attacked" delay=".1" loop="false" frames="1"/>
-      <Anim id="breaking" delay=".1" loop="false" frames="2"/>
-      <Anim id="almostBreaking" delay=".1" loop="false" frames="3"/>
-      <Anim id="broken" delay=".1" loop="false" frames="4"/>
+      <Anim id="closed" delay=".3" frames="0"/>
+      <Anim id="attacked" delay=".3" loop="false" frames="0,5"/>
+      <Anim id="breaking" delay=".3" loop="false" frames="1,6"/>
+      <Anim id="breaking2" delay=".3" loop="false" frames="2,7"/>
+      <Anim id="breaking3" delay=".3" loop="false" frames="3,8"/>
+      <Anim id="broken" delay=".3" loop="false" frames="4"/>
     </Animations>
   </sprite_string>
   

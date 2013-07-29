@@ -27,8 +27,10 @@ namespace Iseult
         public bool IsBeingAttacked { get { return hp < MAX_HP; } }
 
         public DoorWay(Vector2 Position, bool Back, int uid, string Destiny="")
-            : base(Back? GameLevel.GAMEPLAY_LAYER:GameLevel.FRONT_GAMEPLAY_LAYER)
+            : base(GameLevel.GAMEPLAY_LAYER)
+            //: base(Back? GameLevel.GAMEPLAY_LAYER:GameLevel.FRONT_GAMEPLAY_LAYER)
         {
+            Back = true;
             this.Position = Position;
             this.Back = Back;
             this.Destiny = Destiny;
@@ -48,7 +50,7 @@ namespace Iseult
         {
             base.Added();
             LoadImage();
-            Image.Color.A = (byte)((0.8f) * 255);
+            //Image.Color.A = (byte)((0.8f) * 255);
 
             Collider = new Hitbox(Image.Width, Image.Height);
         }
@@ -63,8 +65,9 @@ namespace Iseult
         private void UpdateVisuals()
         {
             if (hp <= 0) Image.Play("broken");
-            else if (hp < MAX_HP / 3) Image.Play("almostBreaking");
-            else if (hp < MAX_HP / 2) Image.Play("breaking");
+            else if (hp < MAX_HP * 0.25f) Image.Play("breaking3");
+            else if (hp < MAX_HP * 0.5f) Image.Play("breaking2");
+            else if (hp < MAX_HP *0.75f) Image.Play("breaking2");
             else if (IsBeingAttacked) Image.Play("attacked");
             else Image.Play("closed");
         }
@@ -87,12 +90,12 @@ namespace Iseult
             bool hpChanged = false;
             foreach (EnemyTracker tracker in BeingAttacked)
             {
-                if (Calc.Chance(Calc.Random, 0.201f))
+                if (Calc.Chance(Calc.Random, 0.03f))
                 {
                     hp--;
                     hpChanged = true;
                     UpdateVisuals();
-                    if (hp<=0 && Calc.Chance(Calc.Random, 0.01f))
+                    if (hp<=0 && Calc.Chance(Calc.Random, 0.05f))
                     {
                         Enemy enemy = new Enemy(tracker);
                         enemy.SetPosition(new Vector2(Position.X + 32, Position.Y + 82));
