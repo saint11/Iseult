@@ -1,4 +1,4 @@
-<level width="2048" height="2048" leftExit="" rightExit="0" Message="I need to lie down... Let's go find a room with a bed." MessageTitle="MORDECAI">
+<level width="2048" height="2048" leftExit="" rightExit="0" Message="I need to lie down... Let's go find a place for me to rest." MessageTitle="MORDECAI">
   <OverTiles tileset="default" exportMode="CSV">-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
 -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
@@ -195,6 +195,23 @@
     <DoorWay id="0" x="912" y="1344" GoTo="InnerBaley" Back="True" uid="3" />
     <Stairs id="1" x="256" y="1344" Back="True">
       <node x="256" y="1088" />
+    </Stairs>
+    <Stairs id="2" x="1472" y="896" Back="True">
+      <node x="1360" y="704" />
+    </Stairs>
+    <Stairs id="3" x="1472" y="704" Back="True">
+      <node x="1472" y="512" />
+    </Stairs>
+    <Stairs id="4" x="176" y="512" Back="True">
+      <node x="176" y="320" />
+    </Stairs>
+    <SmallBox id="5" x="992" y="352" />
+    <SmallBox id="6" x="1216" y="352" />
+    <Stairs id="7" x="1632" y="1856" Back="True">
+      <node x="1376" y="1632" />
+    </Stairs>
+    <Stairs id="8" x="1472" y="1632" Back="True">
+      <node x="1472" y="1344" />
     </Stairs>
   </Objects>
 </level>

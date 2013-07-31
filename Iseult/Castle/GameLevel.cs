@@ -144,8 +144,12 @@ namespace Iseult
                 string uid = Name + e.Attr("id");
                 if (!IseultGame.Stats.HasTrigger(uid))
                 {
-                    Add(new FadeArea(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"), e.AttrFloat("height")), uid));
+                    Add(new FadeArea(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"), e.AttrFloat("height")), uid,e.AttrInt("id")));
                 }
+            }
+            else if (e.Name == "PressurePlate")
+            {
+                Add(new PressurePlate(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrInt("triggerID")));
             }
         }
 
@@ -246,5 +250,17 @@ namespace Iseult
             Add(newTile);
         }
 
+
+        internal Mechanical getMechanical(int id)
+        {
+            foreach (Entity e in Tags[(int)GameTags.Mechanical])
+            {
+                if (e is Mechanical)
+                {
+                    if (((Mechanical)e).GetID() == id) return (Mechanical)e;
+                }
+            }
+            return null;
+        }
     }
 }

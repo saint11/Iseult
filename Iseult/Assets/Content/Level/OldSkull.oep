@@ -16,7 +16,7 @@
     <Width>2048</Width>
     <Height>2048</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Amora\Documents\GitHub\Iseult\Iseult\Assets\Content\Level\OldSkull.oep</Filename>
+  <Filename>C:\Users\Santo 11\Documents\GitHub\Iseult\Iseult\Assets\Content\Level\OldSkull.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -234,6 +234,24 @@
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions />
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="PressurePlate" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>32</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\pressurePlate.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="invert" Default="false" />
+        <ValueDefinition xsi:type="IntValueDefinition" Name="triggerID" Default="0" Min="0" Max="100" ShowSlider="false" />
+      </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>

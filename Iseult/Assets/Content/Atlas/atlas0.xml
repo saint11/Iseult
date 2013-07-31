@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:484a74646f36fb79e3790d6b3aab096f:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:7357f6de63126bea0fdf174ccd9dddd0:1/1$ -->
 <TextureAtlas imagePath="atlas0.png">
     <SubTexture name="environment/Items" x="821" y="1340" width="192" height="96"/>
+    <SubTexture name="environment/bed" x="351" y="1207" width="128" height="64"/>
     <SubTexture name="environment/doorway" x="513" y="493" width="480" height="256"/>
     <SubTexture name="environment/mist" x="351" y="1505" width="300" height="300"/>
+    <SubTexture name="environment/pressurePlate" x="513" y="466" width="32" height="16"/>
     <SubTexture name="environment/sky" x="0" y="1135" width="350" height="860"/>
     <SubTexture name="environment/smallBox" x="546" y="433" width="32" height="32"/>
     <SubTexture name="environment/stairs" x="821" y="1211" width="192" height="128"/>

@@ -29,6 +29,7 @@ namespace Iseult
         public Enemy(Vector2 Position, string uid)
             : base(Position, new Vector2(48, 90))
         {
+            Tag(new GameTags[] { GameTags.Player, GameTags.Heavy });
             this.uid = uid;
             Hp = 3;
 

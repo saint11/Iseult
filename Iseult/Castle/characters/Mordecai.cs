@@ -36,6 +36,7 @@ namespace Iseult
         public Mordecai(Vector2 Position)
             :base(Position, new Vector2(32,64))
         {
+            Tag(new GameTags[] { GameTags.Player, GameTags.Heavy });
             this.Position = Position;
             image = IseultGame.SpriteData.GetSpriteString("mordecai");
             Add(image);

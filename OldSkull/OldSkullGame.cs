@@ -58,8 +58,9 @@ namespace OldSkull
             Screen.Scale = 2f;
 
             KeyboardInput.InitDefaultInput();
-            KeyboardInput.Add("jump", Keys.Z);
-            KeyboardInput.Add("use", Keys.X);
+            KeyboardInput.Add("jump", new Keys[]{ Keys.Z,Keys.Space});
+            KeyboardInput.Add("use", new Keys[] { Keys.X, Keys.Enter });
+            KeyboardInput.Add("accept", new Keys[] { Keys.Z, Keys.X, Keys.Space, Keys.Enter });
             KeyboardInput.Add("pause", Keys.P);
             KeyboardInput.Add("escape", Keys.Escape);
         }

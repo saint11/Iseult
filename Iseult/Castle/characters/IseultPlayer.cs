@@ -29,6 +29,7 @@ namespace Iseult
         public IseultPlayer(Vector2 Position)
             : base(Position, new Vector2(48, 90),"iseult")
         {
+            Tag(new GameTags[] { GameTags.Player, GameTags.Heavy });
             MaxSpeed.X = 5.50f;
             MaxSpeed.Y = 10;
             Acceleration = 1f;

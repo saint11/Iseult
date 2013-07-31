@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>false</MapFileExtensions>
-    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>0.2.1.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -95,15 +95,17 @@
   <ItemGroup>
     <Compile Include="Castle\DoorWay.cs" />
     <Compile Include="Castle\Collectible.cs" />
-    <Compile Include="Castle\Enemy.cs" />
-    <Compile Include="Castle\EnemyTracker.cs" />
+    <Compile Include="Castle\characters\Enemy.cs" />
+    <Compile Include="Castle\characters\EnemyTracker.cs" />
     <Compile Include="Castle\FadeArea.cs" />
     <Compile Include="Castle\GameLevel.cs" />
+    <Compile Include="Castle\Mechanical.cs" />
+    <Compile Include="Castle\PressurePlate.cs" />
     <Compile Include="UI\Credits.cs" />
     <Compile Include="UI\GameOver.cs" />
-    <Compile Include="Castle\IseultPlayer.cs" />
+    <Compile Include="Castle\characters\IseultPlayer.cs" />
     <Compile Include="Castle\Mist.cs" />
-    <Compile Include="Castle\Mordecai.cs" />
+    <Compile Include="Castle\characters\Mordecai.cs" />
     <Compile Include="Castle\PushBox.cs" />
     <Compile Include="Castle\Stairs.cs" />
     <Compile Include="Castle\Throwable.cs" />
