@@ -24,6 +24,7 @@ namespace Iseult
         private Collectible SelectedItem;
         public List<Enemy> TailedBy;
         private bool Wait;
+        private bool Alive;
 
         public static Collectible Carrying { get; private set; }
 
@@ -48,6 +49,7 @@ namespace Iseult
             TailedBy = new List<Enemy>();
 
             Depth = -10;
+            Alive = true;
         }
         
         protected override void UpdateColisions()
@@ -118,14 +120,23 @@ namespace Iseult
 
         }
 
-        private static void OnTakeHit()
+        private void OnTakeHit()
         {
+            if (Alive)
+            {
+                Alive = false;
+                PlayAnim("death");
+                Wait = true;
+                Speed = Vector2.Zero;
+                Mordecai.Instance.OnGrieve();
+            }
+            /*
             Engine.Instance.Scene = new GameOver();
             IseultGame.Stats.AddStats("hp", -1);
             if (IseultGame.Stats.GetStats("hp") <= 0)
             {
                 Engine.Instance.Scene = new GameOver();
-            }
+            }*/
         }
 
         protected override void OnCrouching()
@@ -163,18 +174,11 @@ namespace Iseult
         public override void Step()
         {
             base.Step();
-
-            if (KeyboardInput.pressedInput("use")) OnUse();
-
-            if (IseultGame.Stats.GetStats("hp") <= 0)
+            if (Alive)
             {
-                RemoveSelf();
-            }
-            else
-            {
+                if (KeyboardInput.pressedInput("use")) OnUse();
                 AliveTime++;
             }
-
         }
 
         private void OnUse()
@@ -292,6 +296,12 @@ namespace Iseult
         {
             base.OnCrush(by);
             OnTakeHit();
+        }
+
+        internal void OnGrieve()
+        {
+            PlayAnim("grieve");
+            Wait = true;
         }
     }
 }

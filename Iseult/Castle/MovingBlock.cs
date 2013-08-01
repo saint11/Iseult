@@ -58,8 +58,8 @@ namespace Iseult.Castle
                     PlatformerObject p = (PlatformerObject)e;
                     if (p.IsRiding(this))
                     {
-                        p.MoveExactH(moveH);
-                        p.MoveExactV(moveV);
+                        p.MoveH(moveH);
+                        p.MoveV(moveV);
                     }
                 }
             }

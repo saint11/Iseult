@@ -1,22 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:71d9bf555dd9c0ac8864d93bd1a5cb8b:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:8fc1acc4a9542584dd9a8f672cc1d345:1/1$ -->
 <TextureAtlas imagePath="atlas0.png">
     <SubTexture name="environment/Items" x="821" y="1340" width="192" height="96"/>
+    <SubTexture name="environment/altar" x="513" y="368" width="64" height="100"/>
     <SubTexture name="environment/bed" x="351" y="1207" width="128" height="64"/>
     <SubTexture name="environment/doorway" x="513" y="493" width="480" height="256"/>
+    <SubTexture name="environment/lever" x="66" y="1996" width="32" height="32"/>
+    <SubTexture name="environment/leverBase" x="33" y="1996" width="32" height="32"/>
     <SubTexture name="environment/mist" x="351" y="1505" width="300" height="300"/>
-    <SubTexture name="environment/pressurePlate" x="513" y="466" width="32" height="16"/>
+    <SubTexture name="environment/pressurePlate" x="513" y="469" width="32" height="16"/>
     <SubTexture name="environment/sky" x="0" y="1135" width="350" height="860"/>
-    <SubTexture name="environment/smallBox" x="579" y="368" width="32" height="32"/>
-    <SubTexture name="environment/spikes" x="546" y="433" width="32" height="32"/>
+    <SubTexture name="environment/smallBox" x="0" y="1996" width="32" height="32"/>
+    <SubTexture name="environment/spikes" x="578" y="434" width="32" height="32"/>
+    <SubTexture name="environment/spikesBox" x="578" y="401" width="32" height="32"/>
     <SubTexture name="environment/stairs" x="821" y="1211" width="192" height="128"/>
     <SubTexture name="environment/throwables" x="513" y="319" width="96" height="48"/>
     <SubTexture name="hud/bigItems" x="513" y="750" width="384" height="384"/>
     <SubTexture name="hud/display" x="652" y="1581" width="300" height="100"/>
-    <SubTexture name="hud/hudBg" x="513" y="368" width="64" height="64"/>
+    <SubTexture name="hud/hudBg" x="898" y="750" width="64" height="64"/>
     <SubTexture name="hud/messageBg" x="480" y="1135" width="340" height="369"/>
-    <SubTexture name="logo" x="513" y="433" width="32" height="32"/>
+    <SubTexture name="logo" x="578" y="368" width="32" height="32"/>
     <SubTexture name="logo4x" x="351" y="1078" width="128" height="128"/>
     <SubTexture name="menu/credits" x="821" y="1135" width="194" height="75"/>
     <SubTexture name="menu/exit" x="513" y="243" width="113" height="75"/>
