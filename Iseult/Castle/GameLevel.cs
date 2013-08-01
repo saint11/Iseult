@@ -58,13 +58,24 @@ namespace Iseult
 
         private void CheckForMessages(PlatformerLevelLoader Loader)
         {
-            if (Loader.Message != "" && !IseultGame.Stats.HasTrigger("Message" + Name))
-            {
-                CurrentState = GameState.Paused;
-                Add(new Message(Loader.Message, Loader.MessageTittle));
-                IseultGame.Stats.SetTrigger("Message" + Name);
-            }
+            if (Loader.Message != "" && !IseultGame.Stats.HasTrigger("Message" + Name)) CallMessage(Loader.Message, Loader.MessageTittle);
         }
+
+        public void CallMessage(string Message, string MessageTittle)
+        {
+            CurrentState = GameState.Paused;
+            Add(new Message(Message, MessageTittle));
+            IseultGame.Stats.SetTrigger("Message" + Name);
+        }
+
+        public void CallMessage(string MessageName)
+        {
+            XmlDocument xmlDoc = new XmlDocument();
+            xmlDoc.Load(IseultGame.Path + @"Content\Misc\Messages.xml");
+            XmlElement MessageXml = ((XmlElement)xmlDoc["messages"])[MessageName];
+            CallMessage(MessageXml.ChildText("Text"), MessageXml.ChildText("Title"));
+        }
+
 
         public override void Begin()
         {
@@ -133,8 +144,12 @@ namespace Iseult
                 string uid = Name + e.Attr("id");
                 if (!IseultGame.Stats.HasTrigger(uid))
                 {
-                    Add(new FadeArea(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"), e.AttrFloat("height")), uid));
+                    Add(new FadeArea(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), new Vector2(e.AttrFloat("width"), e.AttrFloat("height")), uid,e.AttrInt("id")));
                 }
+            }
+            else if (e.Name == "PressurePlate")
+            {
+                Add(new PressurePlate(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrInt("triggerID")));
             }
         }
 
@@ -233,6 +248,19 @@ namespace Iseult
             if (e.Name == "OverTiles") newTile.Depth = -500;
             tilesetCount++;
             Add(newTile);
+        }
+
+
+        internal Mechanical getMechanical(int id)
+        {
+            foreach (Entity e in Tags[(int)GameTags.Mechanical])
+            {
+                if (e is Mechanical)
+                {
+                    if (((Mechanical)e).GetID() == id) return (Mechanical)e;
+                }
+            }
+            return null;
         }
     }
 }

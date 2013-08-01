@@ -43,5 +43,16 @@ namespace Iseult.Castle
             Locked = true;
             Speed = Vector2.Zero;
         }
+
+        public override void Step()
+        {
+            base.Step();
+
+            Mordecai Npc = (Mordecai)Level.CollideFirst(Collider.Bounds, GameTags.Npc);
+            if (Npc !=null)
+            {
+                Speed.X = - Npc.Speed.X;
+            }
+        }
     }
 }

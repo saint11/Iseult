@@ -22,14 +22,13 @@ namespace Iseult
             Add(Image);
 
 
-
+            AddTextLine(-90, Title, Color.Black, 1f).Scale = Vector2.One;
             int i = 0;
             foreach (string line in WrapText(IseultGame.Font,Message,Image.Width-60))
             {
                 if (line == "" || line==null) break;
 
-                AddTextLine(30 + i * 30 + 2, line, Color.DarkOliveGreen,1f);
-                AddTextLine(30 + i * 30, line, Color.Black, 0.8f);
+                AddTextLine(10 + i * 30 + 2, line, Color.DarkOliveGreen,1f);
 
                 i++;
             }
@@ -41,7 +40,7 @@ namespace Iseult
                 30, Ease.BackOut);
         }
 
-        private void AddTextLine(int YPosition, string line, Color color, float alpha)
+        private Text AddTextLine(int YPosition, string line, Color color, float alpha)
         {
             Text TextMessage = new Text(IseultGame.Font, line, new Vector2(10));
 
@@ -51,6 +50,8 @@ namespace Iseult
             TextMessage.Color.A = 0;
             Add(TextMessage);
             Tween.Alpha(TextMessage, alpha, 50, Ease.CubeIn);
+
+            return TextMessage;
         }
 
         public override void Step()

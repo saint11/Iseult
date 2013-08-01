@@ -18,7 +18,7 @@ namespace OldSkull
         public struct KeyAction
         {
             public String name;
-            public Keys key;
+            public List<Keys> key;
 
             public Boolean check;
             public Boolean pressed;
@@ -55,9 +55,25 @@ namespace OldSkull
             //TODO: Check for existing key.
             KeyAction newKey = new KeyAction();
             newKey.name = name;
-            newKey.key = key;
+            newKey.key = new List<Keys>();
+            newKey.key.Add(key);
             keyList.Add(newKey);
         }
+
+        public static void Add(String name, Keys[] key)
+        {
+            //TODO: Check for existing key.
+            KeyAction newKey = new KeyAction();
+            newKey.name = name;
+            newKey.key = new List<Keys>();
+            foreach (Keys k in key)
+            {
+                newKey.key.Add(k);
+            }
+            
+            keyList.Add(newKey);
+        }
+
 
         public static void AddAxis(Keys up = Keys.Up, Keys down = Keys.Down, Keys left = Keys.Left, Keys right = Keys.Right)
         {
@@ -65,22 +81,26 @@ namespace OldSkull
 
             newKey = new KeyAction();
             newKey.name = "up";
-            newKey.key = up;
+            newKey.key = new List<Keys>();
+            newKey.key.Add(up);
             keyList.Add(newKey);
             
             newKey = new KeyAction();
             newKey.name = "down";
-            newKey.key = down;
+            newKey.key = new List<Keys>();
+            newKey.key.Add(down);
             keyList.Add(newKey);
 
             newKey = new KeyAction();
             newKey.name = "left";
-            newKey.key = left;
+            newKey.key = new List<Keys>();
+            newKey.key.Add(left);
             keyList.Add(newKey);
 
             newKey = new KeyAction();
             newKey.name = "right";
-            newKey.key = right;
+            newKey.key = new List<Keys>();
+            newKey.key.Add(right);
             keyList.Add(newKey);
 
         }
@@ -93,9 +113,16 @@ namespace OldSkull
                 Any = false;
                 for (int i = 0; i < keyList.Count; i++) // Loop through List with for
                 {
+
                     KeyAction k = keyList[i];
-                    k.check = Input.Check(k.key);
-                    k.pressed = Input.Pressed(k.key);
+                    k.check = false;
+                    k.pressed = false;
+                    foreach (Keys cKey in k.key)
+                    {
+                        k.check = k.check || Input.Check(cKey);
+                        k.pressed = k.pressed || Input.Pressed(cKey);
+                    }
+                    
                     if (k.pressed) Any = true;
                     keyList[i] = k;
                 }

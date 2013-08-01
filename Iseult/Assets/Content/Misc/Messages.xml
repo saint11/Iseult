@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<messages>
+  <bandages>
+    <Title>Mordecai Says:</Title>
+    <Text>Thank you child, but I still need Domecq to disinfect the wound.</Text>
+  </bandages>
+  <domecq>
+    <Title>Mordecai Says:</Title>
+    <Text>This is perfect, I will surely need alcohol to remove this arrow.</Text>
+  </domecq>
+</messages>

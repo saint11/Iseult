@@ -62,7 +62,7 @@ namespace Iseult
 
         public void credits(MenuButton Mb)
         {
-
+            Engine.Instance.Scene = new UI.Credits();
         }
 
         public override void Render()
