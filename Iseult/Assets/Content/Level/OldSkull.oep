@@ -249,8 +249,30 @@
         <RectColor A="255" R="255" G="0" B="0" />
       </ImageDefinition>
       <ValueDefinitions>
+        <ValueDefinition xsi:type="StringValueDefinition" Name="triggerID" Default="" MaxChars="-1" MultiLine="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
+    </EntityDefinition>
+    <EntityDefinition Name="Spike" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>32</Width>
+        <Height>32</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\spikes.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="EnumValueDefinition" Name="Style">
+          <Elements>
+            <string>repeat</string>
+            <string>once</string>
+          </Elements>
+        </ValueDefinition>
         <ValueDefinition xsi:type="BoolValueDefinition" Name="invert" Default="false" />
-        <ValueDefinition xsi:type="IntValueDefinition" Name="triggerID" Default="0" Min="0" Max="100" ShowSlider="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>

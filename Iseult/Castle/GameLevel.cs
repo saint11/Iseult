@@ -149,7 +149,11 @@ namespace Iseult
             }
             else if (e.Name == "PressurePlate")
             {
-                Add(new PressurePlate(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrInt("triggerID")));
+                Add(new PressurePlate(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.Attr("triggerID")));
+            }
+            else if (e.Name == "Spike")
+            {
+                Add(new Spikes(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("invert") ,e.AttrInt("id")));
             }
         }
 

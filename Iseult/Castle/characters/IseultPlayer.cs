@@ -23,11 +23,12 @@ namespace Iseult
         private DoorWay SelectedDoor;
         private Collectible SelectedItem;
         public List<Enemy> TailedBy;
+        private bool Wait;
 
         public static Collectible Carrying { get; private set; }
 
         public IseultPlayer(Vector2 Position)
-            : base(Position, new Vector2(48, 90),"iseult")
+            : base(Position, new Vector2(24, 90),"iseult")
         {
             Tag(new GameTags[] { GameTags.Player, GameTags.Heavy });
             MaxSpeed.X = 5.50f;
@@ -48,7 +49,7 @@ namespace Iseult
 
             Depth = -10;
         }
-
+        
         protected override void UpdateColisions()
         {
             OverHeadDisplay.Visible = false;
@@ -109,13 +110,17 @@ namespace Iseult
                 }
             }
 
-            Enemy SelectedEnemy = (Enemy)Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
-            if (SelectedEnemy != null)
+            Entity e = Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+            if (e is Enemy)
             {
-                IseultGame.Stats.AddStats("hp", -1);
-                if (IseultGame.Stats.GetStats("hp") <= 0)
+                Enemy SelectedEnemy = (Enemy)e;
+                if (SelectedEnemy != null)
                 {
-                    Engine.Instance.Scene = new GameOver();
+                    IseultGame.Stats.AddStats("hp", -1);
+                    if (IseultGame.Stats.GetStats("hp") <= 0)
+                    {
+                        Engine.Instance.Scene = new GameOver();
+                    }
                 }
             }
 
@@ -181,12 +186,25 @@ namespace Iseult
             }
             else
             {
-                if (IseultGame.Stats.GetStats("knife") > 0)
+                if (IseultGame.Stats.GetStats("knife") > 0 && onGround)
                 {
                     IseultGame.Stats.AddStats("knife", -1);
+                    PlayAnim("idleThrowing", true).OnAnimationComplete = (a) =>
+                    {
+                        Wait = false;
+                        Speed = Vector2.Zero;
+                        imageRight.OnAnimationComplete = imageLeft.OnAnimationComplete = null;
+                    };
+                    Wait = true;
+                    
                     Level.Add(new Throwable(Position, side, "knife"));
                 }
             }
+        }
+
+        protected override void UpdateControls()
+        {
+            if (!Wait) base.UpdateControls();
         }
 
         private void InteractWithNpc()
@@ -220,20 +238,23 @@ namespace Iseult
         {
             side = newSide;
         }
-
-        protected override void PlayAnim(string animation, bool restart = false)
+        protected override Sprite<string>  PlayAnim(string animation, bool restart = false)
         {
             if (side == 1)
             {
-                image.Visible = true;
-                ((Sprite<string>)image).Play(animation, restart);
+                imageRight.Visible = true;
+                imageRight.Play(animation, restart);
                 imageLeft.Visible = false;
+
+                return imageRight;
             }
             else
             {
                 imageLeft.Visible = true;
                 imageLeft.Play(animation, restart);
                 image.Visible = false;
+
+                return imageLeft;
             }
         }
         public override void SetPosition(Vector2 Position)
@@ -262,5 +283,7 @@ namespace Iseult
             AliveTime = 0;
             Carrying = null;
         }
+
+        public Sprite<string> imageRight { get { return (Sprite<string>)image; } set { image = value; } }
     }
 }

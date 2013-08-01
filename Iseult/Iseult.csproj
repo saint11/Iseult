@@ -101,6 +101,7 @@
     <Compile Include="Castle\GameLevel.cs" />
     <Compile Include="Castle\Mechanical.cs" />
     <Compile Include="Castle\PressurePlate.cs" />
+    <Compile Include="Castle\Spikes.cs" />
     <Compile Include="UI\Credits.cs" />
     <Compile Include="UI\GameOver.cs" />
     <Compile Include="Castle\characters\IseultPlayer.cs" />
