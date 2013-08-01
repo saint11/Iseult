@@ -151,6 +151,10 @@ namespace Iseult
             {
                 Add(new PressurePlate(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrInt("triggerID")));
             }
+            else if (e.Name == "Spike")
+            {
+                Add(new Spikes(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrInt("triggerID")));
+            }
         }
 
         private void AddDoorWay(System.Xml.XmlElement e)

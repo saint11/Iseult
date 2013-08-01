@@ -13,13 +13,16 @@ namespace Iseult
     {
         private bool WasStepped=false;
         private int id;
+        private Image Image;
 
         public PressurePlate(Vector2 Position, int id)
             :base(0)
         {
             this.id = id;
             this.Position = Position;
-            Image Image = new Image(IseultGame.Atlas["environment/pressurePlate"]);
+            Image = new Image(IseultGame.Atlas["environment/pressurePlate"]);
+            Image.Origin.Y = Image.Height;
+            Image.Y = Image.Height;
             Add(Image);
             Collider = new Hitbox(32, 16);
         }
@@ -27,7 +30,9 @@ namespace Iseult
         public override void Update()
         {
             base.Update();
-            if (Level.CollideCheck(Collider.Bounds, GameTags.Heavy))
+
+            PlatformerObject e = (PlatformerObject)Level.CollideFirst(Collider.Bounds, GameTags.Heavy);
+            if (e!=null && e.onGround)
             {
                 if (!WasStepped)
                 {
@@ -48,12 +53,16 @@ namespace Iseult
 
         private void OnLetGo()
         {
+            Tween.Scale(Image, new Vector2(1, 1f), 20, Ease.BackOut);
+
             Mechanical Target = ((GameLevel)Level).getMechanical(id);
             if (Target!=null) Target.OnLetGo();
         }
 
         private void OnHit()
         {
+
+            Tween.Scale(Image, new Vector2(1, 0.1f), 20, Ease.BackOut);
             Mechanical Target = ((GameLevel)Level).getMechanical(id);
             if (Target != null) Target.OnHit();
         }

@@ -77,5 +77,8 @@
     <Mordecai id="2" x="736" y="640" />
     <PressurePlate id="3" x="1120" y="592" invert="False" triggerID="4" />
     <FadeArea id="4" x="1360" y="480" width="128" height="160" />
+    <Spike id="5" x="1264" y="608" Style="repeat" invert="False" />
+    <Spike id="6" x="1296" y="608" Style="repeat" invert="False" />
+    <Spike id="7" x="1232" y="608" Style="repeat" invert="False" />
   </Objects>
 </level>
