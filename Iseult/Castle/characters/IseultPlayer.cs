@@ -111,19 +111,21 @@ namespace Iseult
             }
 
             Entity e = Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
-            if (e is Enemy)
+            if (e !=null)
             {
-                Enemy SelectedEnemy = (Enemy)e;
-                if (SelectedEnemy != null)
-                {
-                    IseultGame.Stats.AddStats("hp", -1);
-                    if (IseultGame.Stats.GetStats("hp") <= 0)
-                    {
-                        Engine.Instance.Scene = new GameOver();
-                    }
-                }
+                OnTakeHit();
             }
 
+        }
+
+        private static void OnTakeHit()
+        {
+            Engine.Instance.Scene = new GameOver();
+            IseultGame.Stats.AddStats("hp", -1);
+            if (IseultGame.Stats.GetStats("hp") <= 0)
+            {
+                Engine.Instance.Scene = new GameOver();
+            }
         }
 
         protected override void OnCrouching()
@@ -285,5 +287,11 @@ namespace Iseult
         }
 
         public Sprite<string> imageRight { get { return (Sprite<string>)image; } set { image = value; } }
+
+        public override void OnCrush(Solid by)
+        {
+            base.OnCrush(by);
+            OnTakeHit();
+        }
     }
 }

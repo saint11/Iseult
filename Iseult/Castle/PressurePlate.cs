@@ -31,24 +31,36 @@ namespace Iseult
         {
             base.Update();
 
-            PlatformerObject e = (PlatformerObject)Level.CollideFirst(Collider.Bounds, GameTags.Heavy);
-            if (e!=null && e.onGround)
+            List<Entity>EList = Level.CollideAll(Collider.Bounds, GameTags.Heavy);
+
+            bool GotStepped = false;
+
+            foreach (Entity e in EList)
             {
-                if (!WasStepped)
+                if (e != null && e is PlatformerObject)
                 {
-                    WasStepped = true;
-                    OnHit();
+                    if (((PlatformerObject)e).onGround)
+                    {
+                        if (!WasStepped)
+                        {
+                            WasStepped = true;
+                            OnHit();
+                        }
+                        GotStepped = true;
+                        OnStepped();
+                    }
                 }
-                OnStepped();
             }
-            else
+
+            if (!GotStepped)
             {
                 if (WasStepped)
                 {
                     WasStepped = false;
                     OnLetGo();
-                }
+                }      
             }
+            
         }
 
         private void OnLetGo()

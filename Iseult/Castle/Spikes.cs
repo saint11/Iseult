@@ -31,24 +31,40 @@ namespace Iseult.Castle
             Depth = -100;
         }
 
+        public override void DebugRender()
+        {
+            if (Collider != null)
+                Collider.Render(Collidable ? Color.Red : Color.Black);
+        }
+
         public override void Update()
         {
             base.Update();
 
-            Collidable = false;
             if (Working)
             {
                 Timer--;
                 if (Timer == 0)
                 {
-                    Collidable = true;
-                    Tween.Position(this, Original, 10, Ease.BackIn).OnComplete = (t) =>
-                    {
-                        Tween.Position(this, Original + new Vector2(0, 32), 50, Ease.BackInOut);
-                        Timer = 50;
+                    Tween goUp = new Tween(Tween.TweenMode.Oneshot,Ease.BackInOut,10,true);
+                    Vector2 StartPosition = Position;
+
+                    goUp.OnUpdate = (t) => { 
+                        Position = Vector2.Lerp(StartPosition, Original, t.Eased);
+                        if (t.Percent > 0.4f)
+                            Collidable = true;
                     };
+
+                    goUp.OnComplete = (t) =>
+                    {    
+                        Tween.Position(this, Original + new Vector2(0, 32), 50, Ease.BackInOut);
+                        Collidable=false;
+                        Timer = 50;   
+                    };
+                    Add(goUp);
                 }
             }
+            else Collidable = false;
         }
 
 

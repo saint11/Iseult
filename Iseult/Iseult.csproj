@@ -100,6 +100,7 @@
     <Compile Include="Castle\FadeArea.cs" />
     <Compile Include="Castle\GameLevel.cs" />
     <Compile Include="Castle\Mechanical.cs" />
+    <Compile Include="Castle\MovingBlock.cs" />
     <Compile Include="Castle\PressurePlate.cs" />
     <Compile Include="Castle\Spikes.cs" />
     <Compile Include="UI\Credits.cs" />
