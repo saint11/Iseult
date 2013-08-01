@@ -125,10 +125,10 @@ namespace Iseult
             if (Alive)
             {
                 Alive = false;
-                PlayAnim("death");
+                PlayAnim("death").OnAnimationComplete = (a) => { Mordecai.Instance.OnGrieve(); };
                 Wait = true;
                 Speed = Vector2.Zero;
-                Mordecai.Instance.OnGrieve();
+                
             }
             /*
             Engine.Instance.Scene = new GameOver();
@@ -300,6 +300,8 @@ namespace Iseult
 
         internal void OnGrieve()
         {
+            side = Math.Sign(Mordecai.Instance.X - X);
+            
             PlayAnim("grieve");
             Wait = true;
         }

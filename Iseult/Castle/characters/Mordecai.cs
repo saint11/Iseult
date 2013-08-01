@@ -228,14 +228,20 @@ namespace Iseult
         {
             if (Alive)
             {
-                PlayAnim("death");
+                PlayAnim("death").OnAnimationComplete = (a) =>
+                {
+                    Player.OnGrieve();
+                };
                 Alive = false;
-                Player.OnGrieve();
             }
         }
 
         internal void OnGrieve()
         {
+
+            Side = Math.Sign(Player.X - X);
+            Image.Effects = Side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
             PlayAnim("grieve");
             Alive = false;
         }
