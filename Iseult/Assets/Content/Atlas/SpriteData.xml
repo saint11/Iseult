@@ -26,6 +26,7 @@
       <Anim id="idle" delay=".1" frames="8,9,10,10,10,10,10,10,10,10,10,10,11,12,13,14"/>
       <Anim id="walk" delay=".09" frames="0,1,2,3,4,5,6,7"/>
       <Anim id="climb" delay=".1" frames="15,16,17,17,17,17,17,18,19,20,21,22"/>
+	  <Anim id="death" delay=".1" frames="23,24,25,26,27,28,29,30"/>
     </Animations>
   </sprite_string>
 
@@ -49,6 +50,7 @@
 		<Anim id="jumpDownHolding" delay=".1" loop="True" frames="0"/>      
 		<Anim id="idleThrowing" delay=".1" loop="False" frames="17,18,19,20"/>      
 		<Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
+		<Anim id="death" delay=".1" loop="False" frames="21,22,23,24,25,26"/>
     </Animations>
   </sprite_string>
   
@@ -72,6 +74,7 @@
 		<Anim id="jumpDownHolding" delay=".1" loop="True" frames="0"/>      
 		<Anim id="idleThrowing" delay=".1" loop="False" frames="17,18,19,20"/>      
 		<Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
+		<Anim id="death" delay=".1" loop="False" frames="21,22,23,24,25,26"/>
     </Animations>
   </sprite_string>
 
