@@ -32,6 +32,7 @@ namespace Iseult
         private bool Blocked=false;
         private int MAX_INTEREST = 60;
         private float Acceleration = .5f;
+        private bool Alive;
 
         public Mordecai(Vector2 Position)
             :base(Position, new Vector2(32,64))
@@ -54,23 +55,39 @@ namespace Iseult
         {
             base.Added();
             CurrentOn = Level.Name.ToUpper();
+            Alive = true;
         }
 
         public override void Step()
         {
             base.Step();
 
-            if (Wandering > 0)
+            if (Alive)
             {
-                Speed.X = WanderingSide * Acceleration*1.5f;
-                Image.Play("walk");
-                Wandering--;
-                Image.Effects = WanderingSide == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
-            } else if (Image.CurrentAnimID != "climb")
+                if (Wandering > 0)
+                {
+                    Speed.X = WanderingSide * Acceleration * 1.5f;
+                    Image.Play("walk");
+                    Wandering--;
+                    Image.Effects = WanderingSide == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+                }
+                else if (Image.CurrentAnimID != "climb")
+                {
+                    CheckForDoors();
+                    SearchForIseult();
+                    FollowTarget();
+                }
+
+                checkForHazards();
+            }
+        }
+
+        private void checkForHazards()
+        {
+            Entity e = Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
+            if (e != null)
             {
-                CheckForDoors();
-                SearchForIseult();
-                FollowTarget();
+                OnDeath();
             }
         }
 
@@ -199,6 +216,34 @@ namespace Iseult
         internal bool isFollowing(PlatformLevelEntity entity)
         {
             return Target == entity;
+        }
+
+        public override void OnCrush(Solid by)
+        {
+            base.OnCrush(by);
+            OnDeath();
+        }
+
+        private void OnDeath()
+        {
+            if (Alive)
+            {
+                PlayAnim("death").OnAnimationComplete = (a) =>
+                {
+                    Player.OnGrieve();
+                };
+                Alive = false;
+            }
+        }
+
+        internal void OnGrieve()
+        {
+
+            Side = Math.Sign(Player.X - X);
+            Image.Effects = Side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
+
+            PlayAnim("grieve");
+            Alive = false;
         }
     }
 }

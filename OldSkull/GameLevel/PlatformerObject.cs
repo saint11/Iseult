@@ -20,7 +20,7 @@ namespace OldSkull.GameLevel
         protected Vector2 AirDamping;
         protected Vector2 GroundDamping;
 
-        protected Boolean onGround = false;
+        public Boolean onGround { get; protected set; }
 
         public Image image;
 
@@ -127,6 +127,42 @@ namespace OldSkull.GameLevel
             }
         }
 
+        public virtual void MoveExactH(int move, Action<Solid> onCollide = null)
+        {
+            Entity hit;
+            int sign = Math.Sign(move);
+            while (move != 0)
+            {
+                if ((hit = CollideFirst(GameTags.Solid, X + sign, Y)) != null)
+                {
+                    if (onCollide != null)
+                        onCollide(hit as Solid);
+                    break;
+                }
+
+                X += sign;
+                move -= sign;
+            }
+        }
+
+        public virtual void MoveExactV(int move, Action<Solid> onCollide = null)
+        {
+            Entity hit;
+            int sign = Math.Sign(move);
+            while (move != 0)
+            {
+                if ((hit = CollideFirst(GameTags.Solid, X, Y + sign)) != null)
+                {
+                    if (onCollide != null)
+                        onCollide(hit as Solid);
+                    break;
+                }
+
+                Y += sign;
+                move -= sign;
+            }
+        }
+
         public void Move(Vector2 amount, Action<Entity> onCollideH = null, Action<Solid> onCollideV = null)
         {
             MoveH(amount.X, onCollideH);
@@ -156,9 +192,14 @@ namespace OldSkull.GameLevel
         }
 
         #region Animation
-        protected virtual void PlayAnim(string animation, bool restart = false)
+        protected virtual Sprite<string> PlayAnim(string animation, bool restart = false)
         {
-            if (image is Sprite<string>) ((Sprite<string>)image).Play(animation, restart);
+            if (image is Sprite<string>)
+            {
+                ((Sprite<string>)image).Play(animation, restart);
+                return ((Sprite<string>)image);
+            }
+            return null;
         }
 
         protected void OnAnimComplete(Action<Sprite<string>> function)
@@ -177,6 +218,19 @@ namespace OldSkull.GameLevel
             }
             else return false;
         }
+
+        public virtual bool IsRiding(Solid solid)
+        {
+            return CollideCheck(solid, X, Y + 1);
+        }
+
         #endregion
+
+        public void MoveExactH(int moveH, object p)
+        {
+            throw new NotImplementedException();
+        }
+
+        public virtual void OnCrush(Solid by) { }
     }
 }

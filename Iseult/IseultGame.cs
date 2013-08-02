@@ -20,6 +20,7 @@ namespace Iseult
     public class IseultGame : OldSkullGame
     {
         static public Atlas Atlas1;
+        static public SpriteFont FontText { get; private set; }
 
         public IseultGame()
             : base(1366,768,60)
@@ -43,6 +44,7 @@ namespace Iseult
 
             SpriteData = new SpriteData(Path + @"Content/Atlas/SpriteData.xml", new Atlas[] { Atlas, Atlas1 });
             Font = Content.Load<SpriteFont>(@"Misc/medieval");
+            FontText = Content.Load<SpriteFont>(@"Misc/celtic");
         }
 
         protected override void Initialize()

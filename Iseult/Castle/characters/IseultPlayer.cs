@@ -24,6 +24,7 @@ namespace Iseult
         private Collectible SelectedItem;
         public List<Enemy> TailedBy;
         private bool Wait;
+        private bool Alive;
 
         public static Collectible Carrying { get; private set; }
 
@@ -48,6 +49,7 @@ namespace Iseult
             TailedBy = new List<Enemy>();
 
             Depth = -10;
+            Alive = true;
         }
         
         protected override void UpdateColisions()
@@ -111,19 +113,30 @@ namespace Iseult
             }
 
             Entity e = Level.CollideFirst(Collider.Bounds, GameTags.Enemy);
-            if (e is Enemy)
+            if (e !=null)
             {
-                Enemy SelectedEnemy = (Enemy)e;
-                if (SelectedEnemy != null)
-                {
-                    IseultGame.Stats.AddStats("hp", -1);
-                    if (IseultGame.Stats.GetStats("hp") <= 0)
-                    {
-                        Engine.Instance.Scene = new GameOver();
-                    }
-                }
+                OnTakeHit();
             }
 
+        }
+
+        private void OnTakeHit()
+        {
+            if (Alive)
+            {
+                Alive = false;
+                PlayAnim("death").OnAnimationComplete = (a) => { Mordecai.Instance.OnGrieve(); };
+                Wait = true;
+                Speed = Vector2.Zero;
+                
+            }
+            /*
+            Engine.Instance.Scene = new GameOver();
+            IseultGame.Stats.AddStats("hp", -1);
+            if (IseultGame.Stats.GetStats("hp") <= 0)
+            {
+                Engine.Instance.Scene = new GameOver();
+            }*/
         }
 
         protected override void OnCrouching()
@@ -161,18 +174,11 @@ namespace Iseult
         public override void Step()
         {
             base.Step();
-
-            if (KeyboardInput.pressedInput("use")) OnUse();
-
-            if (IseultGame.Stats.GetStats("hp") <= 0)
+            if (Alive)
             {
-                RemoveSelf();
-            }
-            else
-            {
+                if (KeyboardInput.pressedInput("use")) OnUse();
                 AliveTime++;
             }
-
         }
 
         private void OnUse()
@@ -285,5 +291,19 @@ namespace Iseult
         }
 
         public Sprite<string> imageRight { get { return (Sprite<string>)image; } set { image = value; } }
+
+        public override void OnCrush(Solid by)
+        {
+            base.OnCrush(by);
+            OnTakeHit();
+        }
+
+        internal void OnGrieve()
+        {
+            side = Math.Sign(Mordecai.Instance.X - X);
+            
+            PlayAnim("grieve");
+            Wait = true;
+        }
     }
 }

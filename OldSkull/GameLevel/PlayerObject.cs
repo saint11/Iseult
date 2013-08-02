@@ -283,5 +283,6 @@ namespace OldSkull.GameLevel
         public virtual void onDrowning()
         {
         }
+
     }
 }

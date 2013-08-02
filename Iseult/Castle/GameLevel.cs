@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using Microsoft.Xna.Framework.Graphics;
 using Iseult.Castle;
+using OldSkull.Utils;
 
 
 namespace Iseult
@@ -54,6 +55,7 @@ namespace Iseult
             Add(new Hud());
 
             CheckForMessages(Loader);
+            FadeScreen.FadeIn(this, 20, PAUSE_LAYER, -100);
         }
 
         private void CheckForMessages(PlatformerLevelLoader Loader)
@@ -154,6 +156,14 @@ namespace Iseult
             else if (e.Name == "Spike")
             {
                 Add(new Spikes(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("invert") ,e.AttrInt("id")));
+            }
+            else if (e.Name == "MoveBlock")
+            {
+                XmlElement Node = (XmlElement)e.ChildNodes[0];
+                Vector2 Position = new Vector2(e.AttrFloat("x"), e.AttrFloat("y"));
+                Vector2 NodePosition = new Vector2(Node.AttrFloat("x"), Node.AttrFloat("y"));
+                Vector2 Size = new Vector2(e.AttrFloat("width"), e.AttrFloat("height"));
+                Add(new MovingBlock(Position,NodePosition,Size, e.AttrInt("id")));
             }
         }
 

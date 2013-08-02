@@ -100,6 +100,7 @@
     <Compile Include="Castle\FadeArea.cs" />
     <Compile Include="Castle\GameLevel.cs" />
     <Compile Include="Castle\Mechanical.cs" />
+    <Compile Include="Castle\MovingBlock.cs" />
     <Compile Include="Castle\PressurePlate.cs" />
     <Compile Include="Castle\Spikes.cs" />
     <Compile Include="UI\Credits.cs" />
@@ -111,6 +112,7 @@
     <Compile Include="Castle\Stairs.cs" />
     <Compile Include="Castle\Throwable.cs" />
     <Compile Include="UI\Hud.cs" />
+    <Compile Include="UI\Intro.cs" />
     <Compile Include="UI\Inventory.cs" />
     <Compile Include="UI\Logos.cs" />
     <Compile Include="UI\MainMenu.cs" />
@@ -138,6 +140,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Gfx\backgrounds\gameOver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Gfx\backgrounds\intro.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Gfx\backgrounds\introBg.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Gfx\backgrounds\startscreen.png">
@@ -268,6 +276,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Misc\medieval.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Misc\celtic.xnb">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Iseult_TemporaryKey.pfx" />

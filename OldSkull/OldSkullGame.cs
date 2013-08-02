@@ -60,7 +60,7 @@ namespace OldSkull
             KeyboardInput.InitDefaultInput();
             KeyboardInput.Add("jump", new Keys[]{ Keys.Z,Keys.Space});
             KeyboardInput.Add("use", new Keys[] { Keys.X, Keys.Enter });
-            KeyboardInput.Add("accept", new Keys[] { Keys.Z, Keys.X, Keys.Space, Keys.Enter });
+            KeyboardInput.Add("accept", new Keys[] { Keys.Z, Keys.X, Keys.Space, Keys.Enter, Keys.Space });
             KeyboardInput.Add("pause", Keys.P);
             KeyboardInput.Add("escape", Keys.Escape);
         }

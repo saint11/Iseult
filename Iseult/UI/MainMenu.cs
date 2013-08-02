@@ -7,6 +7,7 @@ using OldSkull.Menu;
 using Microsoft.Xna.Framework;
 using Monocle;
 using OldSkull.GameLevel;
+using Iseult.UI;
 
 namespace Iseult
 {
@@ -51,8 +52,8 @@ namespace Iseult
             IseultPlayer.AliveTime = 0;
             PlatformerLevelLoader loader = PlatformerLevelLoader.load("OuterWall");
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Secret);
-            
-            Engine.Instance.Scene = level;
+
+            Engine.Instance.Scene = new Intro(level);
         }
 
         public void exitGame(MenuButton Mb)
