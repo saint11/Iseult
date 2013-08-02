@@ -165,6 +165,10 @@ namespace Iseult
                 Vector2 Size = new Vector2(e.AttrFloat("width"), e.AttrFloat("height"));
                 Add(new MovingBlock(Position,NodePosition,Size, e.AttrInt("id")));
             }
+            else if (e.Name == "BlockBlocker")
+            {
+                Add(new BlockBlocker(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("Invert")));
+            }
         }
 
         private void AddDoorWay(System.Xml.XmlElement e)

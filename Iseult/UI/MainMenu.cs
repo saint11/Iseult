@@ -50,7 +50,7 @@ namespace Iseult
         public static void StartNewGame(bool ResetAll)
         {
             IseultPlayer.AliveTime = 0;
-            PlatformerLevelLoader loader = PlatformerLevelLoader.load("OuterWall");
+            PlatformerLevelLoader loader = PlatformerLevelLoader.load("CellRoom");
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Secret);
 
             Engine.Instance.Scene = new Intro(level);

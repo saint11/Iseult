@@ -9,8 +9,8 @@
     <Height>768</Height>
   </LevelDefaultSize>
   <LevelMinimumSize>
-    <Width>1366</Width>
-    <Height>768</Height>
+    <Width>800</Width>
+    <Height>600</Height>
   </LevelMinimumSize>
   <LevelMaximumSize>
     <Width>2048</Width>
@@ -132,6 +132,7 @@
         <ValueDefinition xsi:type="StringValueDefinition" Name="GoTo" Default="" MaxChars="-1" MultiLine="false" />
         <ValueDefinition xsi:type="BoolValueDefinition" Name="Back" Default="true" />
         <ValueDefinition xsi:type="IntValueDefinition" Name="uid" Default="1" Min="0" Max="100" ShowSlider="false" />
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="TogetherOnly" Default="false" />
       </ValueDefinitions>
       <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
@@ -290,6 +291,23 @@
       </ImageDefinition>
       <ValueDefinitions />
       <NodesDefinition Enabled="true" Limit="1" DrawMode="Path" Ghost="true" />
+    </EntityDefinition>
+    <EntityDefinition Name="BlockBlocker" Limit="-1" ResizableX="false" ResizableY="false" Rotatable="false" RotateIncrement="15">
+      <Size>
+        <Width>16</Width>
+        <Height>16</Height>
+      </Size>
+      <Origin>
+        <X>0</X>
+        <Y>0</Y>
+      </Origin>
+      <ImageDefinition DrawMode="Image" ImagePath="..\Gfx\atlas0\environment\blockBlocker.png" Tiled="false">
+        <RectColor A="255" R="255" G="0" B="0" />
+      </ImageDefinition>
+      <ValueDefinitions>
+        <ValueDefinition xsi:type="BoolValueDefinition" Name="Invert" Default="false" />
+      </ValueDefinitions>
+      <NodesDefinition Enabled="false" Limit="-1" DrawMode="None" Ghost="false" />
     </EntityDefinition>
   </EntityDefinitions>
 </project>

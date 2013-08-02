@@ -23,16 +23,20 @@ namespace OldSkull.GameLevel
         public Boolean onGround { get; protected set; }
 
         public Image image;
+        protected GameTags[] CollideOnTag;
 
         public PlatformerObject(Vector2 Position, Vector2 size)
             :base(PlatformerLevel.GAMEPLAY_LAYER)
         {
             this.Position = Position;
+            
             Collider = new Hitbox(size.X, size.Y,-size.X/2,-size.Y/2);
             Speed = new Vector2();
             MaxSpeed = new Vector2(5);
             AirDamping = new Vector2(0.98f, 1);
             GroundDamping = new Vector2(0.9f, 1);
+
+            CollideOnTag = new GameTags[] { GameTags.Solid };
         }
         public override void Added()
         {
@@ -86,7 +90,7 @@ namespace OldSkull.GameLevel
 
                 while (move != 0)
                 {
-                    if ((hit = CollideFirst(GameTags.Solid, X + sign, Y)) != null)
+                    if ((hit = CollideFirst(CollideOnTag, X + sign, Y)) != null)
                     {
                         counter.X = 0;
                         if (onCollide != null)
@@ -113,7 +117,7 @@ namespace OldSkull.GameLevel
 
                 while (move != 0)
                 {
-                    if ((hit = CollideFirst(GameTags.Solid, X, Y + sign)) != null)
+                    if ((hit = CollideFirst(CollideOnTag, X, Y + sign)) != null)
                     {
                         counter.Y = 0;
                         if (onCollide != null)
@@ -133,7 +137,7 @@ namespace OldSkull.GameLevel
             int sign = Math.Sign(move);
             while (move != 0)
             {
-                if ((hit = CollideFirst(GameTags.Solid, X + sign, Y)) != null)
+                if ((hit = CollideFirst(CollideOnTag, X + sign, Y)) != null)
                 {
                     if (onCollide != null)
                         onCollide(hit as Solid);
@@ -151,7 +155,7 @@ namespace OldSkull.GameLevel
             int sign = Math.Sign(move);
             while (move != 0)
             {
-                if ((hit = CollideFirst(GameTags.Solid, X, Y + sign)) != null)
+                if ((hit = CollideFirst(CollideOnTag, X, Y + sign)) != null)
                 {
                     if (onCollide != null)
                         onCollide(hit as Solid);

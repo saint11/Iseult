@@ -15,7 +15,7 @@ namespace Monocle
 
         public Scene Scene { get; internal set; }
         public List<Component> Components { get; private set; }
-        public List<GameTags> Tags { get; private set; }
+        public List<GameTags> Tags { get; protected set; }
         public bool MarkedForRemoval { get; internal set; }
         public bool Updating { get; private set; }
 

@@ -25,11 +25,12 @@ namespace Iseult.Castle
             base.Added();
             TileWidth = IseultGame.Atlas["environment/mist"].Width;
             Image = new TiledImage(IseultGame.Atlas["environment/mist"],
-                (int)(Scene.Camera.Viewport.Width*CameraMult),
+                (int)(Scene.Camera.Viewport.Width * CameraMult + TileWidth / 2),
                 (int)(Scene.Camera.Viewport.Height * CameraMult));
 
             Add(Image);
-            
+            X = Scene.Camera.X - TileWidth/2;
+            Y = Scene.Camera.Y;
         }
 
         public override void Step()
@@ -39,7 +40,7 @@ namespace Iseult.Castle
 
             Image.OffsetY = (int)(Scene.Camera.Position.Y * CameraMult) + (int)(Math.Sin(baseY * 0.05) * 40);
 
-            baseX += -1.5f;
+            baseX += -0.2f;
             if (baseX < -TileWidth)
                 baseX = baseX + TileWidth;
 
