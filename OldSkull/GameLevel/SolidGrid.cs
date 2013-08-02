@@ -17,5 +17,13 @@ namespace OldSkull.GameLevel
             Tag(GameTags.Solid);
         }
 
+        public override void Render()
+        {
+            base.Render();
+#if DEBUG
+            Collider.Render(Color.Black);
+#endif
+        }
+
     }
 }

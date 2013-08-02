@@ -43,10 +43,10 @@ namespace Iseult.UI
             miniE.Add(logo);
             miniE.Add(fade);
             Add(miniE);
-            Tween.Alpha(fade, 0, 60, Ease.CubeIn).OnComplete = (t) =>
+            Tween.Alpha(fade, 0, 80, Ease.CubeIn).OnComplete = (t) =>
             {
                 OldSkull.Utils.Sounds.Play("VINHETA");
-                Tween tween = new Tween(Tween.TweenMode.Oneshot, null, 200, true);
+                Tween tween = new Tween(Tween.TweenMode.Oneshot, null, 300, true);
                 miniE.Add(tween);
                 tween.OnComplete = (u) =>
                 {

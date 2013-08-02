@@ -93,24 +93,27 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Castle\BlockBlocker.cs" />
-    <Compile Include="Castle\DoorWay.cs" />
-    <Compile Include="Castle\Collectible.cs" />
+    <Compile Include="Castle\environmental\Altar.cs" />
+    <Compile Include="Castle\environmental\BlockBlocker.cs" />
+    <Compile Include="Castle\environmental\DoorWay.cs" />
+    <Compile Include="Castle\environmental\Collectible.cs" />
     <Compile Include="Castle\characters\Enemy.cs" />
     <Compile Include="Castle\characters\EnemyTracker.cs" />
-    <Compile Include="Castle\FadeArea.cs" />
+    <Compile Include="Castle\environmental\FadeArea.cs" />
+    <Compile Include="Castle\environmental\PlatformLevelElement.cs" />
     <Compile Include="Castle\GameLevel.cs" />
     <Compile Include="Castle\Mechanical.cs" />
-    <Compile Include="Castle\MovingBlock.cs" />
-    <Compile Include="Castle\PressurePlate.cs" />
-    <Compile Include="Castle\Spikes.cs" />
+    <Compile Include="Castle\environmental\MovingBlock.cs" />
+    <Compile Include="Castle\environmental\PressurePlate.cs" />
+    <Compile Include="Castle\environmental\Spikes.cs" />
+    <Compile Include="UserData.cs" />
     <Compile Include="UI\Credits.cs" />
     <Compile Include="UI\GameOver.cs" />
     <Compile Include="Castle\characters\IseultPlayer.cs" />
     <Compile Include="Castle\Mist.cs" />
     <Compile Include="Castle\characters\Mordecai.cs" />
-    <Compile Include="Castle\PushBox.cs" />
-    <Compile Include="Castle\Stairs.cs" />
+    <Compile Include="Castle\environmental\PushBox.cs" />
+    <Compile Include="Castle\environmental\Stairs.cs" />
     <Compile Include="Castle\Throwable.cs" />
     <Compile Include="UI\Hud.cs" />
     <Compile Include="UI\Intro.cs" />
@@ -294,6 +297,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Content\Level\ThePit.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Level\FirstHub.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Level\GuardRoom.oel">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\Content\Level\SmallChapel.oel">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Iseult_TemporaryKey.pfx" />

@@ -18,6 +18,7 @@ namespace OldSkull.GameLevel
         public string Right;
         public string Left;
         public string Name;
+        public string FileName;
 
         public string Message;
         public string MessageTittle;
@@ -27,6 +28,7 @@ namespace OldSkull.GameLevel
             PlatformerLevelLoader current = new PlatformerLevelLoader();
 
             current.Name = filename.ToUpper();
+            current.FileName = filename;
 
             XmlDocument xmlDoc = new XmlDocument();
             xmlDoc.Load(OldSkullGame.Path + @"Content\Level\"+filename+".oel");

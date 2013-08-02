@@ -25,6 +25,7 @@ namespace Iseult
         public List<Enemy> TailedBy;
         private bool Wait;
         private bool Alive;
+        private bool Grieving = false;
 
         public static Collectible Carrying { get; private set; }
 
@@ -51,7 +52,17 @@ namespace Iseult
             Depth = -10;
             Alive = true;
         }
-        
+
+        protected override void OnAir()
+        {
+            if (!onGround && Alive)
+            {
+                if (Speed.Y > 0)
+                    PlayAnim("jumpDown");
+                else if (Speed.Y < 0) PlayAnim("jumpUp");
+            }
+        }
+
         protected override void UpdateColisions()
         {
             OverHeadDisplay.Visible = false;
@@ -62,18 +73,14 @@ namespace Iseult
             {
                 if (SelectedNpc is Mordecai)
                 {
-                    OverHeadDisplay.Visible = true;
                     Mordecai M = ((Mordecai)SelectedNpc);
                     if (Carrying != null)
                     {
-                        if (Carrying.ItemName == "bandages" ||
-                            Carrying.ItemName == "domecq")
+                        if (Carrying.ItemName == "bandages" || Carrying.ItemName == "domecq")
+                        {
                             OverHeadDisplay.Play("give");
-                        else OverHeadDisplay.Play(M.isFollowing(this) ? "unfollow" : "follow");
-                    }
-                    else
-                    {
-                        OverHeadDisplay.Play(M.isFollowing(this) ? "unfollow" : "follow");
+                            OverHeadDisplay.Visible = true;
+                        }
                     }
                 }
             }
@@ -87,7 +94,7 @@ namespace Iseult
                     OverHeadDisplay.Play("fixIt");
                 else
                 {
-                    if (Mordecai.Instance.Joining())
+                    if (Mordecai.Instance!=null && Mordecai.Instance.Joining())
                         OverHeadDisplay.Play("enterTogether");
                     else
                         OverHeadDisplay.Play("up");
@@ -140,7 +147,7 @@ namespace Iseult
                 PlayAnim("death").OnAnimationComplete = (a) => { Mordecai.Instance.OnGrieve(); };
                 Wait = true;
                 Speed = Vector2.Zero;
-
+                ((GameLevel)Level).GameOver();
             }
         }
 
@@ -187,6 +194,10 @@ namespace Iseult
                 if (KeyboardInput.pressedInput("special")) OnCall();
                 AliveTime++;
             }
+            if (Grieving && onGround)
+            {
+                PlayAnim("grieve",false,true);
+            }
         }
 
         private void OnCall()
@@ -199,9 +210,7 @@ namespace Iseult
 
         private void OnUse()
         {
-            if (SelectedNpc != null) 
-                InteractWithNpc();
-            else if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("wood") > 0)
+            if (SelectedDoor != null && SelectedDoor.IsBeingAttacked && IseultGame.Stats.GetStats("wood") > 0)
             {
                 SelectedDoor.Barricade();
                 IseultGame.Stats.AddStats("wood", -1);
@@ -260,12 +269,12 @@ namespace Iseult
         {
             side = newSide;
         }
-        protected override Sprite<string>  PlayAnim(string animation, bool restart = false)
+        protected override Sprite<string>  PlayAnim(string animation, bool restart = false, bool once = false)
         {
             if (side == 1)
             {
                 imageRight.Visible = true;
-                imageRight.Play(animation, restart);
+                if (!once || imageRight.CurrentAnimID!=animation) imageRight.Play(animation, restart);
                 imageLeft.Visible = false;
 
                 return imageRight;
@@ -273,8 +282,8 @@ namespace Iseult
             else
             {
                 imageLeft.Visible = true;
-                imageLeft.Play(animation, restart);
-                image.Visible = false;
+                if (!once || imageLeft.CurrentAnimID != animation) imageLeft.Play(animation, restart);
+                imageRight.Visible = false;
 
                 return imageLeft;
             }
@@ -319,7 +328,9 @@ namespace Iseult
             side = Math.Sign(Mordecai.Instance.X - X);
             
             PlayAnim("grieve");
+            Grieving = true;
             Wait = true;
+            ((GameLevel)Level).GameOver();
         }
     }
 }

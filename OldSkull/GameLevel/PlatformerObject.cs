@@ -196,11 +196,11 @@ namespace OldSkull.GameLevel
         }
 
         #region Animation
-        protected virtual Sprite<string> PlayAnim(string animation, bool restart = false)
+        protected virtual Sprite<string> PlayAnim(string animation, bool restart = false, bool once = false)
         {
             if (image is Sprite<string>)
             {
-                ((Sprite<string>)image).Play(animation, restart);
+                if (!once || ((Sprite<string>)image).CurrentAnimID != animation) ((Sprite<string>)image).Play(animation, restart);
                 return ((Sprite<string>)image);
             }
             return null;

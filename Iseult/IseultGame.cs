@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
@@ -11,6 +12,7 @@ using Microsoft.Xna.Framework.Media;
 using OldSkull;
 using OldSkull.Utils;
 using Monocle;
+using OldSkull.GameLevel;
 
 namespace Iseult
 {
@@ -57,6 +59,22 @@ namespace Iseult
             Sounds.Init();
             Sounds.Load(new string[]{
                 "VINHETA"
+            });
+
+            Commands.RegisterCommand("goto", (args) =>
+            {
+                if (File.Exists(OldSkullGame.Path + @"Content\Level\" + args[0] + ".oel"))
+                {
+                    IseultPlayer.AliveTime = 0;
+                    PlatformerLevelLoader loader = PlatformerLevelLoader.load(args[0]);
+                    GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Debug);
+
+                    Engine.Instance.Scene = level;
+                }
+                else
+                {
+                    Commands.Log("Cannot find the file " + args[0] + ".oel");
+                }
             });
         }
 

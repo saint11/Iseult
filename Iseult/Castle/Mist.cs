@@ -14,6 +14,7 @@ namespace Iseult.Castle
         private float baseY = 0;
         private float CameraMult = 1.2f;
         private int TileWidth;
+        private int TileHeight;
 
         public Mist(int layerIndex)
             :base(layerIndex)
@@ -24,13 +25,14 @@ namespace Iseult.Castle
         {
             base.Added();
             TileWidth = IseultGame.Atlas["environment/mist"].Width;
+            TileHeight = IseultGame.Atlas["environment/mist"].Height;
             Image = new TiledImage(IseultGame.Atlas["environment/mist"],
                 (int)(Scene.Camera.Viewport.Width * CameraMult + TileWidth / 2),
-                (int)(Scene.Camera.Viewport.Height * CameraMult));
+                (int)(Scene.Camera.Viewport.Height * CameraMult + TileHeight));
 
             Add(Image);
-            X = Scene.Camera.X - TileWidth/2;
-            Y = Scene.Camera.Y;
+            X = Scene.Camera.X - TileWidth / 2;
+            Y = Scene.Camera.Y - TileHeight;
         }
 
         public override void Step()

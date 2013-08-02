@@ -23,15 +23,16 @@ namespace OldSkull.GameLevel
         public static readonly int BG_GAME_LAYER = -3;
         public static readonly int GAMEPLAY_LAYER = 0;
         public static readonly int FRONT_GAMEPLAY_LAYER = 1;
-        public static readonly int HUD_LAYER = 3;
-        public static readonly int PAUSE_LAYER = 4;
-        public static readonly int REPLAY_LAYER = 10;
+        public static readonly int EFFECTS_GAMEPLAY_LAYER = 3;
+        public static readonly int HUD_LAYER = 4;
+        public static readonly int PAUSE_LAYER = 5;
 
         //LevelLoader Variables
         public int Width { get; private set; }
         public int Height { get; private set; }
         public Vector2 Gravity = new Vector2(0f,0.1f);
         public string Name { get; private set; }
+        public string FileName { get; private set; }
         protected int tilesetCount = 0;
 
         //Lists
@@ -43,7 +44,7 @@ namespace OldSkull.GameLevel
         protected string ConnectionLeft;
 
 
-        public enum Side { Left, Right, Secret, Door };
+        public enum Side { Left, Right, Secret, Door, Debug, Checkpoint };
 
         public enum GameState { Game, Paused, Talk, Transition, ExitGame };
         public GameState CurrentState = GameState.Game;
@@ -54,9 +55,10 @@ namespace OldSkull.GameLevel
             this.Width = (int)size.X;
             this.Height = (int)size.Y;
 
-            SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer(BlendState.Opaque,SamplerState.PointClamp,0.2f));
+            SetLayer(SKY_GAME_LAYER, skyGameLayer = new Layer(BlendState.Opaque,SamplerState.PointClamp,0.95f));
             SetLayer(BG_GAME_LAYER, bgGameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
             SetLayer(GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.AnisotropicClamp));
+            SetLayer(EFFECTS_GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.Additive, SamplerState.AnisotropicClamp));
             SetLayer(FRONT_GAMEPLAY_LAYER, gameLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp));
             SetLayer(HUD_LAYER, hudLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp, 0));
             SetLayer(PAUSE_LAYER, pauseLayer = new Layer(BlendState.NonPremultiplied, SamplerState.AnisotropicClamp , 0));
@@ -92,6 +94,7 @@ namespace OldSkull.GameLevel
         public virtual void loadLevel(PlatformerLevelLoader ll)
         {
             Name = ll.Name;
+            FileName = ll.FileName;
             foreach (Solid solid in ll.solids)
             {
                 Add(solid);
@@ -196,6 +199,15 @@ namespace OldSkull.GameLevel
             PlatformerLevel level = new PlatformerLevel(loader.size);
             level.loadLevel(loader);
             return level;
+        }
+
+        public Entity AddEffect(Vector2 Position, Image image)
+        {
+            Entity e = new Entity(EFFECTS_GAMEPLAY_LAYER);
+            e.Add(image);
+            e.Position = Position;
+            Add(e);
+            return e;
         }
     }
 }

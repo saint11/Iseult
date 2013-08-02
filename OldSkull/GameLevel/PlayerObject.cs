@@ -64,14 +64,19 @@ namespace OldSkull.GameLevel
             UpdateColisions();
             UpdateControls();
 
+            OnAir();
+
+            Invulnerable--;
+        }
+
+        protected virtual void OnAir()
+        {
             if (!onGround)
             {
                 if (Speed.Y > 0)
                     PlayAnim("jumpDown");
                 else if (Speed.Y < 0) PlayAnim("jumpUp");
             }
-
-            Invulnerable--;
         }
 
 

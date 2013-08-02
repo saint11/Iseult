@@ -81,7 +81,7 @@ namespace Iseult.Castle
         {
             base.Update();
 
-            if (Powered) MoveTowards(Alternate, 0.5f + 0.1f * OriginalDistance);
+            if (Powered) MoveTowards(Alternate, 0.3f + 0.1f * OriginalDistance);
             else MoveTowards(Original, 0.5f + 0.01f * OriginalDistance);
         }
 

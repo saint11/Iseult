@@ -24,7 +24,11 @@ namespace Iseult
         private TiledImage Sky;
 
         private List<DoorWay> Doors;
+        public List<Altar> Altars { get; private set; }
+
         private Inventory Inventory;
+        private bool GameEnded=false;
+        
 
         public GameLevel(PlatformerLevelLoader Loader, Side EntrySide, int DoorUid=0)
             :base(Loader.size)
@@ -35,6 +39,7 @@ namespace Iseult
             Engine.Instance.Screen.ClearColor = Color.RoyalBlue;
 
             Doors = new List<DoorWay>();
+            Altars = new List<Altar>();
             loadLevel(Loader);
 
             LoadPersistent();
@@ -43,8 +48,8 @@ namespace Iseult
 
             Layer MistLayer;
             SetLayer(2, MistLayer = new Layer(BlendState.NonPremultiplied, SamplerState.PointClamp, 0));
-            
-            Sky = new TiledImage(IseultGame.Atlas["environment/sky"],
+
+            Sky = new TiledImage(IseultGame.Atlas["environment/prisonWall"],
                 (int)(Camera.Viewport.Width + skyGameLayer.CameraMultiplier * (Width - Camera.Viewport.Width)),
                 (int)(Camera.Viewport.Height + skyGameLayer.CameraMultiplier * (Height - Camera.Viewport.Height)));
             Entity BgE = new Entity(SKY_GAME_LAYER);
@@ -83,7 +88,7 @@ namespace Iseult
         {
             base.Begin();
             if (EntrySide == Side.Secret && Mordecai != null) Mordecai.ToggleFollow(Player);
-            Player.CheckMusic();
+            Player.CheckMusic();   
         }
 
         private void LoadPersistent()
@@ -97,6 +102,35 @@ namespace Iseult
             {
                 Add(Mordecai = new Mordecai(Mordecai.LastSeen));
             }
+
+            if (EntrySide == Side.Checkpoint)
+            {
+                Altar IdAltar=null;
+
+                foreach (Altar a in Altars)
+                {
+                    if (a.ID == DoorUid)
+                    {
+                        IdAltar = a;
+                        break;
+                    }
+                }
+
+                if (IdAltar == null) throw new Exception("Altar not found!");
+                AddPlayer(IdAltar.X, IdAltar.Y);
+                if (Mordecai != null) Mordecai.RemoveSelf();
+                Add(Mordecai = new Mordecai(new Vector2(IdAltar.X, IdAltar.Y)));
+            }
+            else if (EntrySide == Side.Debug)
+            {
+                AddPlayer(Doors[0].X, Doors[0].Y);
+                if (Mordecai == null)
+                {
+                    Add(Mordecai = new Mordecai(new Vector2(Doors[0].X, Doors[0].Y)));
+                }
+            }
+
+
         }
 
         public override void LoadEntity(System.Xml.XmlElement e)
@@ -169,6 +203,12 @@ namespace Iseult
             {
                 Add(new BlockBlocker(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrBool("Invert")));
             }
+            else if (e.Name == "AltarCheckpoint")
+            {
+                Altar Altar = new Altar(new Vector2(e.AttrFloat("x"), e.AttrFloat("y")), e.AttrInt("id"));
+                Altars.Add(Altar);
+                Add(Altar);
+            }
         }
 
         private void AddDoorWay(System.Xml.XmlElement e)
@@ -203,7 +243,7 @@ namespace Iseult
             UpdateCamera();
         }
 
-        internal void GoToLevel(string Destiny, int uid)
+        internal void GoToLevel(string Destiny, int uid, PlatformerLevel.Side How)
         {
             foreach (var e in Tags[(int)GameTags.Enemy]) EnemyTracker.UpdateTracker((Enemy)e, Name, Player);
 
@@ -222,7 +262,7 @@ namespace Iseult
             }
 
             PlatformerLevelLoader loader = PlatformerLevelLoader.load(Destiny);
-            GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Door, uid);
+            GameLevel level = new GameLevel(loader, How, uid);
 
             Engine.Instance.Scene = level;
         }
@@ -231,7 +271,7 @@ namespace Iseult
         {
             base.Update();
             EnemyTracker.UpdateOffScreen(CheckForMonstersAtTheDoors,Name);
-            Sky.Color = Color.Lerp(new Color(0.1f, 0.1f, 0.2f), Color.OrangeRed, IseultPlayer.AliveTime * .0001f);
+            //Sky.Color = Color.Lerp(new Color(0.1f, 0.1f, 0.2f), Color.OrangeRed, IseultPlayer.AliveTime * .0001f);
         }
 
         public void CheckForMonstersAtTheDoors()
@@ -279,6 +319,18 @@ namespace Iseult
                 }
             }
             return null;
+        }
+
+        internal void GameOver()
+        {
+            if (!GameEnded)
+            {
+                GameEnded = true;
+                FadeScreen.FadeOut(this, 180, PAUSE_LAYER, -100).OnComplete((f) =>
+                    {
+                        GoToLevel(UserData.LastestRoomName, UserData.LastestCheckpointID, PlatformerLevel.Side.Checkpoint);
+                    });
+            }
         }
     }
 }

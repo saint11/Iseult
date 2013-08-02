@@ -18,7 +18,7 @@ namespace Iseult.Castle
             image.CenterOrigin();
             Add(image);
 
-            Position.X +=32;
+            this.Position.X +=16;
             CollideOnTag = new GameTags[] { GameTags.Solid, GameTags.BlockSolid };
             Tag(GameTags.Solid, GameTags.Heavy);
         }

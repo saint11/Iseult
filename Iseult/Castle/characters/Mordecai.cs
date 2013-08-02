@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Monocle;
-using OldSkull.GameLevel;
-using Microsoft.Xna.Framework;
-using OldSkull;
 using System.Xml;
+using Iseult.Castle;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Monocle;
+using OldSkull;
+using OldSkull.GameLevel;
 
 namespace Iseult
 {
@@ -33,6 +34,7 @@ namespace Iseult
         private int MAX_INTEREST = 60;
         private float Acceleration = .5f;
         private bool Alive;
+        private int MinDistance;
 
         public Mordecai(Vector2 Position)
             :base(Position, new Vector2(32,64))
@@ -64,6 +66,7 @@ namespace Iseult
 
             if (Alive)
             {
+                SearchForPriorities();
                 if (Wandering > 0)
                 {
                     Speed.X = WanderingSide * Acceleration * 1.5f;
@@ -79,6 +82,20 @@ namespace Iseult
                 }
 
                 checkForHazards();
+            }
+        }
+
+        private void SearchForPriorities()
+        {
+            if (((GameLevel)Level).Altars.Count > 0 && !(Target is Altar))
+            {
+                foreach (Altar a in ((GameLevel)Level).Altars)
+                {
+                    if (!a.Prayed && Vector2.DistanceSquared(Position, a.Position) < Math.Pow(320, 2))
+                    {
+                        ToggleFollow(a,90);
+                    }
+                }
             }
         }
 
@@ -123,8 +140,9 @@ namespace Iseult
             }
         }
 
-        public void ToggleFollow(PlatformLevelEntity NextTarget)
+        public void ToggleFollow(PlatformLevelEntity NextTarget, int MinDistance=80)
         {
+            this.MinDistance = MinDistance;
             if (Target == NextTarget) Target = null;
             else
             {
@@ -139,7 +157,7 @@ namespace Iseult
         private void FollowTarget()
         {
             image.X = 0;
-            if (Target == null || Vector2.DistanceSquared(Target.Position, Position) < Math.Pow(80, 2) || Blocked)
+            if (Target == null || Vector2.DistanceSquared(Target.Position, Position) < Math.Pow(MinDistance, 2) || Blocked)
             {
                 int side = Math.Sign(Player.X - X);
                 Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
@@ -197,7 +215,7 @@ namespace Iseult
                     if (onGround) Speed.X += Acceleration * Side;
                 }
 
-                if (Math.Abs(Target.Y - Y) > 96) LooseInterest();
+                if (Math.Abs(Target.Y - Y) > 256) LooseInterest();
                 else Interest = MAX_INTEREST;
             }
         }
@@ -210,7 +228,7 @@ namespace Iseult
 
         public bool Joining()
         {
-            return (Vector2.DistanceSquared(Position, Player.Position) < Math.Pow(400,2));
+            return (Vector2.DistanceSquared(Position, Player.Position) < Math.Pow(200,2));
         }
 
         internal bool isFollowing(PlatformLevelEntity entity)

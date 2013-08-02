@@ -135,6 +135,6 @@
     <PressurePlate id="1" x="880" y="528" triggerID="0" />
     <PressurePlate id="2" x="464" y="528" triggerID="0" />
     <DoorWay id="3" x="1072" y="416" GoTo="SmallCorridor" Back="True" uid="2" TogetherOnly="True" />
-    <DoorWay id="4" x="144" y="416" GoTo="" Back="True" uid="3" TogetherOnly="True" />
+    <DoorWay id="4" x="144" y="416" GoTo="GuardRoom" Back="True" uid="5" TogetherOnly="True" />
   </Objects>
 </level>

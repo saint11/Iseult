@@ -87,7 +87,7 @@ namespace Monocle
 
         private void EnterCommand()
         {
-            string[] data = currentText.ToLower().Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] data = currentText.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
             if (commandHistory.Count == 0 || commandHistory[0] != currentText)
                 commandHistory.Insert(0, currentText);
             drawCommands.Insert(0, ">" + currentText);
@@ -97,7 +97,7 @@ namespace Monocle
             string[] args = new string[data.Length - 1];
             for (int i = 1; i < data.Length; i++)
                 args[i - 1] = data[i];
-            ExecuteCommand(data[0], args);
+            ExecuteCommand(data[0].ToLower(), args);
         }
 
         public void RegisterCommand(string command, CommandCallback action)

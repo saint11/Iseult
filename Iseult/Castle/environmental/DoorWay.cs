@@ -121,7 +121,7 @@ namespace Iseult
 
         public virtual void Enter(PlatformLevelEntity Entity)
         {
-            ((GameLevel)Scene).GoToLevel(Destiny,uid);
+            ((GameLevel)Scene).GoToLevel(Destiny, uid, PlatformerLevel.Side.Door);
         }
 
         internal void CheckForAttackers()

@@ -53,6 +53,8 @@ namespace Iseult
             PlatformerLevelLoader loader = PlatformerLevelLoader.load("CellRoom");
             GameLevel level = new GameLevel(loader, PlatformerLevel.Side.Secret);
 
+            UserData.LastestRoomName = level.FileName;
+
             Engine.Instance.Scene = new Intro(level);
         }
 
