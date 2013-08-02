@@ -87,6 +87,7 @@
     <Compile Include="GameLevel\SolidGrid.cs" />
     <Compile Include="Graphics\ProgressBar.cs" />
     <Compile Include="Graphics\Tileset.cs" />
+    <Compile Include="Utils\FadeScreen.cs" />
     <Compile Include="Utils\GameStats.cs" />
     <Compile Include="GenericEntities\ColorBackground.cs" />
     <Compile Include="Graphics\ColorBackground.cs" />

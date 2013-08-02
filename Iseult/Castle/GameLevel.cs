@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Monocle;
 using Microsoft.Xna.Framework.Graphics;
 using Iseult.Castle;
+using OldSkull.Utils;
 
 
 namespace Iseult
@@ -54,6 +55,7 @@ namespace Iseult
             Add(new Hud());
 
             CheckForMessages(Loader);
+            FadeScreen.FadeIn(this, 20, PAUSE_LAYER, -100);
         }
 
         private void CheckForMessages(PlatformerLevelLoader Loader)
