@@ -64,6 +64,23 @@ namespace OldSkull.GameLevel
             Solids = new List<Entity>();
 
             BuildHud();
+
+            int compensateX=0;
+            int compensateY=0;
+            if (Width < Camera.Viewport.Width)
+            {
+                compensateX = (int)(Camera.Viewport.Width - Width)/2 + 4;
+                AddComponent(new Image(new Monocle.Texture(compensateX, Math.Max(Height, Camera.Viewport.Height), Color.Black)), FRONT_GAMEPLAY_LAYER).X = -compensateX;
+                AddComponent(new Image(new Monocle.Texture(compensateX, Math.Max(Height, Camera.Viewport.Height), Color.Black)), FRONT_GAMEPLAY_LAYER).X = Width;
+            }
+            if (Height < Camera.Viewport.Height)
+            {
+                compensateY = (int)(Camera.Viewport.Height - Height) / 2 + 4;
+                Entity e = AddComponent(new Image(new Monocle.Texture(Math.Max(Width, Camera.Viewport.Width) + compensateX, compensateY, Color.Black)), FRONT_GAMEPLAY_LAYER);
+                e.Y = -compensateY;
+                e.X = -compensateX;
+                AddComponent(new Image(new Monocle.Texture(Math.Max(Width, Camera.Viewport.Width), compensateY, Color.Black)), FRONT_GAMEPLAY_LAYER).Y = Height;
+            }
         }
 
         protected virtual void BuildHud()
@@ -94,6 +111,14 @@ namespace OldSkull.GameLevel
             ConnectionRight = ll.Right;
             ConnectionLeft = ll.Left;
             Add(new SolidGrid(ll.solidGrid));
+        }
+
+        public Entity AddComponent(Component c, int layer=0)
+        {
+            Entity e = new Entity(layer);
+            e.Add(c);
+            Add(e);
+            return e;
         }
 
         public virtual void LoadTileset(XmlElement e)
@@ -135,8 +160,11 @@ namespace OldSkull.GameLevel
         {
             if (CameraTarget != null)
             {
-                Camera.X = Calc.LerpSnap(Camera.X, CameraTarget.X - Camera.Viewport.Width / 2, 0.1f);
-                Camera.Y = Calc.LerpSnap(Camera.Y, CameraTarget.Y - Camera.Viewport.Height / 2, 0.1f);
+                if (Width > Camera.Viewport.Width) Camera.X = Calc.LerpSnap(Camera.X, CameraTarget.X - Camera.Viewport.Width / 2, 0.1f);
+                else Camera.X = (Width - Camera.Viewport.Width) / 2;
+
+                if (Height > Camera.Viewport.Height) Camera.Y = Calc.LerpSnap(Camera.Y, CameraTarget.Y - Camera.Viewport.Height / 2, 0.1f);
+                else Camera.Y = (Height - Camera.Viewport.Height) / 2;
 
             }
             KeepCameraOnBounds();
@@ -144,10 +172,16 @@ namespace OldSkull.GameLevel
 
         private void KeepCameraOnBounds()
         {
-            if (Camera.X < 0) Camera.X = 0;
-            if (Camera.X + Camera.Viewport.Width > Width) Camera.X = Width - Camera.Viewport.Width;
-            if (Camera.Y < 0) Camera.Y = 0;
-            if (Camera.Y + Camera.Viewport.Height > Height) Camera.Y = Height - Camera.Viewport.Height;
+            if (Width > Camera.Viewport.Width)
+            {
+                if (Camera.X < 0) Camera.X = 0;
+                if (Camera.X + Camera.Viewport.Width > Width) Camera.X = Width - Camera.Viewport.Width;
+            }
+            if (Height > Camera.Viewport.Height)
+            {
+                if (Camera.Y < 0) Camera.Y = 0;
+                if (Camera.Y + Camera.Viewport.Height > Height) Camera.Y = Height - Camera.Viewport.Height;
+            }
         }
 
         public virtual void OutOfBounds(Side side)

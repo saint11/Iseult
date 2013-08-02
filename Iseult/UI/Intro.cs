@@ -23,6 +23,7 @@ namespace Iseult.UI
         public Intro(Scene nextScene)
             : base()
         {
+            Sounds.PlayMusic("darkAmbience");
             this.nextScene = nextScene;
 
             SetLayer(0, new Layer(Microsoft.Xna.Framework.Graphics.BlendState.NonPremultiplied,
@@ -109,7 +110,7 @@ namespace Iseult.UI
                 ShowText();
             }
             if (!KeyboardInput.checkInput("accept")) InputBlock = false;
-
+            if (KeyboardInput.pressedInput("pause")) Engine.Instance.Scene = nextScene;
             KeyboardInput.Update();
         }
     }

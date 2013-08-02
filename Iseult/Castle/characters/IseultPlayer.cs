@@ -122,14 +122,7 @@ namespace Iseult
 
         private void OnTakeHit()
         {
-            if (Alive)
-            {
-                Alive = false;
-                PlayAnim("death").OnAnimationComplete = (a) => { Mordecai.Instance.OnGrieve(); };
-                Wait = true;
-                Speed = Vector2.Zero;
-                
-            }
+            OnDeath();
             /*
             Engine.Instance.Scene = new GameOver();
             IseultGame.Stats.AddStats("hp", -1);
@@ -137,6 +130,18 @@ namespace Iseult
             {
                 Engine.Instance.Scene = new GameOver();
             }*/
+        }
+
+        private void OnDeath()
+        {
+            if (Alive)
+            {
+                Alive = false;
+                PlayAnim("death").OnAnimationComplete = (a) => { Mordecai.Instance.OnGrieve(); };
+                Wait = true;
+                Speed = Vector2.Zero;
+
+            }
         }
 
         protected override void OnCrouching()
@@ -176,8 +181,19 @@ namespace Iseult
             base.Step();
             if (Alive)
             {
+                if (Y > Level.Height + image.Height) OnDeath();
+
                 if (KeyboardInput.pressedInput("use")) OnUse();
+                if (KeyboardInput.pressedInput("special")) OnCall();
                 AliveTime++;
+            }
+        }
+
+        private void OnCall()
+        {
+            if (onGround)
+            {
+                if (Mordecai.Instance!=null) Mordecai.Instance.ToggleFollow(this);
             }
         }
 

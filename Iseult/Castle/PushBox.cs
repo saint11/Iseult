@@ -18,8 +18,9 @@ namespace Iseult.Castle
             image.CenterOrigin();
             Add(image);
 
-            Position.X = (int)(Position.X / 32) * 32;
-            Tag(GameTags.Solid);
+            Position.X +=32;
+            CollideOnTag = new GameTags[] { GameTags.Solid, GameTags.BlockSolid };
+            Tag(GameTags.Solid, GameTags.Heavy);
         }
 
         public override void Added()
@@ -54,5 +55,7 @@ namespace Iseult.Castle
                 Speed.X = - Npc.Speed.X;
             }
         }
+
+
     }
 }
