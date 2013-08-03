@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <sprites>
-<!--NPCS-->
+<!--Characters-->
   <sprite_string id="monk">
     <Texture>characters/monk</Texture>
     <FrameWidth>128</FrameWidth>
@@ -53,6 +53,7 @@
 		<Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
 		<Anim id="death" delay=".1" loop="False" frames="21,22,23,24,25,26"/>
 		<Anim id="grieve" delay=".1" loop="False" frames="27,28,29,30,31,32"/>
+		<Anim id="call" delay=".1" loop="False" frames="33,34,35,36,37"/>
     </Animations>
   </sprite_string>
   
@@ -78,6 +79,7 @@
 		<Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
 		<Anim id="death" delay=".1" loop="False" frames="21,22,23,24,25,26"/>
 		<Anim id="grieve" delay=".1" loop="False" frames="27,28,29,30,31,32"/>
+		<Anim id="call" delay=".1" loop="False" frames="33,34,35,36,37"/>
     </Animations>
   </sprite_string>
 
@@ -133,6 +135,17 @@
       <Anim id="wood" delay=".1" frames="2"/>
       <Anim id="bandages" delay=".1" frames="3"/>
       <Anim id="domecq" delay=".1" frames="4"/>
+    </Animations>
+  </sprite_string>
+  
+  <sprite_string id="candleTop">
+    <Texture>hud/candleTop</Texture>
+    <FrameWidth>30</FrameWidth>
+    <FrameHeight>52</FrameHeight>
+    <OriginX>0</OriginX>
+    <OriginY>0</OriginY>
+    <Animations>
+      <Anim id="candleTop" delay=".1" frames="0,1,2"/>
     </Animations>
   </sprite_string>
 
