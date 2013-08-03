@@ -73,7 +73,7 @@
 1111111111111111000000111111111111111111111</Solid>
   <Objects>
     <DoorWay id="0" x="384" y="384" GoTo="FirstHub" Back="True" uid="6" TogetherOnly="True" />
-    <DoorWay id="1" x="48" y="384" GoTo="ThePit" Back="True" uid="5" TogetherOnly="True" />
+    <DoorWay id="1" x="48" y="384" GoTo="LostChapel" Back="True" uid="11" TogetherOnly="True" />
     <Enemy id="2" x="784" y="256" />
   </Objects>
 </level>

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
-<!-- $TexturePacker:SmartUpdate:d82650080d1843339537ef97ced4cebe:1/1$ -->
+<!-- $TexturePacker:SmartUpdate:d5879c8ac86d0b187c1d95f546816490:1/1$ -->
 <TextureAtlas imagePath="atlas0.png">
     <SubTexture name="environment/Items" x="1849" y="76" width="192" height="96"/>
     <SubTexture name="environment/altar" x="411" y="1860" width="64" height="100"/>
     <SubTexture name="environment/altarGlow" x="322" y="1867" width="88" height="120"/>
     <SubTexture name="environment/bed" x="363" y="1795" width="128" height="64"/>
-    <SubTexture name="environment/blockBlocker" x="130" y="2029" width="16" height="16"/>
+    <SubTexture name="environment/blockBlocker" x="226" y="2029" width="16" height="16"/>
     <SubTexture name="environment/doorway" x="1133" y="213" width="480" height="256"/>
     <SubTexture name="environment/lever" x="262" y="1996" width="32" height="32"/>
     <SubTexture name="environment/leverBase" x="229" y="1996" width="32" height="32"/>
     <SubTexture name="environment/mist" x="736" y="322" width="300" height="300"/>
-    <SubTexture name="environment/pressurePlate" x="97" y="2029" width="32" height="16"/>
+    <SubTexture name="environment/pressurePlate" x="193" y="2029" width="32" height="16"/>
     <SubTexture name="environment/prisonWall" x="363" y="1374" width="250" height="420"/>
     <SubTexture name="environment/sky" x="0" y="0" width="350" height="860"/>
     <SubTexture name="environment/smallBox" x="196" y="1996" width="32" height="32"/>
@@ -19,14 +19,16 @@
     <SubTexture name="environment/spikesBox" x="130" y="1996" width="32" height="32"/>
     <SubTexture name="environment/stairs" x="0" y="1867" width="192" height="128"/>
     <SubTexture name="environment/throwables" x="0" y="1996" width="96" height="48"/>
+    <SubTexture name="environment/woodBarricate" x="97" y="2029" width="95" height="16"/>
     <SubTexture name="hud/bigItems" x="351" y="322" width="384" height="384"/>
     <SubTexture name="hud/display" x="351" y="707" width="300" height="100"/>
     <SubTexture name="hud/hudBg" x="411" y="1961" width="64" height="64"/>
     <SubTexture name="hud/messageBg" x="513" y="808" width="340" height="369"/>
+    <SubTexture name="hud/mordecaiIcons" x="1849" y="173" width="180" height="90"/>
     <SubTexture name="logo" x="97" y="1996" width="32" height="32"/>
     <SubTexture name="logo4x" x="193" y="1867" width="128" height="128"/>
     <SubTexture name="menu/credits" x="1849" y="0" width="194" height="75"/>
-    <SubTexture name="menu/exit" x="1849" y="173" width="113" height="75"/>
+    <SubTexture name="menu/exit" x="351" y="0" width="113" height="75"/>
     <SubTexture name="menu/messageBase" x="1133" y="0" width="715" height="212"/>
     <SubTexture name="menu/pauseBg" x="0" y="1374" width="362" height="492"/>
     <SubTexture name="menu/startgame" x="652" y="707" width="335" height="75"/>
