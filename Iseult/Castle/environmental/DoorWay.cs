@@ -23,6 +23,7 @@ namespace Iseult
         private int interacting = 0;
         private int MAX_HP = 60;
 
+        public bool Barricated { get; private set; }
 
         public bool IsBeingAttacked { get { return hp < MAX_HP; } }
 
@@ -35,6 +36,8 @@ namespace Iseult
             this.Back = Back;
             this.Destiny = Destiny;
             this.uid = uid;
+
+            Barricated = false;
 
             Tag(GameTags.Door);
 
@@ -92,16 +95,19 @@ namespace Iseult
             {
                 if (Calc.Chance(Calc.Random, 0.03f))
                 {
-                    hp--;
-                    hpChanged = true;
-                    UpdateVisuals();
-                    if (hp<=0 && Calc.Chance(Calc.Random, 0.05f))
+                    if (!Barricated)
                     {
-                        Enemy enemy = new Enemy(tracker);
-                        enemy.SetPosition(new Vector2(Position.X + 32, Position.Y + 82));
-                        Level.Add(enemy);
-                        EnemyTracker.UpdateTracker(enemy,Level.Name);
-                        enemyOut = true;
+                        hp--;
+                        hpChanged = true;
+                        UpdateVisuals();
+                        if (hp <= 0 && Calc.Chance(Calc.Random, 0.05f))
+                        {
+                            Enemy enemy = new Enemy(tracker);
+                            enemy.SetPosition(new Vector2(Position.X + 32, Position.Y + 82));
+                            Level.Add(enemy);
+                            EnemyTracker.UpdateTracker(enemy, Level.Name);
+                            enemyOut = true;
+                        }
                     }
                 }
             }
@@ -121,7 +127,10 @@ namespace Iseult
 
         public virtual void Enter(PlatformLevelEntity Entity)
         {
-            ((GameLevel)Scene).GoToLevel(Destiny, uid, PlatformerLevel.Side.Door);
+            if (!Barricated && !IsBeingAttacked)
+            {
+                ((GameLevel)Scene).GoToLevel(Destiny, uid, PlatformerLevel.Side.Door);
+            }
         }
 
         internal void CheckForAttackers()
@@ -137,6 +146,14 @@ namespace Iseult
         {
             hp += MAX_HP/2;
             if (hp > MAX_HP * 2) hp = MAX_HP * 2;
+            Barricated = true;
+
+            Image bar = new Image(IseultGame.Atlas["environment/woodBarricate"]);
+            bar.Y = Image.Height / 2 + 10;
+            bar.X = Image.Width / 2;
+            bar.CenterOrigin();
+            bar.Rotation = Calc.Random.Range(-0.2f, 0.2f);
+            Add(bar);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace Iseult.Castle
             image.Origin.X = image.Width / 2;
             Position.X -= image.Width / 2;
             Add(image);
-            Collider = new Hitbox(image.Width, image.Height, -image.Height/2);
+            Collider = new Hitbox(image.Width, image.Height, -image.Width / 2);
 
             Depth = 100;
         }

@@ -138,6 +138,20 @@
 
   <!--HUD-->
 
+  <sprite_string id="mordecaiStats">
+    <Texture>hud/mordecaiIcons</Texture>
+    <FrameWidth>90</FrameWidth>
+    <FrameHeight>90</FrameHeight>
+    <OriginX>0</OriginX>
+    <OriginY>0</OriginY>
+    <Animations>
+      <Anim id="idle" frames="0"/>
+      <Anim id="follow" frames="1"/>
+      <Anim id="followOther" frames="1"/>
+      <Anim id="lost" frames="1"/>
+    </Animations>
+  </sprite_string>
+  
   <sprite_string id="bigItems">
     <Texture>hud/bigItems</Texture>
     <FrameWidth>96</FrameWidth>

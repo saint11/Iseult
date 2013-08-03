@@ -163,6 +163,7 @@ namespace Iseult
                 Image.Effects = side == -1 ? SpriteEffects.FlipHorizontally : SpriteEffects.None;
                 Image.Play("idle");
                 if (Blocked) ToggleFollow(Target);
+                if (!(Target is IseultPlayer)) Target = null;
             }
             else
             {
