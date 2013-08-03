@@ -53,7 +53,7 @@
 		<Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
 		<Anim id="death" delay=".1" loop="False" frames="21,22,23,24,25,26"/>
 		<Anim id="grieve" delay=".1" loop="False" frames="27,28,29,30,31,32"/>
-		<Anim id="call" delay=".1" loop="False" frames="33,34,35,36,37"/>
+		<Anim id="call" delay=".1" loop="False" frames="33,34,35,36,36,36,36,37"/>
     </Animations>
   </sprite_string>
   
@@ -79,7 +79,7 @@
 		<Anim id="jumpThrowing" delay=".1" loop="False" frames="0"/>
 		<Anim id="death" delay=".1" loop="False" frames="21,22,23,24,25,26"/>
 		<Anim id="grieve" delay=".1" loop="False" frames="27,28,29,30,31,32"/>
-		<Anim id="call" delay=".1" loop="False" frames="33,34,35,36,37"/>
+		<Anim id="call" delay=".1" loop="False" frames="33,34,35,36,36,36,36,37"/>
     </Animations>
   </sprite_string>
 
