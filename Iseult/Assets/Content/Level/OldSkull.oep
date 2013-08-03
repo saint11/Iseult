@@ -16,7 +16,7 @@
     <Width>2048</Width>
     <Height>2048</Height>
   </LevelMaximumSize>
-  <Filename>C:\Users\Santo 11\Documents\GitHub\Iseult\Iseult\Assets\Content\Level\OldSkull.oep</Filename>
+  <Filename>C:\Users\Amora\Documents\GitHub\Iseult\Iseult\Assets\Content\Level\OldSkull.oep</Filename>
   <AngleMode>Radians</AngleMode>
   <CameraEnabled>false</CameraEnabled>
   <CameraSize>
@@ -93,6 +93,15 @@
     <Tileset>
       <Name>over</Name>
       <FilePath>..\Gfx\atlas0\tilesets\over.png</FilePath>
+      <TileSize>
+        <Width>32</Width>
+        <Height>32</Height>
+      </TileSize>
+      <TileSep>0</TileSep>
+    </Tileset>
+    <Tileset>
+      <Name>prison</Name>
+      <FilePath>..\Gfx\atlas0\tilesets\prison.png</FilePath>
       <TileSize>
         <Width>32</Width>
         <Height>32</Height>
